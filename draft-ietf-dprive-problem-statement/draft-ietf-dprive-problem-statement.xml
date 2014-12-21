@@ -605,14 +605,61 @@ movement of such data</title>
 </front>
 </reference>
 
-TODO: add
-FANGMING ZHAO ET AL: "Analysis of Privacy Disclosure in DNS Query", 2007 INTERNATIONAL CONFERENCE ON MULTIMEDIA AND UBIQUITOUS ENGINEERING IEEE PISCATAWAY, NJ, USA, IEEE, PISCATAWAY, NJ, USA, 1 April 2007 (2007-04-01), pages 952-957, XP031086653, ISBN: 978-0-7695-2777-2
-2	*	HANNES FEDERRATH ET AL: "Privacy-Preserving DNS: Analysis of Broadcast, Range Queries and Mix-Based Protection Methods", 12 September 2011 (2011-09-12), COMPUTER SECURITY Â ESORICS 2011, SPRINGER BERLIN HEIDELBERG, BERLIN, HEIDELBERG, PAGE(S) 665 - 683, XP019164096, ISBN: 978-3-642-23821-5 * the whole document *
-3		None
-4	*	YANBIN LU ET AL: "Towards Plugging Privacy Leaks in
-the Domain Name System", PEER-TO-PEER COMPUTING (P2P), 2010 IEEE TENTH
-INTERNATIONAL CONFERENCE ON, IEEE, PISCATAWAY, NJ, USA, 25 August 2010
-(2010-08-25), pages 1-10, XP031752227, ISBN: 978-1-4244-7140-9
+<reference anchor="yanbin-tsudik" target="http://arxiv.org/abs/0910.2472">
+<front>
+<title>Towards Plugging Privacy Leaks in the Domain Name System</title>
+<author fullname="Yanbin Lu" surname="Yanbin" initials="L."/>
+<author fullname="Gene Tsudik" surname="Tsudik" initials="G."/>
+<date year="2009"/>
+<abstract>
+<t>Peer-to-peer computing (p2p), 2010 IEEE tenth
+international conference on, IEEE, Piscataway, NJ, USA, 25 August 2010
+(2010-08-25), pages 1-10, XP031752227, ISBN: 978-1-4244-7140-9</t>
+<t>Actually, it is not about the DNS but about a complete replacement, using DHTs for resolution.</t>
+</abstract></front>
+</reference>
+
+<reference anchor="castillo-garcia" target="http://deic.uab.es/~joaquin/papers/is08.pdf">
+<front>
+<title>Anonymous Resolution of DNS Queries</title>
+<author initials="S." surname="Castillo-Perez" fullname="S. Castillo-Perez"/>
+<author initials="J." surname="Garcia-Alfaro" fullname="J.Garcia-Alfaro"/>
+<date year="2008"/>
+<abstract>
+<t>OTM 2008 Confederated International Conferences, CoopIS, DOA, GADA, IS, and ODBASE 2008, Monterrey, Mexico, November 9-14, 2008, Proceedings</t>
+<t>Focus on ENUM privacy risks. A suggested solution is to add gratuitous queries, in order to hide the real ones.</t>
+</abstract>
+</front>
+</reference>
+
+<reference anchor="fangming-hori-sakurai" target="http://dl.acm.org/citation.cfm?id=1262690.1262986">
+<front>
+<title>Analysis of Privacy Disclosure in DNS Query</title>
+<author fullname="Fangming Zhao" surname="Fangming"/>
+<author fullname="Yoshiaki Hori"/>
+<author fullname="Kouichi Sakurai"/>
+<date year="2007"/>
+<abstract>
+<t>DOI: 10.1109/MUE.2007.84 Conference: 2007 International Conference on Multimedia and Ubiquitous Engineering (MUE 2007), 26-28 April 2007, Seoul, Korea</t>
+<t>Not available online.</t>
+</abstract>
+</front>
+</reference>
+
+<reference anchor="federrath-fuchs-herrmann-piosecny" target="https://svs.informatik.uni-hamburg.de/publications/2011/2011-09-14_FFHP_PrivacyPreservingDNS_ESORICS2011.pdf">
+<front>
+<title>Privacy-Preserving DNS: Analysis of Broadcast, Range Queries and Mix-Based Protection Methods</title>
+<author fullname="Hannes Federrath"/>
+<author fullname="Karl-Peter Fuchs"/>
+<author fullname="Dominik Herrmann"/>
+<author fullname="Christopher Piosecny"/>
+<date year="2011"/>
+<abstract>
+<t>COMPUTER SECURITY ESORICS 2011, SPRINGER BERLIN HEIDELBERG, BERLIN, HEIDELBERG, PAGE(S) 665 - 683, XP019164096, ISBN: 978-3-642-23821-5</t>
+<t>Privacy is improved by broadcasting of the most common names plus mixes (a Tor-like routing system).</t>
+</abstract>
+</front>
+</reference>
 
 </references>
 
