@@ -31,6 +31,8 @@
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.hallambaker-dnse">
 <!ENTITY I-D.wouters-dane-openpgp SYSTEM
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.wouters-dane-openpgp">
+<!ENTITY I-D.hoffman-dns-terminology SYSTEM
+"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.hoffman-dns-terminology">
 ]>
 
 <rfc docName="draft-ietf-dprive-problem-statement-01BETA" category="info" ipr="trust200902">
@@ -63,7 +65,11 @@ the most often ignored or misunderstood. Almost every activity on the
 Internet starts with a DNS query (and often several). Its use has many privacy
 implications and we try to give here a comprehensive and accurate
 list.</t>
-<t>Let us begin with a simplified reminder of how the DNS works. 
+<t>Let us begin with a simplified reminder of how the DNS
+works. (TODO: We
+hope that the document <xref target="I-D.hoffman-dns-terminology"/> will be
+published as a RFC so most of this section could be replaced by a
+reference to it.)
 A client, the stub resolver, issues a DNS query
 to a server, the recursive resolver (also called caching resolver or full resolver or simply resolver recursive name server). 
 Let's use the query "What are the AAAA records for
@@ -424,6 +430,8 @@ proofreading and to Warren Kumari for proofreading and many readability improvem
 &I-D.hzhwm-start-tls-for-dns;
 &I-D.hallambaker-dnse;
 &I-D.wouters-dane-openpgp;
+&I-D.hoffman-dns-terminology; <!-- To be moved to Normative if
+published and used for reference -->
 
 <reference anchor="dprive" target="http://www.ietf.org/mail-archive/web/dns-privacy/">
 <front>
