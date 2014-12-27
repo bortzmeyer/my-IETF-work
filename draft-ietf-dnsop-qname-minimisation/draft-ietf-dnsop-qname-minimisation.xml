@@ -20,8 +20,10 @@
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.vandergaast-edns-client-subnet">
 <!ENTITY I-D.wijngaards-dnsop-confidentialdns SYSTEM
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.wijngaards-dnsop-confidentialdns">
-<!ENTITY I-D.bortzmeyer-dnsop-dns-privacy SYSTEM
-"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.bortzmeyer-dnsop-dns-privacy.xml">
+<!ENTITY I-D.ietf-dprive-problem-statement SYSTEM
+"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dprive-problem-statement.xml">
+<!ENTITY I-D.wkumari-dnsop-hammer SYSTEM
+"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.wkumari-dnsop-hammer.xml">
 ]>
 
 <rfc docName="draft-ietf-dnsop-qname-minimisation-01BETA"
@@ -38,7 +40,7 @@
 <abstract>
 <t>This document describes one of the techniques that could be used to
 improve DNS privacy (see <xref
-target="I-D.bortzmeyer-dnsop-dns-privacy"/>), a technique called "qname
+target="I-D.ietf-dprive-problem-statement"/>), a technique called "qname
 minimisation".</t>
 <t>Discussions of the document should take place on the
 DNSOP working group mailing list <xref target="dnsop"/>.</t>
@@ -48,7 +50,7 @@ DNSOP working group mailing list <xref target="dnsop"/>.</t>
 <middle>
 <section title="Introduction and background">
 <t>The problem statement is exposed in <xref
-target="I-D.bortzmeyer-dnsop-dns-privacy"/>. The terminology ("qname",
+target="I-D.ietf-dprive-problem-statement"/>. The terminology ("qname",
 "resolver", etc)
 is also defined in this companion document. This specific solution is
 not intended to completely solve the problem, far from it. It is
@@ -115,7 +117,7 @@ SOA.  It also breaks anything that depends on NS and SOA records existing
 at the top of the zone.
 </t>
 <t>TODO example with an ENT. Ref. to  draft-vixie-dnsext-resimprove-00
-(section 3). For instance com.akadns.net</t>
+(section 3). For instance com.akadns.net.</t>
 <t>Another way to deal with such broken name servers would be to try
 with A requests (A being choosen because it is the most common and
 hence the least revealing qtype). Instead of querying name
@@ -157,6 +159,9 @@ be no difference with a traditional resolver. A possible solution is
 to always use the traditional algorithm when the cache is cold and
 then to move to qname minimisation. This will decrease the privacy a
 bit but will guarantee no degradation of performance.</t>
+<t>Another useful optimisation may be, in the spirit of the HAMMER idea <xref target="I-D.wkumari-dnsop-hammer"/> to probe in advance for the introduction of zone
+cuts where none previously existed (i.e. confirm their continued absence,
+or discover them.)</t>
 </section>
 
 <section title="Other advantages">
@@ -171,6 +176,9 @@ opening up a negative caching opportunity in which the full resolver
 could know a priori that neither B.CORP or C.CORP could exist. Thus in
 this common case the total number of upstream queries under qname minimisation would be counter-intuitively less than the number of
 queries under the traditional iteration (as described in the DNS standard).</t>
+<t>Qname minimisation may also improve look-up performance for TLD operators. 
+For a typical TLD, delegation-only, and with delegations just under the TLD, a 2-label QNAME query is optimal for finding the
+delegation owner name.</t>
 </section>
 
 <section title="Security considerations">
@@ -185,7 +193,7 @@ servers)?</cref></t>
 is probably <eref
 target="https://lists.dns-oarc.net/pipermail/dns-operations/2010-February/005003.html">much
 older</eref>. Thanks to Mark Andrews and Francis Dupont for the
-interesting discussions. Thanks to Mohsen
+interesting discussions. Thanks to Brian Dickson for remarks and suggestions. Thanks to Mohsen
 Souissi for proofreading. Thanks to Tony Finch for the zone cut
 algorithm in <xref target="zonecutalgo"/>. Thanks to Paul Vixie for pointing out that there are practical advantages (besides privacy) to qname m12n.
 Thanks to Phillip Hallam-Baker for the
@@ -202,11 +210,12 @@ Edmonds for an interesting anti-pattern.</t>
 &rfc1035;
 &rfc2119;
 &rfc6973;
-&I-D.bortzmeyer-dnsop-dns-privacy;
+&I-D.ietf-dprive-problem-statement;
 </references>
 
 <references title='Informative References'>
 &rfc2181;
+&I-D.wkumari-dnsop-hammer;
 
 <reference anchor="dprive" target="https://datatracker.ietf.org/wg/dprive/charter/">
 <front>
