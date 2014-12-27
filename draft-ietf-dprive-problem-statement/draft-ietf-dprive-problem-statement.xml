@@ -121,11 +121,14 @@ eavesdropper.</t>
 agent (here, the Web browser) without any direct involvement or
 knowledge of the user. For the Web, they are triggered by embedded
 content, CSS sheets, JavaScript code, embedded images, etc. In some
-cases, there can be dozens of domain names in a single page.</t>
+cases, there can be dozens of domain names in different contexts on a single Web page.</t>
 <t>Tertiary requests: these are the requests performed by the DNS
 system itself. For instance, if the answer to a query is a referral to
 a set of name servers, and the glue is not returned, the resolver will
-have to do tertiary requests to turn name servers' named into IP addresses.</t>
+have to do tertiary requests to turn name servers' named into IP addresses.
+Similarly, even if glue records are returned, a careful recursive
+server will do tertiary requests to verify the IP addresses of
+those records.</t>
 </list></t>
 <t>For privacy-related terms, we will use here the terminology of <xref target="RFC6973"/>.</t>
 </section>
@@ -148,7 +151,7 @@ facing authoritative name servers will respond to "usual" DNS queries
 for any zone they are authoritative for without further
 authentication or authorization of the client (resolver).  Due to the lack of search
 capabilities, only a given qname will reveal the resource records
-associated with that name (or that name's non existence).  In other
+associated with that name (or that name's non-existence).  In other
 words: one needs to know what to ask for, in order to receive a response.  The
 zone transfer qtype <xref target="RFC5936"/> is often blocked or restricted to
 authenticated/authorized access to enforce this difference (and maybe
@@ -158,7 +161,7 @@ itself, and a particular transaction (i.e., a DNS name lookup). DNS
 data and the results of a DNS query are public, within the boundaries
 described above, and may not have any confidentiality requirements.
 However, the same is not true of a single transaction or sequence of
-transactions; that data is not/should not be public. A typical example
+transactions; that transaction is not/should not be public. A typical example
 from outside the DNS world is: the Web site of Alcoholics Anonymous is public; the fact that you visit it should not be.</t>
 </section>
 
@@ -166,7 +169,7 @@ from outside the DNS world is: the Web site of Alcoholics Anonymous is public; t
 <t>The DNS request includes many fields but two of them seem particularly
 relevant for the privacy issues, the qname and the source IP
 address. "source IP address" is used in a loose sense of "source IP address
-+ may be source port", because the port is also in the request and can be used to sort out several users
++ maybe source port", because the port is also in the request and can be used to sort out several users
 sharing an IP address (CGN for instance).</t>
 <t>The qname is the full name sent by the original user. It gives
 information about what the user does ("What are the MX records of
@@ -311,7 +314,7 @@ TODO summarize --></t>
 
 <section title="In the authoritative name servers">
 <t>Unlike recursive resolvers, authoritative name servers are limited by
-caching; they see only a part of the requests. For aggregated
+caching; they see only the requests for which the answer is not in the cache. For aggregated
 statistics ("What is the percentage of LOC queries?"), this is
 sufficient; but it may prevent an observer from seeing everything.
 Still, the authoritative name servers see a part of the traffic, and
@@ -320,6 +323,7 @@ this subset may be sufficient to violate some privacy expectations.</t>
 the recursive resolver (he has chosen the IAP, or he has chosen to use a given public
 resolver), while having no control and perhaps no awareness of the role of the
 authoritative name servers and their observation abilities.</t>
+<!-- Maybe remove the following speculative paragraph; seems like a politcal rathole. -->
 <t>It is an interesting question whether the privacy issues are bigger
 in the root or in a large TLD. The root sees the traffic for all the TLDs (and the huge
 amount of traffic for non-existing TLD), but a large TLD has less caching
@@ -329,7 +333,9 @@ machine decreases the attack surface for an on-the-wire
 eavesdropper. But it may decrease privacy against an observer located
 on an authoritative name server. This authoritative name server
 will see the IP address of the end client, instead of the address of a
-big recursive resolver shared by many users. A possible solution is to have a local resolver and to forward 
+big recursive resolver shared by many users.
+<!-- The following sentence is a proposal, not a risk; maybe move to the Security Considerations or remove it. -->
+A possible solution is to have a local resolver and to forward 
 the cache misses to a big resolver.</t>
 <t>This "protection", when using a large resolver with many clients, is no longer present if <xref
 target="I-D.vandergaast-edns-client-subnet"/> is used because, in this
@@ -349,7 +355,9 @@ N : with a few name servers, you can sniff everyone</t>
 </section>
 
 <section title="Rogue servers">
-<t>A rogue DHCP server can direct you to a rogue recursive resolver. Most of the
+<t>A rogue DHCP server,
+or a trusted DHCP server that has had its configuration altered by malicious parties,
+can direct you to a rogue recursive resolver. Most of the
 times, it seems to be done to divert traffic, by providing lies for
 some domain names. But it could be used just to
 capture the traffic and gather information about you. Same thing for
@@ -419,6 +427,7 @@ proofreading and to Warren Kumari for proofreading and many readability improvem
 </references>
 
 <references title='Informative References'>
+<!-- Please alphabatize, at least the drafts -->
 &rfc2181;
 &rfc4033;
 &rfc5246;
