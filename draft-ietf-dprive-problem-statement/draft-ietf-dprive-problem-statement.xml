@@ -125,7 +125,7 @@ cases, there can be dozens of domain names in different contexts on a single Web
 <t>Tertiary requests: these are the requests performed by the DNS
 system itself. For instance, if the answer to a query is a referral to
 a set of name servers, and the glue is not returned, the resolver will
-have to do tertiary requests to turn name servers' named into IP addresses.
+have to do tertiary requests to turn name servers' names into IP addresses.
 Similarly, even if glue records are returned, a careful recursive
 server will do tertiary requests to verify the IP addresses of
 those records.</t>
