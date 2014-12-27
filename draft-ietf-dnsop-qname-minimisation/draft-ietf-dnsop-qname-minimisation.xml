@@ -37,6 +37,7 @@
 <address><postal><street>1, rue Stephenson</street><code>78180</code><city>Montigny-le-Bretonneux</city><country>France</country></postal> <phone>+33 1 39 30 83 46</phone><email>bortzmeyer+ietf@nic.fr</email><uri>http://www.afnic.fr/</uri></address>
 </author>
 <date month="TODO" year="2014"/>
+<workgroup>Domain Name System Operations (dnsop) Working Group</workgroup>
 <abstract>
 <t>This document describes one of the techniques that could be used to
 improve DNS privacy (see <xref
