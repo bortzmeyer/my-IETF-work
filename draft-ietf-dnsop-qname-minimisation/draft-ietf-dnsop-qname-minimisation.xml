@@ -36,7 +36,7 @@
 <organization>AFNIC</organization>
 <address><postal><street>1, rue Stephenson</street><code>78180</code><city>Montigny-le-Bretonneux</city><country>France</country></postal> <phone>+33 1 39 30 83 46</phone><email>bortzmeyer+ietf@nic.fr</email><uri>http://www.afnic.fr/</uri></address>
 </author>
-<date month="TODO" year="2014"/>
+<date month="TODO" year="2015"/>
 <workgroup>Domain Name System Operations (dnsop) Working Group</workgroup>
 <abstract>
 <t>This document describes one of the techniques that could be used to
@@ -51,7 +51,7 @@ DNSOP working group mailing list <xref target="dnsop"/>.</t>
 <middle>
 <section title="Introduction and background">
 <t>The problem statement is exposed in <xref
-target="I-D.ietf-dprive-problem-statement"/>. The terminology ("qname",
+target="I-D.ietf-dprive-problem-statement"/> TODO: add a reference to the specific section when ietf-dprive-problem-statement will be published as RFC. The terminology ("qname",
 "resolver", etc)
 is also defined in this companion document. This specific solution is
 not intended to completely solve the problem, far from it. It is
@@ -96,6 +96,14 @@ privacy invasion by the servers.</t>
 target="RFC1034"/> (section 5.3.3) or <xref target="RFC1035"/>
 (section 7.2). Sending the full qname to the authoritative name server
 is a tradition, not a protocol requirment.</t>
+<t>As mentioned before, there are several ways to implement qname minimisation. Two main strategies are
+the aggressive one and the lazy one. In the aggressive one, the
+resolver only sends NS queries as long as it does not know the zone
+cuts. This is the safest, from a privacy point of view. The lazy way
+"piggybacks" on the traditional resolution code. It sends traditional
+full qnames and learn the zone cuts from the referrals received, then
+switching to NS queries. This
+leaks more data but probably requires less changes in the existing resolver codebase.</t>
 </section>
 
 <section title="Operational considerations">
@@ -105,11 +113,8 @@ statistics they can produce (such as the percentage of the various
 qtypes). On the other hand, it may decrease their legal
 responsability.</t>
 <t>Some broken name servers do not react properly to qtype=NS
-requests. 
-As an example of today, look at www.ratp.fr (not ratp.fr), which
-is delegated to two name servers that reply properly to "A
-www.ratp.fr" queries but send REFUSED to queries "NS
-www.ratp.fr". This behaviour is a gross protocol violation and there
+requests. For instance, some authoritative name servers embedded in load balancers reply properly to A queries but send REFUSED to NS queries.
+REMOVE THIS SENTENCE BEFORE PUBLICATION: As an example of today, look at www.ratp.fr (not ratp.fr). This behaviour is a gross protocol violation and there
 is no need to stop improving the DNS because of such
 brokenness. However, qname minimisation may still work with such
 domains since they are only leaf domains (no need to send them NS
@@ -121,7 +126,7 @@ at the top of the zone.
 (section 3). For instance com.akadns.net.</t>
 <t>Another way to deal with such broken name servers would be to try
 with A requests (A being choosen because it is the most common and
-hence the least revealing qtype). Instead of querying name
+hence a qtype which will be always accepted). Instead of querying name
 servers with a query "NS example.com", we could use "A
 _.example.com" and see if we get a referral.</t>
 <t>Other strange and illegal practice may pose a problem: for
@@ -165,7 +170,7 @@ cuts where none previously existed (i.e. confirm their continued absence,
 or discover them.)</t>
 </section>
 
-<section title="Other advantages">
+<section title="Performance implications">
 <t>The main goal of qname minimisation is to improve privacy, by
 sending less data. However, it may have other advantages. For
 instance, if a root name server receives a
@@ -194,7 +199,7 @@ servers)?</cref></t>
 is probably <eref
 target="https://lists.dns-oarc.net/pipermail/dns-operations/2010-February/005003.html">much
 older</eref>. Thanks to Mark Andrews and Francis Dupont for the
-interesting discussions. Thanks to Brian Dickson for remarks and suggestions. Thanks to Mohsen
+interesting discussions. Thanks to Brian Dickson and David Conrad for remarks and suggestions. Thanks to Mohsen
 Souissi for proofreading. Thanks to Tony Finch for the zone cut
 algorithm in <xref target="zonecutalgo"/>. Thanks to Paul Vixie for pointing out that there are practical advantages (besides privacy) to qname m12n.
 Thanks to Phillip Hallam-Baker for the
