@@ -2,8 +2,6 @@
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
 <!ENTITY rfc1034 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1034.xml">
 <!ENTITY rfc1035 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1035.xml">
-<!ENTITY rfc2119 SYSTEM
-"http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
 <!ENTITY rfc2181 SYSTEM
 "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2181.xml">
 <!ENTITY rfc4033 SYSTEM
@@ -27,7 +25,7 @@
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.hoffman-dns-terminology">
 ]>
 
-<rfc docName="draft-ietf-dprive-problem-statement-01" category="info" ipr="trust200902">
+<rfc docName="draft-ietf-dprive-problem-statement-02BETA" category="info" ipr="trust200902">
 <?rfc toc="yes"?>
 <?rfc strict="yes"?> 
 <front>
@@ -42,7 +40,7 @@
 <t>This document describes the privacy issues associated with the use
 of the
 DNS by Internet users. It is intended to be mostly an analysis of the
-present situation, in the spirit of section 8 of <xref target="RFC6973"/> and it does not
+present situation and it does not
 prescribe solutions.</t>
 <t>Discussions of the document should take place on the
 DPRIVE working group mailing list <xref target="dprive"/>.</t>
@@ -51,6 +49,7 @@ DPRIVE working group mailing list <xref target="dprive"/>.</t>
 
 <middle>
 <section anchor="introduction" title="Introduction">
+<t>This document is an analysis of the DNS privacy issues, in the spirit of section 8 of <xref target="RFC6973"/>.</t>
 <t>The Domain Name System is specified in <xref
 target="RFC1034"/> and <xref target="RFC1035"/>. It is one of the
 most important infrastructure components of the Internet and one of
@@ -423,6 +422,10 @@ proofreading, to Paul Hoffman, Marcos Sanz and Warren Kumari for
 proofreading, technical remarks, and many readability improvements. Thanks to Dan York, Suzanne Woolf, Tony Finch, Peter Koch and Frank Denis for good written contributions.</t>
 </section>
 
+<section title="IANA considerations">
+<t>This document has no actions for IANA.</t>
+</section>
+
 </middle>
 
 <back>
@@ -430,7 +433,6 @@ proofreading, technical remarks, and many readability improvements. Thanks to Da
 <references title='Normative References'>
 &rfc1034;
 &rfc1035;
-&rfc2119;
 &rfc6973;
 &rfc7258;
 </references>
