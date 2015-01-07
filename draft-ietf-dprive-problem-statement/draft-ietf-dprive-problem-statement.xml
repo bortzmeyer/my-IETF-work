@@ -13,14 +13,8 @@
 "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6347.xml">
 <!ENTITY rfc6973 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6973.xml">
 <!ENTITY rfc7258 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7258.xml">
-<!ENTITY I-D.bortzmeyer-dnsop-privacy-sol SYSTEM
-"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.bortzmeyer-dnsop-privacy-sol.xml">
-<!ENTITY I-D.ietf-dnsop-qname-minimisation SYSTEM
-"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-qname-minimisation.xml">
 <!ENTITY I-D.vandergaast-edns-client-subnet SYSTEM
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.vandergaast-edns-client-subnet">
-<!ENTITY I-D.wijngaards-dnsop-confidentialdns SYSTEM
-"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.wijngaards-dnsop-confidentialdns">
 <!ENTITY I-D.hzhwm-start-tls-for-dns SYSTEM
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.hzhwm-start-tls-for-dns">
 <!ENTITY I-D.timms-encrypt-naptr SYSTEM
@@ -33,7 +27,7 @@
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.hoffman-dns-terminology">
 ]>
 
-<rfc docName="draft-ietf-dprive-problem-statement-01BETA" category="info" ipr="trust200902">
+<rfc docName="draft-ietf-dprive-problem-statement-01" category="info" ipr="trust200902">
 <?rfc toc="yes"?>
 <?rfc strict="yes"?> 
 <front>
@@ -42,7 +36,7 @@
 <organization>AFNIC</organization>
 <address><postal><street>1, rue Stephenson</street><code>78180</code><city>Montigny-le-Bretonneux</city><country>France</country></postal> <phone>+33 1 39 30 83 46</phone><email>bortzmeyer+ietf@nic.fr</email><uri>http://www.afnic.fr/</uri></address>
 </author>
-<date month="TODO" year="2015"/>
+<date month="January" year="2015"/>
 <workgroup>DNS PRIVate Exchange (dprive) Working Group</workgroup>
 <abstract>
 <t>This document describes the privacy issues associated with the use
@@ -65,7 +59,7 @@ Internet starts with a DNS query (and often several). Its use has many privacy
 implications and we try to give here a comprehensive and accurate
 list.</t>
 <t>Let us begin with a simplified reminder of how the DNS
-works. (TODO: We
+works. (REMOVE BEFORE PUBLICATION: We
 hope that the document <xref target="I-D.hoffman-dns-terminology"/> will be
 published as a RFC so most of this section could be replaced by a
 reference to it.)
@@ -335,8 +329,7 @@ this subset may be sufficient to violate some privacy expectations.</t>
 the recursive resolver (he has chosen the IAP, or he has chosen to use a given public
 resolver), while having no control and perhaps no awareness of the role of the
 authoritative name servers and their observation abilities.</t>
-<!-- TODO Maybe remove the following speculative paragraph; seems like
-     a politcal rathole. P. H. -->
+<!-- Some people said it is too speculative, may be even too political. -->
 <t>It is an interesting question whether the privacy issues are bigger
 in the root or in a large TLD. The root sees the traffic for all the TLDs (and the huge
 amount of traffic for non-existing TLDs), but a large TLDs has less caching
@@ -360,8 +353,11 @@ domain manager and these servers may or may not take privacy into
 account. Whatever the contract, the third-party hoster may be honest or not but, in any case,
 it will have to follow its local laws. It may be surprising for an end-user that requests to a
 given ccTLD may go to servers managed by organisations outside of the country.</t>
-<t>TODO mention the concentration of auth. name servers in Alexa's top
-N : with a few name servers, you can sniff everyone</t>
+<t>Also, it seems (TODO: actual numbers requested) that there is a
+strong concentration of authoritative name servers among "popular"
+domains (such as the Alexa Top N list). With the control (or the ability
+to sniff the traffic) of a few name servers, you can gather a lot of
+information.</t>
 </section>
 
 <section title="Rogue servers">
@@ -410,10 +406,12 @@ an easy task and it seems there is no court precedent here.</t>
 
 <section title="Security considerations">
 <t>This document is entirely about security, more precisely
-privacy. A document on requirments for DNS privacy is <xref target="I-D.hallambaker-dnse"/>. 
-Possible solutions to the issues described here are discussed in <xref target="I-D.ietf-dnsop-qname-minimisation"/> (qname minimization),
-in <xref target="I-D.bortzmeyer-dnsop-privacy-sol"/> (local caching resolvers, gratuitous queries), <xref target="I-D.hzhwm-start-tls-for-dns"/> (encryption of traffic), in <xref target="I-D.wijngaards-dnsop-confidentialdns"/> (encryption also) or in many other documents (there are many proposals to encrypt the DNS). Attempts have been made to encrypt the resource record data
-<xref target="I-D.timms-encrypt-naptr"/>.</t>
+privacy. It just lays down the problem, it does not try to set
+requirments (with the choices and compromises they imply), much less
+to define solutions. A document on requirments for DNS privacy is
+<xref target="I-D.hallambaker-dnse"/>.  Possible solutions to the
+issues described here are discussed in other documents (currently too
+many to be listed here).</t>
 
 </section>
 
@@ -438,41 +436,23 @@ proofreading, technical remarks, and many readability improvements. Thanks to Da
 </references>
 
 <references title='Informative References'>
-<!-- TODO Please alphabatize, at least the drafts -->
-&rfc2181;
+<!-- TODO Please alphabetize, at least the drafts -->
 &rfc4033;
 &rfc5936;
 &I-D.vandergaast-edns-client-subnet;
-&I-D.bortzmeyer-dnsop-privacy-sol;
-&I-D.ietf-dnsop-qname-minimisation;
-&I-D.wijngaards-dnsop-confidentialdns;
-&I-D.timms-encrypt-naptr;
-&I-D.hzhwm-start-tls-for-dns;
 &I-D.hallambaker-dnse;
 &I-D.wouters-dane-openpgp;
-&I-D.hoffman-dns-terminology; <!-- To be moved to Normative if
+&I-D.hoffman-dns-terminology; <!-- TODO: To be moved to Normative if
 published and used for reference -->
 
 <reference anchor="dprive" target="http://www.ietf.org/mail-archive/web/dns-privacy/">
 <front>
 <title>The DPRIVE working group</title>
-<author fullname="IETF" surname="IETF"/>
+<author fullname="IETF" surname="IETF" initials="DPRIVE"/>
 <date month="March" year="2014"/>
 <abstract>
 <t>This IETF Working Group is for the discussion of the problem statement 
 surrounding the addition of privacy to the DNS protocol, and for the possible solutions.</t>
-</abstract>
-</front>
-</reference>
-
-<reference anchor="dnsop" target="http://www.ietf.org/mail-archive/web/dnsop/">
-<front>
-<title>The DNSOP working group</title>
-<!-- TODO: how to avoid initials? An empty string does not give a proper result. -->
-<author fullname="IETF" surname="IETF" initials=""/>
-<date month="October" year="2013"/>
-<abstract>
-<t>DNSOP is the IETF Working Group tasked with all the DNS operations issues</t>
 </abstract>
 </front>
 </reference>
@@ -643,8 +623,8 @@ international conference on, IEEE, Piscataway, NJ, USA, 25 August 2010
 <front>
 <title>Analysis of Privacy Disclosure in DNS Query</title>
 <author fullname="Fangming Zhao" surname="Fangming"/>
-<author fullname="Yoshiaki Hori"/>
-<author fullname="Kouichi Sakurai"/>
+<author fullname="Yoshiaki Hori" surname="Hori" initials="Y."/>
+<author fullname="Kouichi Sakurai" surname="Sakurai" initials="K."/>
 <date year="2007"/>
 <abstract>
 <t>DOI: 10.1109/MUE.2007.84 Conference: 2007 International Conference on Multimedia and Ubiquitous Engineering (MUE 2007), 26-28 April 2007, Seoul, Korea</t>
@@ -656,10 +636,10 @@ international conference on, IEEE, Piscataway, NJ, USA, 25 August 2010
 <reference anchor="federrath-fuchs-herrmann-piosecny" target="https://svs.informatik.uni-hamburg.de/publications/2011/2011-09-14_FFHP_PrivacyPreservingDNS_ESORICS2011.pdf">
 <front>
 <title>Privacy-Preserving DNS: Analysis of Broadcast, Range Queries and Mix-Based Protection Methods</title>
-<author fullname="Hannes Federrath"/>
-<author fullname="Karl-Peter Fuchs"/>
-<author fullname="Dominik Herrmann"/>
-<author fullname="Christopher Piosecny"/>
+<author fullname="Hannes Federrath" surname="Federrath" initials="H."/>
+<author fullname="Karl-Peter Fuchs" surname="Fuchs" initials="K.-P."/>
+<author fullname="Dominik Herrmann" surname="Herrmann" initials="D."/>
+<author fullname="Christopher Piosecny" surname="Piosecny" initials="C."/>
 <date year="2011"/>
 <abstract>
 <t>COMPUTER SECURITY ESORICS 2011, SPRINGER BERLIN HEIDELBERG, BERLIN, HEIDELBERG, PAGE(S) 665 - 683, XP019164096, ISBN: 978-3-642-23821-5</t>
