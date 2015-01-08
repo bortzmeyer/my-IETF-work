@@ -53,9 +53,8 @@ DNSOP working group mailing list <xref target="dnsop"/>.</t>
 <t>The problem statement is exposed in <xref
 target="I-D.ietf-dprive-problem-statement"/> TODO: add a reference to the specific section when ietf-dprive-problem-statement will be published as RFC. The terminology ("qname",
 "resolver", etc)
-is also defined in this companion document. This specific solution is
-not intended to completely solve the problem, far from it. It is
-better to see it as one tool among a toolbox. </t>
+is also defined in this companion document. This specific solution is not intended to fully solve the DNS privacy problem;
+instead, it should be viewed as one tool amongst many.</t>
 <t>It follows the principle explained in section 6.1 of <xref
 target="RFC6973"/>: the less data you send out, the less privacy
 problems you'll get.</t>
@@ -75,10 +74,13 @@ protocol), resolver implementers may do it in slightly different
 ways.</t>
 <t>If "minimisation" is too long, you can write it "m12n".</t>
 <t>To do such minimisation, the resolver needs to know the zone cut <xref
-target="RFC2181"/>. There is not a zone cut at every label
-boundary. If we take the name www.foo.bar.example, it is possible that
+target="RFC2181"/>.  Zone cuts do not necessarily exist at every label
+boundary.
+If we take the name www.foo.bar.example, it is possible that
 there is a zone cut between "foo" and "bar" but not between "bar" and
-"example"<!-- A real example is www.economie.gouv.fr -->. So, assuming the resolver already knows
+"example"<!-- Real examples today are www.economie.gouv.fr or
+www.janet.ac.uk -->. 
+So, assuming the resolver already knows
 the name servers of .example, when it receives the query "What is the
 AAAA record of www.foo.bar.example", it does not always know if the
 request should be sent to the name servers of bar.example or to those
@@ -88,9 +90,9 @@ resolvers may try it.</t>
 <t>Note that DNSSEC-validating resolvers already have access to this information, since they
 have to find the zone cut (the DNSKEY record set is just below, the DS
 record set just above).</t>
-<t>It can be noted that minimising the amount of data sent also
-partially addresses the case of a wire sniffer, not just the case of
-privacy invasion by the servers.</t>
+<t>Minimising the amount of data sent also, in part, addresses the
+case of a wire sniffer as well the case of privacy invasion by the
+servers.</t>
 <t>One should note that the behaviour suggested here
 (minimising the amount of data sent in qnames) is NOT forbidden by the <xref
 target="RFC1034"/> (section 5.3.3) or <xref target="RFC1035"/>
@@ -111,25 +113,26 @@ leaks more data but probably requires less changes in the existing resolver code
 servers, will get less data, which will reduce the utility of the
 statistics they can produce (such as the percentage of the various
 qtypes). On the other hand, it may decrease their legal
-responsability.</t>
+responsibility.</t>
 <t>Some broken name servers do not react properly to qtype=NS
 requests. For instance, some authoritative name servers embedded in load balancers reply properly to A queries but send REFUSED to NS queries.
-REMOVE THIS SENTENCE BEFORE PUBLICATION: As an example of today, look at www.ratp.fr (not ratp.fr). This behaviour is a gross protocol violation and there
+REMOVE THIS SENTENCE BEFORE PUBLICATION: As an example of today, look at www.ratp.fr (not ratp.fr). This behaviour is a gross protocol violation, and there
 is no need to stop improving the DNS because of such
 brokenness. However, qname minimisation may still work with such
 domains since they are only leaf domains (no need to send them NS
-requests). Anyway, such setup breaks many things (besides qname minimisation), it breaks negative answers as the servers don't return the correct
-SOA.  It also breaks anything that depends on NS and SOA records existing
-at the top of the zone.
+requests). Such setup breaks more than just qname minimisation. It breaks
+negative answers, since the servers don't return the correct SOA, and
+it also breaks anything dependent upon NS and SOA records existing at
+the top of the zone. 
 </t>
 <t>TODO example with an ENT. Ref. to  draft-vixie-dnsext-resimprove-00
 (section 3). For instance com.akadns.net.</t>
 <t>Another way to deal with such broken name servers would be to try
-with A requests (A being choosen because it is the most common and
+with A requests (A being chosen because it is the most common and
 hence a qtype which will be always accepted). Instead of querying name
 servers with a query "NS example.com", we could use "A
 _.example.com" and see if we get a referral.</t>
-<t>Other strange and illegal practice may pose a problem: for
+<t>Other strange and illegal practices may pose a problem: for
 instance, there is a common DNS anti-pattern used by low-end web hosters that also
 do DNS hosting that exploits the fact that the DNS protocol (pre-DNSSEC)
 allows certain serious misconfigurations, such as parent and child zones
@@ -171,7 +174,7 @@ or discover them.)</t>
 </section>
 
 <section title="Performance implications">
-<t>The main goal of qname minimisation is to improve privacy, by
+<t>The main goal of qname minimisation is to improve privacy by
 sending less data. However, it may have other advantages. For
 instance, if a root name server receives a
 query from some resolver for A.CORP followed by B.CORP
