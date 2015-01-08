@@ -72,7 +72,7 @@ easily deployable, since it is an unilateral change to the
 resolvers. TODO explain again, that, since it is an unilateral change (it does not change the
 protocol), resolver implementers may do it in slightly different
 ways.</t>
-<t>If "minimisation" is too long, you can write it "m12n".</t>
+<t>If "minimisation" is too long, you can write it "m10n".</t>
 <t>To do such minimisation, the resolver needs to know the zone cut <xref
 target="RFC2181"/>.  Zone cuts do not necessarily exist at every label
 boundary.
@@ -210,7 +210,7 @@ servers)?</cref></t>
 is probably <eref
 target="https://lists.dns-oarc.net/pipermail/dns-operations/2010-February/005003.html">much
 older</eref>. Thanks to Mark Andrews and Francis Dupont for the
-interesting discussions. Thanks to Brian Dickson and David Conrad for remarks and suggestions. Thanks to Mohsen
+interesting discussions. Thanks to Brian Dickson, Warren Kumari and David Conrad for remarks and suggestions. Thanks to Mohsen
 Souissi for proofreading. Thanks to Tony Finch for the zone cut
 algorithm in <xref target="zonecutalgo"/>. Thanks to Paul Vixie for pointing out that there are practical advantages (besides privacy) to qname m12n.
 Thanks to Phillip Hallam-Baker for the
@@ -233,19 +233,6 @@ Edmonds for an interesting anti-pattern.</t>
 <references title='Informative References'>
 &rfc2181;
 &I-D.wkumari-dnsop-hammer;
-
-<reference anchor="dprive" target="https://datatracker.ietf.org/wg/dprive/charter/">
-<front>
-<title>The DPRIVE working group of IETF</title>
-<author fullname="IETF" surname="IETF"/>
-<date month="March" year="2014"/>
-<abstract>
-<t>The DNS PRIVate Exchange (DPRIVE) Working Group develops mechanisms to
-provide confidentiality to DNS transactions, to address concerns
-surrounding pervasive monitoring.</t>
-</abstract>
-</front>
-</reference>
 
 <reference anchor="dnsop" target="https://datatracker.ietf.org/wg/dnsop/charter/">
 <front>
