@@ -97,7 +97,13 @@ servers.</t>
 (minimising the amount of data sent in qnames) is NOT forbidden by the <xref
 target="RFC1034"/> (section 5.3.3) or <xref target="RFC1035"/>
 (section 7.2). Sending the full qname to the authoritative name server
-is a tradition, not a protocol requirment.</t>
+is a tradition, not a protocol requirment. It seems [TODO: ask
+Mockapetris on tuesday] that this tradition comes from a desire to
+optimize the number of requests, when the same name server is
+authoritative for many zones in a given name (something which was more
+common in the old days, where the same name servers served .com and
+the root) or when the same name server is both recursive and authoritative (something which is strongly discouraged now). Whatever the merits of this choice at this time, the DNS is quite
+different now.</t>
 <t>As mentioned before, there are several ways to implement qname minimisation. Two main strategies are
 the aggressive one and the lazy one. In the aggressive one, the
 resolver only sends NS queries as long as it does not know the zone
@@ -126,10 +132,12 @@ it also breaks anything dependent upon NS and SOA records existing at
 the top of the zone. 
 </t>
 <t>TODO example with an ENT. Ref. to  draft-vixie-dnsext-resimprove-00
-(section 3). For instance com.akadns.net.</t>
+(section 3). For instance com.akadns.net or www.upenn.edu with its
+delegations to Akamai which sends NXDOMAIN for ENTs.</t>
 <t>Another way to deal with such broken name servers would be to try
 with A requests (A being chosen because it is the most common and
-hence a qtype which will be always accepted). Instead of querying name
+hence a qtype which will be always accepted, while a qtype NS may
+ruffle the feathers of some middleboxes). Instead of querying name
 servers with a query "NS example.com", we could use "A
 _.example.com" and see if we get a referral.</t>
 <t>Other strange and illegal practices may pose a problem: for
