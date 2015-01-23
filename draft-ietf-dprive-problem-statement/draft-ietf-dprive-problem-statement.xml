@@ -27,7 +27,7 @@
 
 <rfc docName="draft-ietf-dprive-problem-statement-02BETA" category="info" ipr="trust200902">
 <?rfc toc="yes"?>
-<?rfc strict="yes"?> 
+<?rfc strict="yes"?>
 <front>
 <title abbrev="DNS privacy">DNS privacy considerations</title>
 <author fullname="Stephane Bortzmeyer" initials="S." surname="Bortzmeyer">
@@ -39,11 +39,9 @@
 <abstract>
 <t>This document describes the privacy issues associated with the use
 of the
-DNS by Internet users. It is intended to be mostly an analysis of the
-present situation and it does not
+DNS by Internet users. It is intended to be an analysis of the
+present situation and  does not
 prescribe solutions.</t>
-<t>Discussions of the document should take place on the
-DPRIVE working group mailing list <xref target="dprive"/>.</t>
 </abstract>
 </front>
 
@@ -52,10 +50,10 @@ DPRIVE working group mailing list <xref target="dprive"/>.</t>
 <t>This document is an analysis of the DNS privacy issues, in the spirit of section 8 of <xref target="RFC6973"/>.</t>
 <t>The Domain Name System is specified in <xref
 target="RFC1034"/> and <xref target="RFC1035"/>. It is one of the
-most important infrastructure components of the Internet and one of
-the most often ignored or misunderstood. Almost every activity on the
+most important infrastructure components of the Internet and
+often ignored or misunderstood. Almost every activity on the
 Internet starts with a DNS query (and often several). Its use has many privacy
-implications and we try to give here a comprehensive and accurate
+implications and this is an attempt at a comprehensive and accurate
 list.</t>
 <t>Let us begin with a simplified reminder of how the DNS
 works. (REMOVE BEFORE PUBLICATION: We
@@ -63,48 +61,48 @@ hope that the document <xref target="I-D.hoffman-dns-terminology"/> will be
 published as a RFC so most of this section could be replaced by a
 reference to it.)
 A client, the stub resolver, issues a DNS query
-to a server, the recursive resolver (also called caching resolver or full resolver or simply resolver recursive name server). 
-Let's use the query "What are the AAAA records for
-www.example.com?" as an example. AAAA is the qtype (Query type), and
+to a server, called the recursive resolver
+(also called caching resolver or full resolver or simply resolver recursive name server).
+Use the query "What are the AAAA records for
+www.example.com?" as an example. AAAA is the qtype (Query Type), and
 www.example.com is the qname (Query Name). The recursive resolver will first
 query the root nameservers. In most cases, the root nameservers will
-send a referral. In this example, the referral will be to .com
+send a referral. In this example, the referral will be to the .com
 nameservers. The resolver repeats the query to
-one of the .com nameservers. The .com nameserver, in turn, will refer to
+one of the .com nameservers. The .com nameservers, in turn, will refer to
 the example.com nameservers. The example.com nameserver will then
 return the answer.
 The root name servers, the name servers of
-.com and those of example.com are called authoritative name servers. It is important, when analyzing the privacy
+.com and the name servers of example.com are called authoritative name servers. It is important, when analyzing the privacy
 issues, to remember that the question asked to all these name servers
-is always the original question, not a derived question. Unlike what
-many "DNS for dummies" articles say, the question sent to the root
+is always the original question, not a derived question. The question sent to the root
 name servers is "What are the
 AAAA records for www.example.com?", not "What are the name servers
 of .com?". By repeating the full question, instead of just the relevant part
 of the question to the next in line, the DNS provides more information
 than necessary to the nameserver.</t>
-<t>Because the DNS uses caching heavily, not all questions are sent to
-the authoritative name servers. If the stub resolver, a few seconds
-later, asks to the recursive resolver "What are the SRV records of
+<t>Because DNS relies on caching heavily, not all questions are sent to
+the authoritative name servers. If a few seconds later the stub resolver
+asks to the recursive resolver "What are the SRV records of
 _xmpp-server._tcp.example.com?", the recursive resolver will remember that it
 knows the name servers of example.com and will just query them,
 bypassing the root and .com. Because there is typically no caching in
 the stub resolver, the recursive resolver, unlike the authoritative servers, sees everything.
 </t>
 <t>It should be noted that DNS recursive resolvers sometimes forward requests to
-bigger machines, with a larger and more shared cache, the
-forwarders (and the query hierarchy can be even deeper, with more than two levels of recursive resolvers). From the point of view of privacy, forwarders are like
+bigger machines, with a larger and more shared cache (and the query hierarchy can be even deeper, with more than two levels of recursive resolvers). From the point of view of privacy, forwarders are like
 resolvers, except that the caching in the recursive resolvers before them
 decreases the amount of data they can see.</t>
-<t>All this DNS traffic is today sent in clear (unencryted), except a
+<t>All this DNS traffic is currently sent in clear (unencryted), except a
 few cases when the IP traffic is protected, for instance in an IPsec VPN.</t>
 <t>Today, almost all DNS queries are sent over UDP. This has
-practical consequences, when considering a possible privacy technique, encryption of the
-traffic: some encryption solutions are only designed for TCP, not UDP.</t>
+practical consequences when considering encryption of the
+traffic as a possible privacy technique.
+Some encryption solutions are only designed for TCP, not UDP.</t>
 <t>Another important point to keep in mind when analyzing the privacy
 issues of DNS is the mix of many sort of DNS requests received by a
 server. Let's assume the eavesdropper wants to know which Web page is
-viewed by an user. For a typical Web page displayed by the user,
+viewed by an user. For a typical Web page,
 there are three sorts of DNS requests being issued:
 <list>
 <t>Primary request: this is the domain name in the URL that the user typed or
@@ -118,8 +116,8 @@ content, CSS sheets, JavaScript code, embedded images, etc. In some
 cases, there can be dozens of domain names in different contexts on a single Web page.</t>
 <t>Tertiary requests: these are the additional requests performed by the DNS
 system itself. For instance, if the answer to a query is a referral to
-a set of name servers, and the glue is not returned, the resolver will
-have to do tertiary requests to turn name servers' names into IP addresses.
+a set of name servers, and the glue records are not returned, the resolver will
+have to do additional requests to turn [name servers' names into IP addresses.
 Similarly, even if glue records are returned, a careful recursive
 server will do tertiary requests to verify the IP addresses of
 those records.</t>
@@ -298,7 +296,7 @@ and <xref target="dnsmezzo">DNSmezzo</xref>. The organization
 managing the DNS server can use these data itself or it can be
 part of a surveillance program like <xref target="prism">PRISM</xref> and
 pass data to an outside observer.</t>
-<t>Sometimes, these data are kept for a long time and/or 
+<t>Sometimes, these data are kept for a long time and/or
 distributed to third parties, for research purposes <xref target="ditl"/>, for
 security analysis, or for surveillance tasks. Also, there are
 observation points in the network which gather DNS data and then make
@@ -453,7 +451,7 @@ published and used for reference -->
 <author fullname="IETF" surname="IETF" initials="DPRIVE"/>
 <date month="March" year="2014"/>
 <abstract>
-<t>This IETF Working Group is for the discussion of the problem statement 
+<t>This IETF Working Group is for the discussion of the problem statement
 surrounding the addition of privacy to the DNS protocol, and for the possible solutions.</t>
 </abstract>
 </front>
