@@ -394,6 +394,11 @@ target="darkreading-dns"/>.</t>
 <t><xref target="passive-dns">Passive DNS systems</xref> allow reconstruction of the data of sometimes
 an entire zone. It is used for many reasons, some good, some bad. It
 is an example of a privacy issue even when no source IP address is kept.</t>
+<t>The revelations (from the Edward Snowden documents, leaked from the
+NSA) of the MORECOWBELL surveillance program <xref target="morecowbell"/>, which uses the DNS, both
+passively and actively, to gather surreptitiously information about
+the users, is another good example that the lack of privacy
+protections in the DNS is actively exploited.</t>
 </section>
 
 <section title="Legalities">
@@ -486,6 +491,21 @@ Resolution Authority</title>
 <date day="13" month="October" year="2010"/>
 <abstract>
 <t>Finding Malicious Activity Using Network Flow Data. Presented at the DNS-OARC meeting in Denver.</t>
+</abstract>
+</front>
+</reference>
+
+<reference anchor="morecowbell" target="https://gnunet.org/morecowbell">
+<front>
+<title>NSA's MORECOWBELL: Knell for DNS</title>
+<author fullname="Christian Grothoff" surname="Grothoff" initials="C."/>
+<author fullname="Matthias Wachs" surname="Wachs" initials="M."/>
+<author fullname="Monika Ermert" surname="Ermert" initials="M."/>
+<author fullname="Jacob Appelbaum" surname="Appelbaum" initials="J."/>
+<date day="24" month="January" year="2015"/>
+<abstract>
+<t>Detailed technical analysis of the MORECOWBELL program, followed by
+opinions about the future of the DNS and the needs for alternate systems.</t>
 </abstract>
 </front>
 </reference>
