@@ -14,14 +14,12 @@
 <!ENTITY rfc6347 SYSTEM
 "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6347.xml">
 <!ENTITY rfc6973 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6973.xml">
-<!ENTITY I-D.koch-perpass-dns-confidentiality SYSTEM
-"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.koch-perpass-dns-confidentiality.xml">
 <!ENTITY I-D.vandergaast-edns-client-subnet SYSTEM
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.vandergaast-edns-client-subnet">
-<!ENTITY I-D.wijngaards-dnsop-confidentialdns SYSTEM
-"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.wijngaards-dnsop-confidentialdns">
 <!ENTITY I-D.ietf-dprive-problem-statement SYSTEM
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dprive-problem-statement.xml">
+<!ENTITY I-D.vixie-dnsext-resimprove SYSTEM
+"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.vixie-dnsext-resimprove.xml">
 <!ENTITY I-D.wkumari-dnsop-hammer SYSTEM
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.wkumari-dnsop-hammer.xml">
 ]>
@@ -69,8 +67,7 @@ cold resolver, whose cache is empty) the very same question. Sending
 it will be the answer from the root anyway). To do so would be
 compatible with the current DNS system and therefore could be
 easily deployable, since it is an unilateral change to the
-resolvers. TODO explain again, that, since it is an unilateral change (it does not change the
-protocol), resolver implementers may do it in slightly different
+resolvers, it does not change the protocol. Because of that, resolver implementers may do qname minmisation in slightly different
 ways.</t>
 <t>If "minimisation" is too long, you can write it "m10n".</t>
 <t>To do such minimisation, the resolver needs to know the zone cut <xref
@@ -97,8 +94,7 @@ servers.</t>
 (minimising the amount of data sent in qnames) is NOT forbidden by the <xref
 target="RFC1034"/> (section 5.3.3) or <xref target="RFC1035"/>
 (section 7.2). Sending the full qname to the authoritative name server
-is a tradition, not a protocol requirment. It seems [TODO: ask
-Mockapetris on tuesday] that this tradition comes from a desire to
+is a tradition, not a protocol requirment. This tradition comes<xref target="mockapetris-history"/> from a desire to
 optimize the number of requests, when the same name server is
 authoritative for many zones in a given name (something which was more
 common in the old days, where the same name servers served .com and
@@ -131,9 +127,19 @@ negative answers, since the servers don't return the correct SOA, and
 it also breaks anything dependent upon NS and SOA records existing at
 the top of the zone. 
 </t>
-<t>TODO example with an ENT. Ref. to  draft-vixie-dnsext-resimprove-00
-(section 3). For instance com.akadns.net or www.upenn.edu with its
-delegations to Akamai which sends NXDOMAIN for ENTs.</t>
+<t>A problem can also appear when a name server does not react
+properly to ENT (Empty Non-Terminals). If ent.example.com has no
+resource records but foobar.ent.example.com does, then ent.example.com
+is an ENT. A query, whatever the qtype, for ent.example.com must
+return NODATA (NOERROR / ANSWER: 0). However, some broken name servers
+return NXDOMAIN for ENTs. REMOVE THIS SENTENCE BEFORE PUBLICATION: As
+an example of today, look at com.akadns.net or www.upenn.edu with its
+delegations to Akamai. If a resolver queries only
+foobar.ent.example.com, everything will be OK but, if it implements
+qname minimisation, it may query ent.example.com and get a
+NXDOMAIN. See also section 3 of <xref
+target="I-D.vixie-dnsext-resimprove"/> for the other bad consequences
+of this brokenness.</t>
 <t>Another way to deal with such broken name servers would be to try
 with A requests (A being chosen because it is the most common and
 hence a qtype which will be always accepted, while a qtype NS may
@@ -148,15 +154,7 @@ disagreeing on the location of a zone cut.  Basically, they have a
 single zone with wildcards like:
 <figure>
 <artwork>
-;; ANSWER SECTION:
-*.com.          60  IN  A   74.220.199.6
-
-; and:
-
-;; ANSWER SECTION:
-*.uk.           60  IN  A   74.220.199.6
-
-; etc.
+*.example.          60  IN  A   192.0.2.6
 </artwork>
 </figure>
 (It is not known why they don't just wildcard all of "*." and be done with
@@ -212,7 +210,7 @@ target="https://lists.dns-oarc.net/pipermail/dns-operations/2010-February/005003
 older</eref>. Thanks to Mark Andrews and Francis Dupont for the
 interesting discussions. Thanks to Brian Dickson, Warren Kumari and David Conrad for remarks and suggestions. Thanks to Mohsen
 Souissi for proofreading. Thanks to Tony Finch for the zone cut
-algorithm in <xref target="zonecutalgo"/>. Thanks to Paul Vixie for pointing out that there are practical advantages (besides privacy) to qname m12n.
+algorithm in <xref target="zonecutalgo"/>. Thanks to Paul Vixie for pointing out that there are practical advantages (besides privacy) to qname m10n.
 Thanks to Phillip Hallam-Baker for the
 fallback on A queries, to deal with broken servers. Thanks to Robert
 Edmonds for an interesting anti-pattern.</t>
@@ -225,7 +223,6 @@ Edmonds for an interesting anti-pattern.</t>
 <references title='Normative References'>
 &rfc1034;
 &rfc1035;
-&rfc2119;
 &rfc6973;
 &I-D.ietf-dprive-problem-statement;
 </references>
@@ -233,6 +230,7 @@ Edmonds for an interesting anti-pattern.</t>
 <references title='Informative References'>
 &rfc2181;
 &I-D.wkumari-dnsop-hammer;
+&I-D.vixie-dnsext-resimprove;
 
 <reference anchor="dnsop" target="https://datatracker.ietf.org/wg/dnsop/charter/">
 <front>
@@ -244,6 +242,15 @@ Edmonds for an interesting anti-pattern.</t>
 operation of DNS software and services and for the administration
 of DNS zones.</t>
 </abstract>
+</front>
+</reference>
+
+<reference anchor="mockapetris-history">
+<front>
+<title>Private discussion</title>
+<author fullname="Paul Mockapetris" surname="Mockapetris" initials="P."/>
+<date day="13" month="January" year="2015"/>
+<abstract><t>Meeting in the AFNIC office.</t></abstract>
 </front>
 </reference>
 
