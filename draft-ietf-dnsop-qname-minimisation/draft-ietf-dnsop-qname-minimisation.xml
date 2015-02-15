@@ -100,6 +100,11 @@ authoritative for many zones in a given name (something which was more
 common in the old days, where the same name servers served .com and
 the root) or when the same name server is both recursive and authoritative (something which is strongly discouraged now). Whatever the merits of this choice at this time, the DNS is quite
 different now.</t>
+<t>It may be noticed that many documents explaining the DNS and
+intended for a wide audience, incorrectly describe the resolution
+process as using qname minimisation, for instance by showing a request
+going to the root, with just the TLD in the query. As a result, these
+documents may confuse the privacy analysis of the users who see them.</t>
 <t>As mentioned before, there are several ways to implement qname minimisation. Two main strategies are
 the aggressive one and the lazy one. In the aggressive one, the
 resolver only sends NS queries as long as it does not know the zone
