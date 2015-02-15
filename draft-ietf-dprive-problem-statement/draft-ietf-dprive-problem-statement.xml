@@ -24,6 +24,7 @@
 <!ENTITY I-D.hoffman-dns-terminology SYSTEM
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.hoffman-dns-terminology">
 ]>
+<!-- TODO Hoffman's drafts on DNS over TLS -->
 
 <rfc docName="draft-ietf-dprive-problem-statement-02BETA" category="info" ipr="trust200902">
 <?rfc toc="yes"?>
@@ -423,7 +424,7 @@ many to be listed here).</t>
 <t>Thanks to Nathalie Boulvard and to the CENTR members for the
 original work which leaded to this document. Thanks to Ondrej Sury for the
 interesting discussions. Thanks to Mohsen Souissi and John Heidemann for
-proofreading, to Paul Hoffman, Marcos Sanz and Warren Kumari for
+proofreading, to Paul Hoffman, Marcos Sanz, Tim Wicinski and Warren Kumari for
 proofreading, technical remarks, and many readability improvements. Thanks to Dan York, Suzanne Woolf, Tony Finch, Peter Koch and Frank Denis for good written contributions.</t>
 </section>
 
