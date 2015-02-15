@@ -23,8 +23,11 @@
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.wouters-dane-openpgp">
 <!ENTITY I-D.hoffman-dns-terminology SYSTEM
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.hoffman-dns-terminology">
+<!ENTITY I-D.hoffman-dprive-dns-tls-alpn SYSTEM
+"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.hoffman-dprive-dns-tls-alpn">
+<!ENTITY I-D.ietf-dnsop-qname-minimisation SYSTEM
+"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-qname-minimisation">
 ]>
-<!-- TODO Hoffman's drafts on DNS over TLS -->
 
 <rfc docName="draft-ietf-dprive-problem-statement-02BETA" category="info" ipr="trust200902">
 <?rfc toc="yes"?>
@@ -416,7 +419,7 @@ requirments (with the choices and compromises they imply), much less
 to define solutions. A document on requirments for DNS privacy is
 <xref target="I-D.hallambaker-dnse"/>.  Possible solutions to the
 issues described here are discussed in other documents (currently too
-many to be listed here).</t>
+many to be all mentioned, see for instance <xref target="I-D.ietf-dnsop-qname-minimisation"/> for the minimisation of data, or <xref target="I-D.hzhwm-start-tls-for-dns"/> or <xref target="I-D.hoffman-dprive-dns-tls-alpn"/> about encryption.</t>
 
 </section>
 
@@ -450,6 +453,9 @@ proofreading, technical remarks, and many readability improvements. Thanks to Da
 &I-D.vandergaast-edns-client-subnet;
 &I-D.hallambaker-dnse;
 &I-D.wouters-dane-openpgp;
+&I-D.hoffman-dprive-dns-tls-alpn;
+&I-D.hzhwm-start-tls-for-dns;
+&I-D.ietf-dnsop-qname-minimisation;
 &I-D.hoffman-dns-terminology; <!-- TODO: To be moved to Normative if
 published and used for reference -->
 
