@@ -24,17 +24,17 @@
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.wkumari-dnsop-hammer.xml">
 ]>
 
-<rfc docName="draft-ietf-dnsop-qname-minimisation-01BETA"
+<rfc docName="draft-ietf-dnsop-qname-minimisation-02BETA"
      category="exp" ipr="trust200902">
 <?rfc toc="yes"?>
-<?rfc strict="yes"?> 
+<?rfc strict="yes"?>
 <front>
 <title abbrev="Qname minimisation">DNS query name minimisation to improve privacy</title>
 <author fullname="Stephane Bortzmeyer" initials="S." surname="Bortzmeyer">
 <organization>AFNIC</organization>
 <address><postal><street>1, rue Stephenson</street><code>78180</code><city>Montigny-le-Bretonneux</city><country>France</country></postal> <phone>+33 1 39 30 83 46</phone><email>bortzmeyer+ietf@nic.fr</email><uri>http://www.afnic.fr/</uri></address>
 </author>
-<date month="TODO" year="2015"/>
+<date month="February" year="2015"/>
 <workgroup>Domain Name System Operations (dnsop) Working Group</workgroup>
 <abstract>
 <t>This document describes one of the techniques that could be used to
@@ -100,6 +100,11 @@ authoritative for many zones in a given name (something which was more
 common in the old days, where the same name servers served .com and
 the root) or when the same name server is both recursive and authoritative (something which is strongly discouraged now). Whatever the merits of this choice at this time, the DNS is quite
 different now.</t>
+<t>It may be noticed that many documents explaining the DNS and
+intended for a wide audience, incorrectly describe the resolution
+process as using qname minimisation, for instance by showing a request
+going to the root, with just the TLD in the query. As a result, these
+documents may confuse the privacy analysis of the users who see them.</t>
 <t>As mentioned before, there are several ways to implement qname minimisation. Two main strategies are
 the aggressive one and the lazy one. In the aggressive one, the
 resolver only sends NS queries as long as it does not know the zone
