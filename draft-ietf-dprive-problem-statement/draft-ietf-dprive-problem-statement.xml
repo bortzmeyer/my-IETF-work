@@ -352,7 +352,8 @@ domain manager and these servers may or may not take privacy into
 account. Whatever the contract, the third-party hoster may be honest or not but, in any case,
 it will have to follow its local laws. It may be surprising for an end-user that requests to a
 given ccTLD may go to servers managed by organisations outside of the country.</t>
-<t>Also, it seems (TODO: actual numbers requested) that there is a
+<t>Also, it seems (TODO: actual numbers requested. Aeris' results:
+https://imirhil.fr/top-100k-ns.csv and tp://imirhil.fr/top-100k-ns.ods ) that there is a
 strong concentration of authoritative name servers among "popular"
 domains (such as the Alexa Top N list). With the control (or the ability
 to sniff the traffic) of a few name servers, you can gather a lot of
