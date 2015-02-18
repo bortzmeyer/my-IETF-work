@@ -6,6 +6,7 @@
 "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2181.xml">
 <!ENTITY rfc4033 SYSTEM
 "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4033.xml">
+<!ENTITY rfc5155 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5155.xml">
 <!ENTITY rfc5936 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5936.xml">
 <!ENTITY rfc6347 SYSTEM
 "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6347.xml">
@@ -38,7 +39,7 @@
 <organization>AFNIC</organization>
 <address><postal><street>1, rue Stephenson</street><code>78180</code><city>Montigny-le-Bretonneux</city><country>France</country></postal> <phone>+33 1 39 30 83 46</phone><email>bortzmeyer+ietf@nic.fr</email><uri>http://www.afnic.fr/</uri></address>
 </author>
-<date month="January" year="2015"/>
+<date month="February" year="2015"/>
 <workgroup>DNS PRIVate Exchange (dprive) Working Group</workgroup>
 <abstract>
 <t>This document describes the privacy issues associated with the use
@@ -93,7 +94,10 @@ asks to the recursive resolver "What are the SRV records of
 _xmpp-server._tcp.example.com?", the recursive resolver will remember that it
 knows the name servers of example.com and will just query them,
 bypassing the root and .com. Because there is typically no caching in
-the stub resolver, the recursive resolver, unlike the authoritative servers, sees everything.
+the stub resolver, the recursive resolver, unlike the authoritative
+servers, sees all the DNS traffic. (Applications, like Web browsers, may have
+some form of caching, which do not follow DNS rules. So, the recursive
+resolver does not see all the name resolution activity.)
 </t>
 <t>It should be noted that DNS recursive resolvers sometimes forward requests to
 bigger machines, with a larger and more shared cache (and the query hierarchy can be even deeper, with more than two levels of recursive resolvers). From the point of view of privacy, forwarders are like
@@ -142,7 +146,8 @@ bar (which obviously is a big privacy concern).
 requests). We consider the risks of pervasive surveillance (<xref
 target="RFC7258"/>) and also risks coming from a more focused
 surveillance. Privacy risks for the holder of a zone (the risk that
-someone gets the data) are discussed in <xref target="RFC5936"/>. Non-privacy
+someone gets the data) are discussed in <xref target="RFC5936"/> and
+<xref target="RFC5155"/>. Non-privacy
 risks (such as cache poisoning) are out of scope.</t>
 
 <section title="The alleged public nature of DNS data">
@@ -213,7 +218,10 @@ target="I-D.vandergaast-edns-client-subnet"/> is used (see its privacy analysis 
 machine. In both cases, the IP address is as sensitive as it is for
 HTTP.</t>
 <t>A note about IP addresses: there is currently no IETF document
-which describes in detail the privacy issues of IP addressing. In the
+which describes in detail all the privacy issues around IP
+addressing. <!-- TODO mention RFC 4941 and/or
+http://www.iab.org/wp-content/IAB-uploads/2011/07/IPv6-addresses-privacy-review.txt
+? -->In the
 meantime, the discussion here is intended to include both IPv4 and IPv6 source
 addresses. For a number of reasons their assignment and utilization characteristics
 are different, which may have implications for details of information leakage
@@ -231,7 +239,7 @@ This information can sometimes be examined by sending DNS queries
 with RD=0 to inspect cache content, particularly looking at the DNS
 TTLs.  Since this also is a reconnaissance technique for subsequent
 cache poisoning attacks, some counter measures have already been
-developed and deployed.</t>
+developed and deployed.<!-- TODO reference? --></t>
 </section>
 
 <section anchor="risks-on-wire" title="On the wire">
@@ -303,8 +311,11 @@ managing the DNS server can use these data itself or it can be
 part of a surveillance program like <xref target="prism">PRISM</xref> and
 pass data to an outside observer.</t>
 <t>Sometimes, these data are kept for a long time and/or
-distributed to third parties, for research purposes <xref target="ditl"/>, for
-security analysis, or for surveillance tasks. Also, there are
+distributed to third parties, for research purposes <xref
+target="ditl"/> <xref target="day-at-root"/>, for
+security analysis, or for surveillance tasks. These uses are sometimes
+under some sort of contract, with various limitations, for instance on
+redistribution, giving the sensitive nature of the data. Also, there are
 observation points in the network which gather DNS data and then make
 it accessible to third-parties for research or security purposes
 ("<xref target="passive-dns">passive DNS</xref>").</t>
@@ -332,11 +343,12 @@ this subset may be sufficient to violate some privacy expectations.</t>
 the recursive resolver (he has chosen the IAP, or he has chosen to use a given public
 resolver), while having no control and perhaps no awareness of the role of the
 authoritative name servers and their observation abilities.</t>
-<!-- Some people said it is too speculative, may be even too political. -->
-<t>It is an interesting question whether the privacy issues are bigger
+<!-- Some people said it is too speculative, may be even too
+political:
+It is an interesting question whether the privacy issues are bigger
 in the root or in a large TLD. The root sees the traffic for all the TLDs (and the huge
-amount of traffic for non-existing TLDs), but a large TLDs has less caching
-before it.</t>
+amount of traffic for non-existing TLDs), but a large TLD has less caching
+before it. -->
 <t>As noted before, using a local resolver or a resolver close to the
 machine decreases the attack surface for an on-the-wire
 eavesdropper. But it may decrease privacy against an observer located
@@ -347,7 +359,7 @@ big recursive resolver shared by many users.</t>
 target="I-D.vandergaast-edns-client-subnet"/> is used because, in this
 case, the authoritative name server sees the original IP address (or prefix, depending on the setup).</t>
 <t>As of today, all the instances of one root name server, L-root,
-receive together around 20,000 queries per second<!-- http://dns.icann.org/cgi-bin/dsc-grapher.pl?plot=bynode&server=L-root Same thing for K http://k.root-servers.org/ -->. While most of it is junk (errors on
+receive together around 20,000 queries per second<!-- http://dns.icann.org/cgi-bin/dsc-grapher.pl?plot=bynode&server=L-root Same thing for K http://k.root-servers.org/ or [a|j].root-servers.org/metrics.html -->. While most of it is junk (errors on
 the TLD name), it gives an idea of the amount of big data which pours
 into name servers.</t>
 <t>Many domains, including TLDs, are partially hosted by third-party
@@ -399,8 +411,11 @@ the observation of DNS traffic. See <xref target="dns-footprint"/>,
 <xref target="dagon-malware"/> and <xref
 target="darkreading-dns"/>.</t>
 <t><xref target="passive-dns">Passive DNS systems</xref> allow reconstruction of the data of sometimes
-an entire zone. It is used for many reasons, some good, some bad. It
-is an example of a privacy issue even when no source IP address is kept.</t>
+an entire zone. They are used for many reasons, some good, some
+bad. Well-known passive DNS systems keep only the DNS responses, and
+not the source IP address of the client, precisely for privacy
+reasons. Other passive DNS systems may not be so careful. And there is
+still the potential problems with revealing qnames.</t>
 <t>The revelations (from the Edward Snowden documents, leaked from the
 NSA) of the MORECOWBELL surveillance program <xref target="morecowbell"/>, which uses the DNS, both
 passively and actively, to gather surreptitiously information about
@@ -430,8 +445,9 @@ many to be all mentioned, see for instance <xref target="I-D.ietf-dnsop-qname-mi
 <t>Thanks to Nathalie Boulvard and to the CENTR members for the
 original work which leaded to this document. Thanks to Ondrej Sury for the
 interesting discussions. Thanks to Mohsen Souissi and John Heidemann for
-proofreading, to Paul Hoffman, Marcos Sanz, Tim Wicinski and Warren Kumari for
-proofreading, technical remarks, and many readability improvements. Thanks to Dan York, Suzanne Woolf, Tony Finch, Peter Koch and Frank Denis for good written contributions.</t>
+proofreading, to Paul Hoffman, Marcos Sanz, Tim Wicinski, Allison Mankin and Warren Kumari for
+proofreading, technical remarks, and many readability
+improvements. Thanks to Dan York, Suzanne Woolf, Tony Finch, Peter Koch and Frank Denis for good written contributions.</t>
 </section>
 
 <section title="IANA considerations">
@@ -452,6 +468,7 @@ proofreading, technical remarks, and many readability improvements. Thanks to Da
 <references title='Informative References'>
 <!-- TODO Please alphabetize, at least the drafts -->
 &rfc4033;
+&rfc5155;
 &rfc5936;
 &I-D.vandergaast-edns-client-subnet;
 &I-D.hallambaker-dnse;
@@ -581,6 +598,18 @@ datasets of strategic interest to researchers. Over the last several
 years, we have come to refer to this project and related activities as
 "A Day in the Life of the Internet" (DITL).</t>
 </abstract>
+</front>
+</reference>
+
+<reference anchor="day-at-root"
+	   target="http://www.sigcomm.org/sites/default/files/ccr/papers/2008/October/1452335-1452341.pdf">
+<front>
+<title>A Day at the Root of the Internet</title>
+<author fullname="Sebastian Castro" initials="S." surname="Castro"/>
+<author fullname="Duane Wessels" initials="D." surname="Wessels"/>
+<author fullname="Marina Fomenkov" initials="M." surname="Fomenkov"/>
+<author fullname="Kimberly Claffy" initials="K." surname="Claffy"/>
+<date year="2008"/>
 </front>
 </reference>
 
