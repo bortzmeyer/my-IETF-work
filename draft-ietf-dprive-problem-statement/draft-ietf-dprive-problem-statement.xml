@@ -14,8 +14,8 @@
 "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6347.xml">
 <!ENTITY rfc6973 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6973.xml">
 <!ENTITY rfc7258 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7258.xml">
-<!ENTITY I-D.vandergaast-edns-client-subnet SYSTEM
-"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.vandergaast-edns-client-subnet">
+<!ENTITY I-D.ietf-dnsop-edns-client-subnet SYSTEM
+"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-edns-client-subnet">
 <!ENTITY I-D.hzhwm-start-tls-for-dns SYSTEM
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.hzhwm-start-tls-for-dns">
 <!ENTITY I-D.timms-encrypt-naptr SYSTEM
@@ -215,7 +215,7 @@ name servers, the source IP address has a different meaning; it does not have th
 address in a HTTP connection. It is now the IP address of the recursive resolver
 which, in a way "hides" the real user. However, hiding does not always
 work. Sometimes <xref
-target="I-D.vandergaast-edns-client-subnet"/> is used (see its privacy analysis in <xref target="denis-edns-client-subnet"/>). Sometimes the end user has a personal recursive resolver on her
+target="I-D.ietf-dnsop-edns-client-subnet"/> is used (see its privacy analysis in <xref target="denis-edns-client-subnet"/>). Sometimes the end user has a personal recursive resolver on her
 machine. In both cases, the IP address is as sensitive as it is for
 HTTP.</t>
 <t>A note about IP addresses: there is currently no IETF document
@@ -357,7 +357,7 @@ on an authoritative name server. This authoritative name server
 will see the IP address of the end client, instead of the address of a
 big recursive resolver shared by many users.</t>
 <t>This "protection", when using a large resolver with many clients, is no longer present if <xref
-target="I-D.vandergaast-edns-client-subnet"/> is used because, in this
+target="I-D.ietf-dnsop-edns-client-subnet"/> is used because, in this
 case, the authoritative name server sees the original IP address (or prefix, depending on the setup).</t>
 <t>As of today, all the instances of one root name server, L-root,
 receive together around 20,000 queries per second<!-- http://dns.icann.org/cgi-bin/dsc-grapher.pl?plot=bynode&server=L-root Same thing for K http://k.root-servers.org/ or [a|j].root-servers.org/metrics.html -->. While most of it is junk (errors on
@@ -473,7 +473,7 @@ improvements. Thanks to Dan York, Suzanne Woolf, Tony Finch, Peter Koch and Fran
 &rfc5155;
 &rfc5936;
 &rfc6269;
-&I-D.vandergaast-edns-client-subnet;
+&I-D.ietf-dnsop-edns-client-subnet;
 &I-D.hallambaker-dnse;
 &I-D.wouters-dane-openpgp;
 &I-D.hzhwm-start-tls-for-dns;
