@@ -8,6 +8,8 @@
 "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4033.xml">
 <!ENTITY rfc5155 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5155.xml">
 <!ENTITY rfc5936 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5936.xml">
+<!ENTITY rfc6269 SYSTEM
+"http://xml.resource.org/public/rfc/bibxml/reference.RFC.6269.xml">
 <!ENTITY rfc6347 SYSTEM
 "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6347.xml">
 <!ENTITY rfc6973 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6973.xml">
@@ -24,8 +26,6 @@
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.wouters-dane-openpgp">
 <!ENTITY I-D.hoffman-dns-terminology SYSTEM
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.hoffman-dns-terminology">
-<!ENTITY I-D.hoffman-dprive-dns-tls-alpn SYSTEM
-"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.hoffman-dprive-dns-tls-alpn">
 <!ENTITY I-D.ietf-dnsop-qname-minimisation SYSTEM
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-qname-minimisation">
 ]>
@@ -70,7 +70,7 @@ reference to it.)
 A client, the stub resolver, issues a DNS query
 to a server, called the recursive resolver
 (also called caching resolver or full resolver or recursive name server).
-Use the query "What are the AAAA records for
+Let's use the query "What are the AAAA records for
 www.example.com?" as an example. AAAA is the qtype (Query Type), and
 www.example.com is the qname (Query Name). The recursive resolver will first
 query the root nameservers. In most cases, the root nameservers will
@@ -90,7 +90,7 @@ of the question to the next in line, the DNS provides more information
 than necessary to the nameserver.</t>
 <t>Because DNS relies on caching heavily, not all questions are sent to
 the authoritative name servers. If a few seconds later the stub resolver
-asks to the recursive resolver "What are the SRV records of
+asks to the recursive resolver, "What are the SRV records of
 _xmpp-server._tcp.example.com?", the recursive resolver will remember that it
 knows the name servers of example.com and will just query them,
 bypassing the root and .com. Because there is typically no caching in
@@ -99,10 +99,11 @@ servers, sees all the DNS traffic. (Applications, like Web browsers, may have
 some form of caching, which do not follow DNS rules. So, the recursive
 resolver does not see all the name resolution activity.)
 </t>
-<t>It should be noted that DNS recursive resolvers sometimes forward requests to
-bigger machines, with a larger and more shared cache (and the query hierarchy can be even deeper, with more than two levels of recursive resolvers). From the point of view of privacy, forwarders are like
-resolvers, except that the caching in the recursive resolvers before them
-decreases the amount of data they can see.</t>
+<t>It should be noted that DNS recursive resolvers sometimes forward requests to other recursive resolvers, typically
+bigger machines, with a larger and more shared cache (and the query hierarchy can be even deeper, 
+with more than two levels of recursive resolvers). From the point of view of privacy, these forwarders are like
+resolvers, except that they do not see all of the
+requests being made (due to caching in the first resolver).</t>
 <t>All this DNS traffic is currently sent in clear (unencryted), except a
 few cases when the IP traffic is protected, for instance in an IPsec VPN.</t>
 <t>Today, almost all DNS queries are sent over UDP. This has
@@ -111,12 +112,12 @@ traffic as a possible privacy technique.
 Some encryption solutions are only designed for TCP, not UDP.</t>
 <t>Another important point to keep in mind when analyzing the privacy
 issues of DNS is the mix of many sort of DNS requests received by a
-server. Let's assume the eavesdropper wants to know which Web page is
+server. Let's assume an eavesdropper wants to know which Web page is
 viewed by an user. For a typical Web page,
 there are three sorts of DNS requests being issued:
 <list>
-<t>Primary request: this is the domain name in the URL that the user typed or
-selected from a bookmark or choose by clicking on an
+<t>Primary request: this is the domain name in the URL that the user typed,
+selected from a bookmark or chose by clicking on an
 hyperlink. Presumably, this is what is of interest for the
 eavesdropper.</t>
 <t>Secondary requests: these are the additional requests performed by the user
@@ -144,7 +145,7 @@ bar (which obviously is a big privacy concern).
 
 <t>This document focuses mostly on the study of privacy risks for the end-user (the one performing DNS
 requests). We consider the risks of pervasive surveillance (<xref
-target="RFC7258"/>) and also risks coming from a more focused
+target="RFC7258"/>) as well as risks coming from a more focused
 surveillance. Privacy risks for the holder of a zone (the risk that
 someone gets the data) are discussed in <xref target="RFC5936"/> and
 <xref target="RFC5155"/>. Non-privacy
@@ -177,10 +178,10 @@ from outside the DNS world is: the Web site of Alcoholics Anonymous is public; t
 
 <section title="Data in the DNS request">
 <t>The DNS request includes many fields but two of them seem particularly
-relevant for the privacy issues, the qname and the source IP
+relevant for the privacy issues: the qname and the source IP
 address. "source IP address" is used in a loose sense of "source IP address
 + maybe source port", because the port is also in the request and can be used to sort out several users
-sharing an IP address (behind a CGN for instance).</t>
+sharing an IP address (behind a CGN for instance <xref target="RFC6269"/>).</t>
 <t>The qname is the full name sent by the user. It gives
 information about what the user does ("What are the MX records of
 example.net?" means he probably wants to send email to someone at
@@ -382,7 +383,7 @@ information.</t>
 <t>A rogue DHCP server,
 or a trusted DHCP server that has had its configuration altered by malicious parties,
 can direct you to a rogue recursive resolver. Most of the
-times, it seems to be done to divert traffic, by providing lies for
+time, it seems to be done to divert traffic, by providing lies for
 some domain names. But it could be used just to
 capture the traffic and gather information about you. Same thing for
 malware like DNSchanger<xref target="dnschanger"/> which changes the
@@ -398,14 +399,15 @@ will divert the traffic intended for a legitimate DNS server (for instance <xref
 <t>A very quick examination of DNS traffic may lead to the false
 conclusion that extracting the needle from the haystack is
 difficult. "Interesting" primary DNS requests are mixed with useless
-(for the eavesdropper) second and
+(for the eavesdropper) secondary and
 tertiary requests (see the terminology in <xref
 target="introduction"/>). But, in this time of "big data" processing,
-powerful techniques now exist to get from the raw data to what you're
+powerful techniques now exist to get from the raw data to what the
+eavesdropper is
 actually interested in.</t>
 <t>Many research papers about malware detection use DNS traffic to
 detect "abnormal" behaviour that can be traced back to the activity of
-malware on infected machines. Yes, this research was done for the good but,
+malware on infected machines. Yes, this research was done for the good; but,
 technically, it is a privacy attack and it demonstrates the power of
 the observation of DNS traffic. See <xref target="dns-footprint"/>,
 <xref target="dagon-malware"/> and <xref
@@ -432,12 +434,12 @@ an easy task and it seems there is no court precedent here.</t>
 
 <section title="Security considerations">
 <t>This document is entirely about security, more precisely
-privacy. It just lays down the problem, it does not try to set
+privacy. It just lays out the problem, it does not try to set
 requirments (with the choices and compromises they imply), much less
-to define solutions. A document on requirments for DNS privacy is
+to define solutions. A possible document on requirments for DNS privacy is
 <xref target="I-D.hallambaker-dnse"/>.  Possible solutions to the
 issues described here are discussed in other documents (currently too
-many to be all mentioned, see for instance <xref target="I-D.ietf-dnsop-qname-minimisation"/> for the minimisation of data, or <xref target="I-D.hzhwm-start-tls-for-dns"/> or <xref target="I-D.hoffman-dprive-dns-tls-alpn"/> about encryption.</t>
+many to all be mentioned), see for instance <xref target="I-D.ietf-dnsop-qname-minimisation"/> for the minimisation of data, or <xref target="I-D.hzhwm-start-tls-for-dns"/> about encryption.</t>
 
 </section>
 
@@ -470,10 +472,10 @@ improvements. Thanks to Dan York, Suzanne Woolf, Tony Finch, Peter Koch and Fran
 &rfc4033;
 &rfc5155;
 &rfc5936;
+&rfc6269;
 &I-D.vandergaast-edns-client-subnet;
 &I-D.hallambaker-dnse;
 &I-D.wouters-dane-openpgp;
-&I-D.hoffman-dprive-dns-tls-alpn;
 &I-D.hzhwm-start-tls-for-dns;
 &I-D.ietf-dnsop-qname-minimisation;
 &I-D.hoffman-dns-terminology; <!-- TODO: To be moved to Normative if
