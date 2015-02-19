@@ -30,7 +30,7 @@
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-qname-minimisation">
 ]>
 
-<rfc docName="draft-ietf-dprive-problem-statement-02BETA" category="info" ipr="trust200902">
+<rfc docName="draft-ietf-dprive-problem-statement-02" category="info" ipr="trust200902">
 <?rfc toc="yes"?>
 <?rfc strict="yes"?>
 <front>
