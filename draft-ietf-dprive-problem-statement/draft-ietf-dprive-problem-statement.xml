@@ -369,12 +369,12 @@ domain manager and these servers may or may not take privacy into
 account. Whatever the contract, the third-party hoster may be honest or not but, in any case,
 it will have to follow its local laws. It may be surprising for an end-user that requests to a
 given ccTLD may go to servers managed by organisations outside of the country.</t>
-<t>Also, it seems (TODO: actual numbers requested. Aeris' results: see
-the script in https://gist.github.com/aeris/1a1ba71264c9c1e49e03
-https://imirhil.fr/top-100k-ns.csv and tp://imirhil.fr/top-100k-ns.ods
-and https://imirhil.fr/top-10k-ns2.ods) ) that there is a strong
+<t>Also, it seems <xref target="aeris-dns"/> that there is a strong
 concentration of authoritative name servers among "popular" domains
-(such as the Alexa Top N list). With the control (or the ability to
+(such as the Alexa Top N list). For instance, among the Alexa Top
+100k, one DNS provider hosts today 10 % of the domains. The ten most
+important DNS providers host together one third of the domains. 
+With the control (or the ability to
 sniff the traffic) of a few name servers, you can gather a lot of
 information.</t>
 </section>
@@ -712,6 +712,20 @@ international conference on, IEEE, Piscataway, NJ, USA, 25 August 2010
 </reference>
 
 <!-- TODO Haya Shulman's paper http://www.ietf.org/mail-archive/web/dns-privacy/current/pdfWqAIUmEl47.pdf ? Or in the possible-solutions draft ? -->
+
+<reference anchor="aeris-dns" target="https://blog.imirhil.fr/vie-privee-et-le-dns-alors.html">
+<front>
+<title>[In French] Vie privée : et le DNS alors ?</title>
+<author fullname="Nicolas Vinot" surname="Vinot" initials="N."/>
+<date year="2015"/>
+<abstract>
+<t>A survey of the DNS privacy issues, specifically from the point of
+view of the concentration in DNS providers. With data drawn from a DNS
+harvest of Alexa Top N's authoritative name servers.
+</t>
+</abstract>
+</front>
+</reference>
 
 </references>
 
