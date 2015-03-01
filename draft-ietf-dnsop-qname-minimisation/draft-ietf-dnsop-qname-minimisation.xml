@@ -14,6 +14,7 @@
 <!ENTITY rfc6347 SYSTEM
 "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6347.xml">
 <!ENTITY rfc6973 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6973.xml">
+<!ENTITY rfc6982 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6982.xml">
 <!ENTITY I-D.vandergaast-edns-client-subnet SYSTEM
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.vandergaast-edns-client-subnet">
 <!ENTITY I-D.ietf-dprive-problem-statement SYSTEM
@@ -221,6 +222,35 @@ servers)?</cref></t>
 <t>No security consequence (besides privacy improvment) is known at this time.</t>
 </section>
 
+<section title="Implementation status - REMOVE BEFORE PUBLICATION">
+
+<t>This section records the status of known implementations of the
+protocol defined by this specification at the time of posting of
+this Internet-Draft, and is based on a proposal described in <xref target="RFC6982"/>. The description of implementations in this section is
+intended to assist the IETF in its decision processes in
+progressing drafts to RFCs.  Please note that the listing of any
+individual implementation here does not imply endorsement by the
+IETF.  Furthermore, no effort has been spent to verify the
+information presented here that was supplied by IETF contributors.
+This is not intended as, and must not be construed to be, a
+catalog of available implementations or their features.  Readers
+are advised to note that other implementations may exist.</t>
+
+<t>According to <xref target="RFC6982"/>, "this will allow reviewers and working
+groups to assign due consideration to documents that have the
+benefit of running code, which may serve as evidence of valuable
+experimentation and feedback that have made the implemented
+protocols more mature.  It is up to the individual working groups
+to use this information as they see fit".</t>
+
+<t>As of today, no production resolver implements qname
+minimisation. The algorithm to find the zone cuts described in <xref target="zonecutalgo"/>
+is implemented with qname minimisation in <eref
+target="https://github.com/bortzmeyer/my-IETF-work/blob/master/draft-ietf-dnsop-qname-minimisation/zonecut.go">the sample code zonecut.go</eref>. It is also implemented,
+for a much longer time, in an option of dig, "dig +trace", but without qname minimisation.</t>
+
+</section>
+
 <section title="Acknowledgments">
 <t>Thanks to Olaf Kolkman for the original idea although the concept
 is probably <eref
@@ -249,6 +279,7 @@ Edmonds for an interesting anti-pattern.</t>
 
 <references title='Informative References'>
 &rfc2181;
+&rfc6982;
 &I-D.wkumari-dnsop-hammer;
 &I-D.vixie-dnsext-resimprove;
 
