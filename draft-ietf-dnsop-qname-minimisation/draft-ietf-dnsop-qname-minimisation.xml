@@ -309,6 +309,8 @@ of DNS zones.</t>
 
 <section anchor="zonecutalgo" title="An algorithm to find the zone cut">
 
+  <!-- source
+       http://www.ietf.org/mail-archive/web/dns-privacy/current/msg00035.html -->
 <t>Although a validating resolver already has the logic to find the
 zone cut, other resolvers may be interested by this algorithm to
 follow in order to locate this cut:
