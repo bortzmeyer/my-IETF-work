@@ -244,7 +244,11 @@ protocols more mature.  It is up to the individual working groups
 to use this information as they see fit".</t>
 
 <t>As of today, no production resolver implements qname
-minimisation. The algorithm to find the zone cuts described in <xref target="zonecutalgo"/>
+minimisation. For Unbound, see <eref
+target="https://www.nlnetlabs.nl/bugs-script/show_bug.cgi?id=648">ticket
+648</eref>.</t>
+
+<t>The algorithm to find the zone cuts described in <xref target="zonecutalgo"/>
 is implemented with qname minimisation in <eref
 target="https://github.com/bortzmeyer/my-IETF-work/blob/master/draft-ietf-dnsop-qname-minimisation/zonecut.go">the sample code zonecut.go</eref>. It is also implemented,
 for a much longer time, in an option of dig, "dig +trace", but without qname minimisation.</t>
