@@ -246,7 +246,7 @@ to use this information as they see fit".</t>
 <t>As of today, no production resolver implements qname
 minimisation. For Unbound, see <eref
 target="https://www.nlnetlabs.nl/bugs-script/show_bug.cgi?id=648">ticket
-648</eref>.</t>
+648</eref> and for PowerDNS <eref target="https://github.com/PowerDNS/pdns/issues/2311"/>.</t>
 
 <t>The algorithm to find the zone cuts described in <xref target="zonecutalgo"/>
 is implemented with qname minimisation in <eref
