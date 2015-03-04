@@ -190,8 +190,8 @@ therefore very revealing about communication relationships). Some qnames are mor
 others. For instance, querying the A record of google-analytics.com
 reveals very little (everybody visits Web sites which use Google
 Analytics) but querying the A record of www.verybad.example where
-verybad.example is the domain of an illegal or very offensive
-organization may create more problems for the user. Also, sometimes,
+verybad.example is the domain of an organization that some people find offensive or objectionable,
+may create more problems for the user. Also, sometimes,
 the qname embeds the software one uses, which could be a privacy
 issue. For instance,
 _ldap._tcp.Default-First-Site-Name._sites.gc._msdcs.example.org. There
@@ -427,7 +427,7 @@ protections in the DNS is actively exploited.</t>
 
 <section title="Legalities">
 <t>To our knowledge, there are no specific privacy laws for DNS
-data. Interpreting general privacy laws like
+data, in any country. Interpreting general privacy laws like
 [data-protection-directive] (European Union) in the context of DNS traffic data is not
 an easy task and it seems there is no court precedent here.</t>
 </section>
