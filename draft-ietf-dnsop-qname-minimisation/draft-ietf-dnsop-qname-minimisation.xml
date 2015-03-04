@@ -35,14 +35,14 @@
 <organization>AFNIC</organization>
 <address><postal><street>1, rue Stephenson</street><code>78180</code><city>Montigny-le-Bretonneux</city><country>France</country></postal> <phone>+33 1 39 30 83 46</phone><email>bortzmeyer+ietf@nic.fr</email><uri>http://www.afnic.fr/</uri></address>
 </author>
-<date month="February" year="2015"/>
+<date month="March" year="2015"/>
 <workgroup>Domain Name System Operations (dnsop) Working Group</workgroup>
 <abstract>
 <t>This document describes one of the techniques that could be used to
 improve DNS privacy (see <xref
 target="I-D.ietf-dprive-problem-statement"/>), a technique called "qname
 minimisation".</t>
-<t>Discussions of the document should take place on the
+<t>REMOVE BEFORE PUBLICATION Discussions of the document should take place on the
 DNSOP working group mailing list <xref target="dnsop"/>.</t>
 </abstract>
 </front>
@@ -116,7 +116,7 @@ leaks more data but probably requires fewer changes in the existing resolver cod
 servers, will get less data, which will reduce the utility of the
 statistics they can produce (such as the percentage of the various
 qtypes). On the other hand, it may decrease their legal
-responsibility. (TODO: do we keep any mention of legal issues? We're
+responsibility in some jurisdictions. (TODO: do we keep any mention of legal issues? We're
 not lawyers.)</t>
 <t>Some broken name servers do not react properly to qtype=NS
 requests. For instance, some authoritative name servers embedded in load balancers reply properly to A queries but send REFUSED to NS queries.
@@ -306,6 +306,14 @@ of DNS zones.</t>
 <author fullname="Paul Mockapetris" surname="Mockapetris" initials="P."/>
 <date day="13" month="January" year="2015"/>
 <abstract><t>Meeting in the AFNIC office.</t></abstract>
+</front>
+</reference>
+
+<reference anchor="kaliski-minimum" target="http://blogs.verisigninc.com/blog/entry/minimum_disclosure_what_information_does">
+<front>
+<title>Minimum Disclosure: What Information Does a Name Server Need to Do Its Job?</title>
+<author fullname="Burt Kaliski" initials="B." surname="Kaliski"/>
+<date month="March" year="2015"/>
 </front>
 </reference>
 
