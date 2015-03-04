@@ -25,7 +25,7 @@
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.wkumari-dnsop-hammer.xml">
 ]>
 
-<rfc docName="draft-ietf-dnsop-qname-minimisation-02BETA"
+<rfc docName="draft-ietf-dnsop-qname-minimisation-02"
      category="exp" ipr="trust200902">
 <?rfc toc="yes"?>
 <?rfc strict="yes"?>
