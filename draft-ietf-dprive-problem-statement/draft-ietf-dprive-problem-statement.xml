@@ -16,6 +16,8 @@
 <!ENTITY rfc7258 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7258.xml">
 <!ENTITY I-D.ietf-dnsop-edns-client-subnet SYSTEM
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-edns-client-subnet">
+<!ENTITY I-D.iab-privsec-confidentiality-threat SYSTEM
+"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.iab-privsec-confidentiality-threat">
 <!ENTITY I-D.hzhwm-start-tls-for-dns SYSTEM
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.hzhwm-start-tls-for-dns">
 <!ENTITY I-D.timms-encrypt-naptr SYSTEM
@@ -393,6 +395,28 @@ will divert the traffic intended for a legitimate DNS server (for instance <xref
 
 </section>
 
+<section title="Re-identification and other inferences">
+  <t>An observer has access not only to the data he/she directly
+  collects but also to the results of various inferences about these
+  data.</t>
+  <t>For instance, an user can be re-identified via DNS queries. If the adversary knows a user's identity and can watch
+their DNS queries for a period, then that same adversary may be
+able to re-identify the user solely based on their pattern of
+DNS queries later on regardless of the location from which
+the user makes those queries. For example, one study <xref target="herrmann-reidentification"/> found
+that such re-identification is possible so that "73.1% of all day-to-day links were correctly established, i.e.
+user u was either re-identified unambiguously (1) or the
+classifier correctly reported that u was not present on day
+t+1 any more (2)". While that study related to web browsing behaviour, equally
+characteristic patterns may be produced even in machine-to-machine
+communications or without a user taking specific actions, e.g. at
+reboot time if a characteristic set of services are accessed by
+the device.</t>
+<t>The IAB privacy and security programme also have a work in progress
+<xref target="I-D.iab-privsec-confidentiality-threat"/> that considers such
+inference based attacks in a more general framework.</t>
+</section>
+	 
 </section>
 
 <section title="Actual &quot;attacks&quot;">
@@ -449,7 +473,8 @@ original work which leaded to this document. Thanks to Ondrej Sury for the
 interesting discussions. Thanks to Mohsen Souissi and John Heidemann for
 proofreading, to Paul Hoffman, Marcos Sanz, Tim Wicinski, Allison Mankin and Warren Kumari for
 proofreading, technical remarks, and many readability
-improvements. Thanks to Dan York, Suzanne Woolf, Tony Finch, Peter Koch and Frank Denis for good written contributions.</t>
+improvements. Thanks to Dan York, Suzanne Woolf, Tony Finch, Stephen
+Farrell, Peter Koch and Frank Denis for good written contributions.</t>
 </section>
 
 <section title="IANA considerations">
@@ -474,6 +499,7 @@ improvements. Thanks to Dan York, Suzanne Woolf, Tony Finch, Peter Koch and Fran
 &rfc5936;
 &rfc6269;
 &I-D.ietf-dnsop-edns-client-subnet;
+&I-D.iab-privsec-confidentiality-threat;
 &I-D.hallambaker-dnse;
 &I-D.wouters-dane-openpgp;
 &I-D.hzhwm-start-tls-for-dns;
@@ -725,6 +751,26 @@ harvest of Alexa Top N's authoritative name servers.
 </t>
 </abstract>
 </front>
+</reference>
+
+<reference anchor="herrmann-reidentification"
+	   target="http://epub.uni-regensburg.de/21103/1/Paper_PUL_nordsec_published.pdf">
+  <front>
+    <title>Analyzing characteristic host access patterns for re-identification of
+    web user sessions</title>
+    <author fullname="Dominik Herrmann" surname="Herrmann" initials="D."/>
+    <author fullname="Christoph Gerber" surname="Gerber" initials="C."/>
+    <author fullname="Christian Banse" surname="Banse" initials="C."/>
+    <author fullname="Hannes Federrath" surname="Federrath" initials="H."/>
+    <date year="2012"/>
+    <abstract>
+      <t>Abstract. An attacker, who is able to observe a web user over a long
+period of time, learns a lot about his interests. It may be difficult to
+track users with regularly changing IP addresses, though. We show how
+patterns mined from web traffic can be used to re-identify a majority
+of users, i. e. link multiple sessions of them. </t>
+    </abstract>
+  </front>
 </reference>
 
 </references>
