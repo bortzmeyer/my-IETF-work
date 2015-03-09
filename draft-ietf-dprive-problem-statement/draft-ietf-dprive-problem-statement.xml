@@ -74,7 +74,9 @@ to a server, called the recursive resolver
 (also called caching resolver or full resolver or recursive name server).
 Let's use the query "What are the AAAA records for
 www.example.com?" as an example. AAAA is the qtype (Query Type), and
-www.example.com is the qname (Query Name). The recursive resolver will first
+www.example.com is the qname (Query Name). (The description which
+follows assume a cold cache, for instance because the server just
+started.) The recursive resolver will first
 query the root nameservers. In most cases, the root nameservers will
 send a referral. In this example, the referral will be to the .com
 nameservers. The resolver repeats the query to
@@ -90,7 +92,8 @@ AAAA records for www.example.com?", not "What are the name servers
 of .com?". By repeating the full question, instead of just the relevant part
 of the question to the next in line, the DNS provides more information
 than necessary to the nameserver.</t>
-<t>Because DNS relies on caching heavily, not all questions are sent to
+<t>Because DNS relies on caching heavily, the algorithm described just above
+is actually a bit more complicated, and not all questions are sent to
 the authoritative name servers. If a few seconds later the stub resolver
 asks to the recursive resolver, "What are the SRV records of
 _xmpp-server._tcp.example.com?", the recursive resolver will remember that it
@@ -471,7 +474,7 @@ many to all be mentioned), see for instance <xref target="I-D.ietf-dnsop-qname-m
 <t>Thanks to Nathalie Boulvard and to the CENTR members for the
 original work which leaded to this document. Thanks to Ondrej Sury for the
 interesting discussions. Thanks to Mohsen Souissi and John Heidemann for
-proofreading, to Paul Hoffman, Marcos Sanz, Tim Wicinski, Allison Mankin and Warren Kumari for
+proofreading, to Paul Hoffman, Matthijs Mekking, Marcos Sanz, Tim Wicinski, Allison Mankin and Warren Kumari for
 proofreading, technical remarks, and many readability
 improvements. Thanks to Dan York, Suzanne Woolf, Tony Finch, Stephen
 Farrell, Peter Koch and Frank Denis for good written contributions.</t>
