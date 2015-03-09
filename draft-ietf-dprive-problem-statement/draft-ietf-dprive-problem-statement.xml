@@ -455,7 +455,7 @@ protections in the DNS is actively exploited.</t>
 <section title="Legalities">
 <t>To our knowledge, there are no specific privacy laws for DNS
 data, in any country. Interpreting general privacy laws like
-[data-protection-directive] (European Union) in the context of DNS traffic data is not
+<xref target="data-protection-directive"/> (European Union) in the context of DNS traffic data is not
 an easy task and it seems there is no court precedent here.</t>
 </section>
 
