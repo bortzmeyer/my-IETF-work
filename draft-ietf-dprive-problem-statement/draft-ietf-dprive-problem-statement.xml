@@ -553,7 +553,8 @@ Resolution Authority</title>
 </front>
 </reference>
 
-<reference anchor="morecowbell" target="https://gnunet.org/morecowbell">
+<reference anchor="morecowbell"
+	   target="https://gnunet.org/morecowbell">
 <front>
 <title>NSA's MORECOWBELL: Knell for DNS</title>
 <author fullname="Christian Grothoff" surname="Grothoff" initials="C."/>
@@ -563,7 +564,8 @@ Resolution Authority</title>
 <date day="24" month="January" year="2015"/>
 <abstract>
 <t>Detailed technical analysis of the MORECOWBELL program, followed by
-opinions about the future of the DNS and the needs for alternate systems.</t>
+opinions about the future of the DNS and the needs for alternate
+systems. Stable GNUnet identifier <eref target="gnunet://fs/chk/RSVKSQXNKSHYAD518W1CQ79S2FGRYAR7CM7MMEBFTXJ677DVJQN8HR3TR0K544Y050THXM6KZ0ZV6BP3NM31P90ZDGXYTX21MNV50W8.1XBPZ4MVFQCDY914S1HB7S8VSYDPCXB0XEY50D6ZK0V30C7N39QFKX2AXW8EW9M8HCCPR6EEEN89D9G6Y8NS7DJMV1TPQXW22E9QWHR.968272"/></t>
 </abstract>
 </front>
 </reference>
