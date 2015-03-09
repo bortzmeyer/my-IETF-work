@@ -32,7 +32,7 @@
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-qname-minimisation">
 ]>
 
-<rfc docName="draft-ietf-dprive-problem-statement-03BETA" category="info" ipr="trust200902">
+<rfc docName="draft-ietf-dprive-problem-statement-03" category="info" ipr="trust200902">
 <?rfc toc="yes"?>
 <?rfc strict="yes"?>
 <front>
@@ -41,7 +41,7 @@
 <organization>AFNIC</organization>
 <address><postal><street>1, rue Stephenson</street><code>78180</code><city>Montigny-le-Bretonneux</city><country>France</country></postal> <phone>+33 1 39 30 83 46</phone><email>bortzmeyer+ietf@nic.fr</email><uri>http://www.afnic.fr/</uri></address>
 </author>
-<date month="TODO" year="2015"/>
+<date month="March" year="2015"/>
 <workgroup>DNS PRIVate Exchange (dprive) Working Group</workgroup>
 <abstract>
 <t>This document describes the privacy issues associated with the use
