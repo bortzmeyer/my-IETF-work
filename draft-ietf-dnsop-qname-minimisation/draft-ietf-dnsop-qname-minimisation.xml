@@ -197,7 +197,7 @@ question (for .CORP itself) to which they could answer NXDOMAIN, thus
 opening up a negative caching opportunity in which the full resolver
 could know a priori that neither B.CORP or C.CORP could exist. Thus in
 this common case the total number of upstream queries under qname
-minimisation would be counter-intuitively inferior to the number of
+minimisation would be counter-intuitively less than the number of
 queries under the traditional iteration (as described in the DNS standard).</t>
 <t>Qname minimisation may also improve look-up performance for TLD operators. 
 For a typical TLD, delegation-only, and with delegations just under the TLD, a 2-label QNAME query is optimal for finding the
