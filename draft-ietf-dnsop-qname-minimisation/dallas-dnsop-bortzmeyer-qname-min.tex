@@ -1,0 +1,54 @@
+\documentclass[ignorenonframetext]{beamer}
+\usetheme{Madrid}
+\usepackage[latin1]{inputenc}
+\usepackage{bortzmeyer-utils}
+
+\title{QNAME minimisation, the next (last?) steps}
+\author{Stéphane Bortzmeyer - AFNIC}
+\date{IETF 92 - Dallas}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+ Three small questions
+\end{frame}
+
+\begin{frame}
+\frametitle{Negative consequences}
+\begin{itemize}
+\item Some people
+  \url{http://blogs.verisigninc.com/blog/entry/minimum_disclosure_what_information_does}
+  says that qname minimisation minimises the amount of data sent (yes,
+  that's the goal). 
+\item Privacy, like every security feature, is always a compromise. 
+\item \emph{The negative consequences are today presented at the
+beginning of section 3 of the draft -02. Is this mention sufficient or should we add something?}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Hiding the qtype? Issue \#9, from Shumon Huque}
+\begin{itemize}
+\item Current text in -02 hides the qtype behing a generic QTYPE=NS
+  (or A as a fallback for some broken boxes).
+\item Auth. name servers can no longer see (DSC) and publish data about qtypes
+  (AAAA/A, prevalence of SRV\ldots) 
+\item Should we preserve the original qtype?
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Keep optimisations?}
+\begin{itemize}
+\item Draft -02 mentions two algorithms, an aggressive one (never send
+  full qnames) and a lazy one (underspecified, leaks more data). 
+\item Should we keep both? Or just the aggressive one?
+\item Same thing for other possible
+optimisations like treating the root and the TLDs in a special way?
+\item Is it even necessary since a resolver can optimise at will
+  (unilateral decision)?
+\end{itemize}
+\end{frame}
+
+\end{document}

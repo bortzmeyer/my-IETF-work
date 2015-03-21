@@ -25,7 +25,7 @@
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.wkumari-dnsop-hammer.xml">
 ]>
 
-<rfc docName="draft-ietf-dnsop-qname-minimisation-02BETA"
+<rfc docName="draft-ietf-dnsop-qname-minimisation-03BETA"
      category="exp" ipr="trust200902">
 <?rfc toc="yes"?>
 <?rfc strict="yes"?>
@@ -35,14 +35,14 @@
 <organization>AFNIC</organization>
 <address><postal><street>1, rue Stephenson</street><code>78180</code><city>Montigny-le-Bretonneux</city><country>France</country></postal> <phone>+33 1 39 30 83 46</phone><email>bortzmeyer+ietf@nic.fr</email><uri>http://www.afnic.fr/</uri></address>
 </author>
-<date month="February" year="2015"/>
+<date month="TODO" year="2015"/>
 <workgroup>Domain Name System Operations (dnsop) Working Group</workgroup>
 <abstract>
 <t>This document describes one of the techniques that could be used to
 improve DNS privacy (see <xref
 target="I-D.ietf-dprive-problem-statement"/>), a technique called "qname
 minimisation".</t>
-<t>Discussions of the document should take place on the
+<t>REMOVE BEFORE PUBLICATION Discussions of the document should take place on the
 DNSOP working group mailing list <xref target="dnsop"/>.</t>
 </abstract>
 </front>
@@ -115,9 +115,10 @@ leaks more data but probably requires fewer changes in the existing resolver cod
 <t>The administrators of the forwarders, and of the authoritative name
 servers, will get less data, which will reduce the utility of the
 statistics they can produce (such as the percentage of the various
-qtypes). On the other hand, it may decrease their legal
-responsibility. (TODO: do we keep any mention of legal issues? We're
-not lawyers.)</t>
+qtypes).</t>
+<t>DNS administrators are reminded that the data on DNS requests
+that they store may have legal consequences, depending on your
+jurisdiction (check with your local lawyer).</t>
 <t>Some broken name servers do not react properly to qtype=NS
 requests. For instance, some authoritative name servers embedded in load balancers reply properly to A queries but send REFUSED to NS queries.
 REMOVE THIS SENTENCE BEFORE PUBLICATION: As an example of today, look at www.ratp.fr (not ratp.fr). This behaviour is a gross protocol violation, and there
@@ -148,7 +149,7 @@ hence a qtype which will be always accepted, while a qtype NS may
 ruffle the feathers of some middleboxes). Instead of querying name
 servers with a query "NS example.com", we could use "A
 _.example.com" and see if we get a referral.</t>
-<t>Other strange and illegal practices may pose a problem: there is a
+<t>Other strange and non-conformant practices may pose a problem: there is a
 common DNS anti-pattern 
 used by low-end web hosters that also
 do DNS hosting that exploits the fact that the DNS protocol (pre-DNSSEC)
@@ -196,7 +197,7 @@ question (for .CORP itself) to which they could answer NXDOMAIN, thus
 opening up a negative caching opportunity in which the full resolver
 could know a priori that neither B.CORP or C.CORP could exist. Thus in
 this common case the total number of upstream queries under qname
-minimisation would be counter-intuitively inferior to the number of
+minimisation would be counter-intuitively less than the number of
 queries under the traditional iteration (as described in the DNS standard).</t>
 <t>Qname minimisation may also improve look-up performance for TLD operators. 
 For a typical TLD, delegation-only, and with delegations just under the TLD, a 2-label QNAME query is optimal for finding the
@@ -210,7 +211,9 @@ authoritative name server. But minimising the amount of data sent also, in part,
 case of a wire sniffer as well the case of privacy invasion by the
 servers. (Encryption is of course a better defense against wire
 sniffers but, unlike qname minimisation, it changes the protocol and
-cannot be deployed unilaterally.)</t>
+cannot be deployed unilaterally. Also, the effect of qname
+minimisation on wire sniffers depend on whether the sniffer is, on the
+DNS path.)</t>
 <t>Qname minimisation offers zero protection against the recursive
 resolver, which still sees the full request coming from the stub
 resolver.</t>
@@ -219,7 +222,7 @@ qname minimisation approaches (aggressive or lazy) against the other.</t>
 <t><cref>TODO Consequences of qname minimisation for phantom domains
 (domains deleted on the parent but still served by original name
 servers)?</cref></t>
-<t>No security consequence (besides privacy improvment) is known at this time.</t>
+<t>No security consequence (besides privacy improvement) is known at this time.</t>
 </section>
 
 <section title="Implementation status - REMOVE BEFORE PUBLICATION">
@@ -244,7 +247,11 @@ protocols more mature.  It is up to the individual working groups
 to use this information as they see fit".</t>
 
 <t>As of today, no production resolver implements qname
-minimisation. The algorithm to find the zone cuts described in <xref target="zonecutalgo"/>
+minimisation. For Unbound, see <eref
+target="https://www.nlnetlabs.nl/bugs-script/show_bug.cgi?id=648">ticket
+648</eref> and for PowerDNS <eref target="https://github.com/PowerDNS/pdns/issues/2311"/>.</t>
+
+<t>The algorithm to find the zone cuts described in <xref target="zonecutalgo"/>
 is implemented with qname minimisation in <eref
 target="https://github.com/bortzmeyer/my-IETF-work/blob/master/draft-ietf-dnsop-qname-minimisation/zonecut.go">the sample code zonecut.go</eref>. It is also implemented,
 for a much longer time, in an option of dig, "dig +trace", but without qname minimisation.</t>
@@ -305,10 +312,20 @@ of DNS zones.</t>
 </front>
 </reference>
 
+<reference anchor="kaliski-minimum" target="http://blogs.verisigninc.com/blog/entry/minimum_disclosure_what_information_does">
+<front>
+<title>Minimum Disclosure: What Information Does a Name Server Need to Do Its Job?</title>
+<author fullname="Burt Kaliski" initials="B." surname="Kaliski"/>
+<date month="March" year="2015"/>
+</front>
+</reference>
+
 </references>
 
 <section anchor="zonecutalgo" title="An algorithm to find the zone cut">
 
+  <!-- source
+       http://www.ietf.org/mail-archive/web/dns-privacy/current/msg00035.html -->
 <t>Although a validating resolver already has the logic to find the
 zone cut, other resolvers may be interested by this algorithm to
 follow in order to locate this cut:

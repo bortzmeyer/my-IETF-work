@@ -16,6 +16,8 @@
 <!ENTITY rfc7258 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7258.xml">
 <!ENTITY I-D.ietf-dnsop-edns-client-subnet SYSTEM
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-edns-client-subnet">
+<!ENTITY I-D.iab-privsec-confidentiality-threat SYSTEM
+"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.iab-privsec-confidentiality-threat">
 <!ENTITY I-D.hzhwm-start-tls-for-dns SYSTEM
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.hzhwm-start-tls-for-dns">
 <!ENTITY I-D.timms-encrypt-naptr SYSTEM
@@ -30,7 +32,7 @@
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-qname-minimisation">
 ]>
 
-<rfc docName="draft-ietf-dprive-problem-statement-03BETA" category="info" ipr="trust200902">
+<rfc docName="draft-ietf-dprive-problem-statement-04BETA" category="info" ipr="trust200902">
 <?rfc toc="yes"?>
 <?rfc strict="yes"?>
 <front>
@@ -67,7 +69,9 @@ to a server, called the recursive resolver
 (also called caching resolver or full resolver or recursive name server).
 Let's use the query "What are the AAAA records for
 www.example.com?" as an example. AAAA is the qtype (Query Type), and
-www.example.com is the qname (Query Name). The recursive resolver will first
+www.example.com is the qname (Query Name). (The description which
+follows assume a cold cache, for instance because the server just
+started.) The recursive resolver will first
 query the root nameservers. In most cases, the root nameservers will
 send a referral. In this example, the referral will be to the .com
 nameservers. The resolver repeats the query to
@@ -83,7 +87,8 @@ AAAA records for www.example.com?", not "What are the name servers
 of .com?". By repeating the full question, instead of just the relevant part
 of the question to the next in line, the DNS provides more information
 than necessary to the nameserver.</t>
-<t>Because DNS relies on caching heavily, not all questions are sent to
+<t>Because DNS relies on caching heavily, the algorithm described just above
+is actually a bit more complicated, and not all questions are sent to
 the authoritative name servers. If a few seconds later the stub resolver
 asks to the recursive resolver, "What are the SRV records of
 _xmpp-server._tcp.example.com?", the recursive resolver will remember that it
@@ -185,8 +190,8 @@ therefore very revealing about communication relationships). Some qnames are mor
 others. For instance, querying the A record of google-analytics.com
 reveals very little (everybody visits Web sites which use Google
 Analytics) but querying the A record of www.verybad.example where
-verybad.example is the domain of an illegal or very offensive
-organization may create more problems for the user. Also, sometimes,
+verybad.example is the domain of an organization that some people find offensive or objectionable,
+may create more problems for the user. Also, sometimes,
 the qname embeds the software one uses, which could be a privacy
 issue. For instance,
 _ldap._tcp.Default-First-Site-Name._sites.gc._msdcs.example.org. There
@@ -388,6 +393,28 @@ will divert the traffic intended for a legitimate DNS server (for instance <xref
 
 </section>
 
+<section title="Re-identification and other inferences">
+  <t>An observer has access not only to the data he/she directly
+  collects but also to the results of various inferences about these
+  data.</t>
+  <t>For instance, an user can be re-identified via DNS queries. If the adversary knows a user's identity and can watch
+their DNS queries for a period, then that same adversary may be
+able to re-identify the user solely based on their pattern of
+DNS queries later on regardless of the location from which
+the user makes those queries. For example, one study <xref target="herrmann-reidentification"/> found
+that such re-identification is possible so that "73.1% of all day-to-day links were correctly established, i.e.
+user u was either re-identified unambiguously (1) or the
+classifier correctly reported that u was not present on day
+t+1 any more (2)". While that study related to web browsing behaviour, equally
+characteristic patterns may be produced even in machine-to-machine
+communications or without a user taking specific actions, e.g. at
+reboot time if a characteristic set of services are accessed by
+the device.</t>
+<t>The IAB privacy and security programme also have a work in progress
+<xref target="I-D.iab-privsec-confidentiality-threat"/> that considers such
+inference based attacks in a more general framework.</t>
+</section>
+	 
 </section>
 
 <section title="Actual &quot;attacks&quot;">
@@ -422,8 +449,8 @@ protections in the DNS is actively exploited.</t>
 
 <section title="Legalities">
 <t>To our knowledge, there are no specific privacy laws for DNS
-data. Interpreting general privacy laws like
-[data-protection-directive] (European Union) in the context of DNS traffic data is not
+data, in any country. Interpreting general privacy laws like
+<xref target="data-protection-directive"/> (European Union) in the context of DNS traffic data is not
 an easy task and it seems there is no court precedent here.</t>
 </section>
 
@@ -442,9 +469,10 @@ many to all be mentioned), see for instance <xref target="I-D.ietf-dnsop-qname-m
 <t>Thanks to Nathalie Boulvard and to the CENTR members for the
 original work which leaded to this document. Thanks to Ondrej Sury for the
 interesting discussions. Thanks to Mohsen Souissi and John Heidemann for
-proofreading, to Paul Hoffman, Marcos Sanz, Tim Wicinski, Allison Mankin and Warren Kumari for
+proofreading, to Paul Hoffman, Matthijs Mekking, Marcos Sanz, Tim Wicinski, Allison Mankin and Warren Kumari for
 proofreading, technical remarks, and many readability
-improvements. Thanks to Dan York, Suzanne Woolf, Tony Finch, Peter Koch and Frank Denis for good written contributions.</t>
+improvements. Thanks to Dan York, Suzanne Woolf, Tony Finch, Stephen
+Farrell, Peter Koch and Frank Denis for good written contributions.</t>
 </section>
 
 <section title="IANA considerations">
@@ -469,6 +497,7 @@ improvements. Thanks to Dan York, Suzanne Woolf, Tony Finch, Peter Koch and Fran
 &rfc5936;
 &rfc6269;
 &I-D.ietf-dnsop-edns-client-subnet;
+&I-D.iab-privsec-confidentiality-threat;
 &I-D.hallambaker-dnse;
 &I-D.wouters-dane-openpgp;
 &I-D.hzhwm-start-tls-for-dns;
@@ -518,7 +547,8 @@ Resolution Authority</title>
 </front>
 </reference>
 
-<reference anchor="morecowbell" target="https://gnunet.org/morecowbell">
+<reference anchor="morecowbell"
+	   target="https://gnunet.org/morecowbell">
 <front>
 <title>NSA's MORECOWBELL: Knell for DNS</title>
 <author fullname="Christian Grothoff" surname="Grothoff" initials="C."/>
@@ -528,7 +558,8 @@ Resolution Authority</title>
 <date day="24" month="January" year="2015"/>
 <abstract>
 <t>Detailed technical analysis of the MORECOWBELL program, followed by
-opinions about the future of the DNS and the needs for alternate systems.</t>
+opinions about the future of the DNS and the needs for alternate
+systems. Stable GNUnet identifier <eref target="gnunet://fs/chk/RSVKSQXNKSHYAD518W1CQ79S2FGRYAR7CM7MMEBFTXJ677DVJQN8HR3TR0K544Y050THXM6KZ0ZV6BP3NM31P90ZDGXYTX21MNV50W8.1XBPZ4MVFQCDY914S1HB7S8VSYDPCXB0XEY50D6ZK0V30C7N39QFKX2AXW8EW9M8HCCPR6EEEN89D9G6Y8NS7DJMV1TPQXW22E9QWHR.968272"/></t>
 </abstract>
 </front>
 </reference>
@@ -719,6 +750,26 @@ harvest of Alexa Top N's authoritative name servers.
 </t>
 </abstract>
 </front>
+</reference>
+
+<reference anchor="herrmann-reidentification"
+	   target="http://epub.uni-regensburg.de/21103/1/Paper_PUL_nordsec_published.pdf">
+  <front>
+    <title>Analyzing characteristic host access patterns for re-identification of
+    web user sessions</title>
+    <author fullname="Dominik Herrmann" surname="Herrmann" initials="D."/>
+    <author fullname="Christoph Gerber" surname="Gerber" initials="C."/>
+    <author fullname="Christian Banse" surname="Banse" initials="C."/>
+    <author fullname="Hannes Federrath" surname="Federrath" initials="H."/>
+    <date year="2012"/>
+    <abstract>
+      <t>Abstract. An attacker, who is able to observe a web user over a long
+period of time, learns a lot about his interests. It may be difficult to
+track users with regularly changing IP addresses, though. We show how
+patterns mined from web traffic can be used to re-identify a majority
+of users, i. e. link multiple sessions of them. </t>
+    </abstract>
+  </front>
 </reference>
 
 </references>
