@@ -47,8 +47,6 @@ of the
 DNS by Internet users. It is intended to be an analysis of the
 present situation and  does not
 prescribe solutions.</t>
-<t>(REMOVE BEFORE PUBLICATION: Discussions of the document should take place on the
-DPRIVE working group mailing list <xref target="dprive"/>.)</t>
 </abstract>
 </front>
 
@@ -63,10 +61,7 @@ Internet starts with a DNS query (and often several). Its use has many privacy
 implications and this is an attempt at a comprehensive and accurate
 list.</t>
 <t>Let us begin with a simplified reminder of how the DNS
-works. (REMOVE BEFORE PUBLICATION: We
-hope that the document <xref target="I-D.hoffman-dns-terminology"/> will be
-published as a RFC so most of this section could be replaced by a
-reference to it.)
+works. (See also <xref target="I-D.hoffman-dns-terminology"/>.)
 A client, the stub resolver, issues a DNS query
 to a server, called the recursive resolver
 (also called caching resolver or full resolver or recursive name server).
@@ -478,8 +473,7 @@ improvements. Thanks to Dan York, Suzanne Woolf, Tony Finch, Peter Koch and Fran
 &I-D.wouters-dane-openpgp;
 &I-D.hzhwm-start-tls-for-dns;
 &I-D.ietf-dnsop-qname-minimisation;
-&I-D.hoffman-dns-terminology; <!-- TODO: To be moved to Normative if
-published and used for reference -->
+&I-D.hoffman-dns-terminology; 
 
 <reference anchor="dprive" target="http://www.ietf.org/mail-archive/web/dns-privacy/">
 <front>
