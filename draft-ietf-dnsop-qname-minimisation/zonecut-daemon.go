@@ -264,9 +264,12 @@ func main() {
 						name := ""
 						switch ans.(type) {
 						case *dns.NS:
-							name = ans.(*dns.NS).Ns
-							referralFound = true
-							break
+							record := ans.(*dns.NS)
+							if record.Header().Name == child { // Some middleboxes add NS records of the parent...
+								name = record.Ns
+								referralFound = true
+								break
+							}
 						}
 						if referralFound {
 							nameservers[child] = name
