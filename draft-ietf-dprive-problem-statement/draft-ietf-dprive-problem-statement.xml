@@ -96,7 +96,8 @@ knows the name servers of example.com and will just query them,
 bypassing the root and .com. Because there is typically no caching in
 the stub resolver, the recursive resolver, unlike the authoritative
 servers, sees all the DNS traffic. (Applications, like Web browsers, may have
-some form of caching, which do not follow DNS rules. So, the recursive
+some form of caching which do not follow DNS rules, for instance
+because it may ignore the TTL. So, the recursive
 resolver does not see all the name resolution activity.)
 </t>
 <t>It should be noted that DNS recursive resolvers sometimes forward requests to other recursive resolvers, typically
@@ -104,7 +105,7 @@ bigger machines, with a larger and more shared cache (and the query hierarchy ca
 with more than two levels of recursive resolvers). From the point of view of privacy, these forwarders are like
 resolvers, except that they do not see all of the
 requests being made (due to caching in the first resolver).</t>
-<t>All this DNS traffic is currently sent in clear (unencryted), except a
+<t>All this DNS traffic is currently sent in clear (unencrypted), except a
 few cases when the IP traffic is protected, for instance in an IPsec VPN.</t>
 <t>Today, almost all DNS queries are sent over UDP. This has
 practical consequences when considering encryption of the
@@ -240,7 +241,7 @@ This information can sometimes be examined by sending DNS queries
 with RD=0 to inspect cache content, particularly looking at the DNS
 TTLs.  Since this also is a reconnaissance technique for subsequent
 cache poisoning attacks, some counter measures have already been
-developed and deployed.<!-- TODO reference? --></t>
+developed and deployed.<!-- TODO reference? Issue #10 --></t>
 </section>
 
 <section anchor="risks-on-wire" title="On the wire">
@@ -386,7 +387,7 @@ can direct you to a rogue recursive resolver. Most of the
 time, it seems to be done to divert traffic, by providing lies for
 some domain names. But it could be used just to
 capture the traffic and gather information about you. Same thing for
-malware like DNSchanger<xref target="dnschanger"/> which changes the
+malware like DNSchanger <xref target="dnschanger"/> which changes the
 recursive resolver in the machine's configuration, or with transparent DNS proxies in the network that
 will divert the traffic intended for a legitimate DNS server (for instance <xref target="turkey-googledns"/>).</t>
 </section>
@@ -457,7 +458,7 @@ an easy task and it seems there is no court precedent here.</t>
 <section title="Security considerations">
 <t>This document is entirely about security, more precisely
 privacy. It just lays out the problem, it does not try to set
-requirments (with the choices and compromises they imply), much less
+requirements (with the choices and compromises they imply), much less
 to define solutions. A possible document on requirments for DNS privacy is
 <xref target="I-D.hallambaker-dnse"/>.  Possible solutions to the
 issues described here are discussed in other documents (currently too
@@ -469,7 +470,8 @@ many to all be mentioned), see for instance <xref target="I-D.ietf-dnsop-qname-m
 <t>Thanks to Nathalie Boulvard and to the CENTR members for the
 original work which leaded to this document. Thanks to Ondrej Sury for the
 interesting discussions. Thanks to Mohsen Souissi and John Heidemann for
-proofreading, to Paul Hoffman, Matthijs Mekking, Marcos Sanz, Tim Wicinski, Allison Mankin and Warren Kumari for
+proofreading, to Paul Hoffman, Matthijs Mekking, Marcos Sanz, Tim
+Wicinski, Francis Dupont, Allison Mankin and Warren Kumari for
 proofreading, technical remarks, and many readability
 improvements. Thanks to Dan York, Suzanne Woolf, Tony Finch, Stephen
 Farrell, Peter Koch and Frank Denis for good written contributions.</t>
