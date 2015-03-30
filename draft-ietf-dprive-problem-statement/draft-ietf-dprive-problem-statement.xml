@@ -32,7 +32,7 @@
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-qname-minimisation">
 ]>
 
-<rfc docName="draft-ietf-dprive-problem-statement-04" category="info" ipr="trust200902">
+<rfc docName="draft-ietf-dprive-problem-statement-05BETA" category="info" ipr="trust200902">
 <?rfc toc="yes"?>
 <?rfc strict="yes"?>
 <front>
@@ -41,7 +41,7 @@
 <organization>AFNIC</organization>
 <address><postal><street>1, rue Stephenson</street><code>78180</code><city>Montigny-le-Bretonneux</city><country>France</country></postal> <phone>+33 1 39 30 83 46</phone><email>bortzmeyer+ietf@nic.fr</email><uri>http://www.afnic.fr/</uri></address>
 </author>
-<date month="March" year="2015"/>
+<date month="TOTO" year="2015"/>
 <workgroup>DNS PRIVate Exchange (dprive) Working Group</workgroup>
 <abstract>
 <t>This document describes the privacy issues associated with the use
@@ -239,9 +239,11 @@ comprise metadata about the host, user, or application that originated them.</t>
 the clients using it (the privacy risks depend on the number of clients).
 This information can sometimes be examined by sending DNS queries
 with RD=0 to inspect cache content, particularly looking at the DNS
-TTLs.  Since this also is a reconnaissance technique for subsequent
+TTLs <xref target="grangeia.snooping"/>. Since this also is a reconnaissance technique for subsequent
 cache poisoning attacks, some counter measures have already been
-developed and deployed.<!-- TODO reference? Issue #10 --></t>
+developed and deployed.<!-- See
+https://github.com/bortzmeyer/my-IETF-work/issues/10#issuecomment-85317547
+--></t>
 </section>
 
 <section anchor="risks-on-wire" title="On the wire">
@@ -614,6 +616,18 @@ webserver with JSON-api and a nice looking AJAX GUI.</t></abstract>
 </front>
 </reference>
 
+<!-- https://github.com/bortzmeyer/my-IETF-work/issues/10 -->
+<reference anchor="grangeia.snooping"
+	   target="http://www.msit2005.mut.ac.th/msit_media/1_2551/nete4630/materials/20080718130017Hc.pdf">
+  <front>
+    <title>DNS Cache Snooping or Snooping the Cache for Fun and
+    Profit</title>
+    <author fullname="Luis Grangeia" surname="Grangeia"
+	    initials="L."/>
+    <date year="2004"/>
+  </front>
+</reference>
+  
 <reference anchor="ditl" target="http://www.caida.org/projects/ditl/">
 <front>
 <title>A Day in the Life of the Internet (DITL)</title>
