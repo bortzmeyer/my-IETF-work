@@ -58,7 +58,7 @@ prescribe solutions.</t>
 <t>The Domain Name System is specified in <xref
 target="RFC1034"/> and <xref target="RFC1035"/>. It is one of the
 most important infrastructure components of the Internet and
-often ignored or misunderstood. Almost every activity on the
+often ignored or misunderstood by Internet users (and even by many professionals). Almost every activity on the
 Internet starts with a DNS query (and often several). Its use has many privacy
 implications and this is an attempt at a comprehensive and accurate
 list.</t>
@@ -68,8 +68,8 @@ A client, the stub resolver, issues a DNS query
 to a server, called the recursive resolver
 (also called caching resolver or full resolver or recursive name server).
 Let's use the query "What are the AAAA records for
-www.example.com?" as an example. AAAA is the qtype (Query Type), and
-www.example.com is the qname (Query Name). (The description which
+www.example.com?" as an example. AAAA is the QTYPE (Query Type), and
+www.example.com is the QNAME (Query Name). (The description which
 follows assume a cold cache, for instance because the server just
 started.) The recursive resolver will first
 query the root nameservers. In most cases, the root nameservers will
@@ -112,9 +112,9 @@ practical consequences when considering encryption of the
 traffic as a possible privacy technique.
 Some encryption solutions are only designed for TCP, not UDP.</t>
 <t>Another important point to keep in mind when analyzing the privacy
-issues of DNS is the mix of many sort of DNS requests received by a
-server. Let's assume an eavesdropper wants to know which Web page is
-viewed by an user. For a typical Web page,
+issues of DNS is the fact that DNS requests received by a
+server were triggered by different reasons. Let's assume an eavesdropper wants to know which Web page is
+viewed by a user. For a typical Web page,
 there are three sorts of DNS requests being issued:
 <list>
 <t>Primary request: this is the domain name in the URL that the user typed,
@@ -135,9 +135,11 @@ server will do tertiary requests to verify the IP addresses of
 those records.</t>
 </list>
 It can be noted also that, in the case of a typical Web browser, more
-DNS requests are sent, for instance to prefetch resources that the
+DNS requests than stricly necessary are sent, for instance to prefetch resources that the
 user may query later, or when autocompleting the URL in the address
-bar (which obviously is a big privacy concern).
+bar. It is a big privacy concern since it may leak information even
+about non-explicit actions. For instance, just reading a local HTML
+page, even without selecting the hyperlinks, may trigger DNS requests.
 </t>
 <t>For privacy-related terms, we will use here the terminology of <xref target="RFC6973"/>.</t>
 </section>
@@ -162,10 +164,10 @@ nonwithstanding, the DNS operates under the assumption that public
 facing authoritative name servers will respond to "usual" DNS queries
 for any zone they are authoritative for without further
 authentication or authorization of the client (resolver).  Due to the lack of search
-capabilities, only a given qname will reveal the resource records
+capabilities, only a given QNAME will reveal the resource records
 associated with that name (or that name's non-existence).  In other
 words: one needs to know what to ask for, in order to receive a response.  The
-zone transfer qtype <xref target="RFC5936"/> is often blocked or restricted to
+zone transfer QTYPE <xref target="RFC5936"/> is often blocked or restricted to
 authenticated/authorized access to enforce this difference (and maybe
 for other, more dubious reasons).</t>
 <t>Another differentiation to be considered is between the DNS data
@@ -179,27 +181,29 @@ from outside the DNS world is: the Web site of Alcoholics Anonymous is public; t
 
 <section title="Data in the DNS request">
 <t>The DNS request includes many fields but two of them seem particularly
-relevant for the privacy issues: the qname and the source IP
+relevant for the privacy issues: the QNAME and the source IP
 address. "source IP address" is used in a loose sense of "source IP address
-+ maybe source port", because the port is also in the request and can be used to sort out several users
++ maybe source port", because the port is also in the request and can
+be used to differentiate between several users
 sharing an IP address (behind a CGN for instance <xref target="RFC6269"/>).</t>
-<t>The qname is the full name sent by the user. It gives
+<t>The QNAME is the full name sent by the user. It gives
 information about what the user does ("What are the MX records of
 example.net?" means he probably wants to send email to someone at
 example.net, which may be a domain used by only a few persons and
-therefore very revealing about communication relationships). Some qnames are more sensitive than
-others. For instance, querying the A record of google-analytics.com
-reveals very little (everybody visits Web sites which use Google
-Analytics) but querying the A record of www.verybad.example where
+therefore very revealing about communication relationships). Some QNAMEs are more sensitive than
+others. For instance, querying the A record of a well-known Web
+statistics domain
+reveals very little (everybody visits Web sites which use this
+analytics service) but querying the A record of www.verybad.example where
 verybad.example is the domain of an organization that some people find offensive or objectionable,
 may create more problems for the user. Also, sometimes,
-the qname embeds the software one uses, which could be a privacy
+the QNAME embeds the software one uses, which could be a privacy
 issue. For instance,
 _ldap._tcp.Default-First-Site-Name._sites.gc._msdcs.example.org. There
 are also some
 BitTorrent clients that query a SRV record for _bittorrent-tracker._tcp.domain.example.</t>
 
-<t>Another important thing about the privacy of the qname is the
+<t>Another important thing about the privacy of the QNAME is the
 future usages. Today, the lack of privacy is an obstacle to putting
 potentially sensitive or personally identifiable data in the DNS. At the moment your DNS traffic might
 reveal that you are doing email but not with whom. If your MUA starts
@@ -253,7 +257,7 @@ target="RFC4033"/> explicitly excludes confidentiality from its
 goals.) So, if an initiator starts a HTTPS communication with a
 recipient, while the HTTP traffic will be encrypted, the DNS exchange
 prior to it will not be. When other protocols will become more and
-more privacy-aware and secured against surveillance, the DNS risks to
+more privacy-aware and secured against surveillance, the DNS may 
 become "the weakest link" in privacy.</t>
 <t>An important specificity of the DNS traffic is that it may take a
 different path than the communication between the initiator and the
@@ -265,7 +269,8 @@ between the stub resolvers and the recursive resolvers, because traffic is not
 limited by DNS caching.</t>
 <t>The attack surface between the stub resolver and the rest of the world
 can vary widely depending upon how the end user's computer is
-configured. By order of increasing attack surface:</t>
+configured. By order of increasing attack surface:
+<list>
 <t>The recursive resolver can be on the end user's computer. In (currently) a small number of cases,
 individuals may choose to operate their own DNS resolver on their local
 machine. In this case the attack surface for the connection between
@@ -294,6 +299,7 @@ these DNS recursive resolvers themselves - or their IAP may have chosen to use t
 DNS resolvers rather than operating their own resolvers.  In this case the
 attack surface is the entire public Internet between the end user's
 connection and the public DNS service.</t>
+</list></t>
 </section>
 
 <section title="In the servers">
@@ -363,7 +369,7 @@ big recursive resolver shared by many users.</t>
 target="I-D.ietf-dnsop-edns-client-subnet"/> is used because, in this
 case, the authoritative name server sees the original IP address (or prefix, depending on the setup).</t>
 <t>As of today, all the instances of one root name server, L-root,
-receive together around 20,000 queries per second<!-- http://dns.icann.org/cgi-bin/dsc-grapher.pl?plot=bynode&server=L-root Same thing for K http://k.root-servers.org/ or [a|j].root-servers.org/metrics.html -->. While most of it is junk (errors on
+receive together around 50,000 queries per second<!-- http://hedgehog.dns.icann.org/plotcache/L-root/dns_ip_version/2015-04-09T00:00-2015-04-09T23:59-all.png?nocache=2015-04-10T03:10 http://dns.icann.org/cgi-bin/dsc-grapher.pl?plot=bynode&server=L-root Same thing for K http://k.root-servers.org/ or [a|j].root-servers.org/metrics.html -->. While most of it is "junk" (errors on
 the TLD name), it gives an idea of the amount of big data which pours
 into name servers.</t>
 <t>Many domains, including TLDs, are partially hosted by third-party
@@ -400,7 +406,7 @@ will divert the traffic intended for a legitimate DNS server (for instance <xref
   <t>An observer has access not only to the data he/she directly
   collects but also to the results of various inferences about these
   data.</t>
-  <t>For instance, an user can be re-identified via DNS queries. If the adversary knows a user's identity and can watch
+  <t>For instance, a user can be re-identified via DNS queries. If the adversary knows a user's identity and can watch
 their DNS queries for a period, then that same adversary may be
 able to re-identify the user solely based on their pattern of
 DNS queries later on regardless of the location from which
@@ -442,11 +448,11 @@ an entire zone. They are used for many reasons, some good, some
 bad. Well-known passive DNS systems keep only the DNS responses, and
 not the source IP address of the client, precisely for privacy
 reasons. Other passive DNS systems may not be so careful. And there is
-still the potential problems with revealing qnames.</t>
+still the potential problems with revealing QNAMEs.</t>
 <t>The revelations (from the Edward Snowden documents, leaked from the
 NSA) of the MORECOWBELL surveillance program <xref target="morecowbell"/>, which uses the DNS, both
-passively and actively, to gather surreptitiously information about
-the users, is another good example that the lack of privacy
+passively and actively, to surreptitiously gather information about
+the users, is another good example showing that the lack of privacy
 protections in the DNS is actively exploited.</t>
 </section>
 
