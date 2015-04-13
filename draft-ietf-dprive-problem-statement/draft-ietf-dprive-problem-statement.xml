@@ -376,8 +376,9 @@ into name servers.</t>
 servers, sometimes in a different country. The contracts between the
 domain manager and these servers may or may not take privacy into
 account. Whatever the contract, the third-party hoster may be honest or not but, in any case,
-it will have to follow its local laws. It may be surprising for an end-user that requests to a
-given ccTLD may go to servers managed by organisations outside of the country.</t>
+it will have to follow its local laws. So, requests to a given ccTLD may go to servers managed by organizations outside
+of the ccTLD's country. End-users may not anticipate that, when doing
+a security analysis.</t>
 <t>Also, it seems <xref target="aeris-dns"/> that there is a strong
 concentration of authoritative name servers among "popular" domains
 (such as the Alexa Top N list). For instance, among the Alexa Top
