@@ -26,8 +26,8 @@
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.hallambaker-dnse">
 <!ENTITY I-D.wouters-dane-openpgp SYSTEM
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.wouters-dane-openpgp">
-<!ENTITY I-D.hoffman-dns-terminology SYSTEM
-"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.hoffman-dns-terminology">
+<!ENTITY I-D.ietf-dnsop-dns-terminology SYSTEM
+"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-dns-terminology">
 <!ENTITY I-D.ietf-dnsop-qname-minimisation SYSTEM
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-qname-minimisation">
 ]>
@@ -63,7 +63,7 @@ Internet starts with a DNS query (and often several). Its use has many privacy
 implications and this is an attempt at a comprehensive and accurate
 list.</t>
 <t>Let us begin with a simplified reminder of how the DNS
-works. (See also <xref target="I-D.hoffman-dns-terminology"/>.)
+works. (See also <xref target="I-D.ietf-dnsop-dns-terminology"/>.)
 A client, the stub resolver, issues a DNS query
 to a server, called the recursive resolver
 (also called caching resolver or full resolver or recursive name server).
@@ -513,7 +513,7 @@ Farrell, Peter Koch and Frank Denis for good written contributions.</t>
 &I-D.wouters-dane-openpgp;
 &I-D.hzhwm-start-tls-for-dns;
 &I-D.ietf-dnsop-qname-minimisation;
-&I-D.hoffman-dns-terminology; 
+&I-D.ietf-dnsop-dns-terminology; 
 
 <reference anchor="dprive" target="http://www.ietf.org/mail-archive/web/dns-privacy/">
 <front>
