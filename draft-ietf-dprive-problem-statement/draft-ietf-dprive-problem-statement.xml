@@ -56,7 +56,7 @@ prescribe solutions.</t>
 <section anchor="introduction" title="Introduction">
 <t>This document is an analysis of the DNS privacy issues, in the spirit of section 8 of <xref target="RFC6973"/>.</t>
 <t>The Domain Name System is specified in <xref
-target="RFC1034"/> and <xref target="RFC1035"/>. It is one of the
+target="RFC1034"/> and <xref target="RFC1035"/> and many later RFCs, which have never been consolidated. It is one of the
 most important infrastructure components of the Internet and
 often ignored or misunderstood by Internet users (and even by many professionals). Almost every activity on the
 Internet starts with a DNS query (and often several). Its use has many privacy
@@ -105,9 +105,11 @@ bigger machines, with a larger and more shared cache (and the query hierarchy ca
 with more than two levels of recursive resolvers). From the point of view of privacy, these forwarders are like
 resolvers, except that they do not see all of the
 requests being made (due to caching in the first resolver).</t>
-<t>All this DNS traffic is currently sent in clear (unencrypted), except a
-few cases when the IP traffic is protected, for instance in an IPsec VPN.</t>
-<t>Today, almost all DNS queries are sent over UDP. This has
+<t>Almost all this DNS traffic is currently sent in clear
+(unencrypted). There are a few cases where there is some channel
+encryption, for instance in an IPsec VPN, at least between the stub
+resolver and the resolver.</t>
+<t>Today, almost all DNS queries are sent over UDP <xref target="thomas-ditl-tcp"/>. This has
 practical consequences when considering encryption of the
 traffic as a possible privacy technique.
 Some encryption solutions are only designed for TCP, not UDP.</t>
@@ -741,6 +743,16 @@ international conference on, IEEE, Piscataway, NJ, USA, 25 August 2010
 <t>DOI: 10.1109/MUE.2007.84 Conference: 2007 International Conference on Multimedia and Ubiquitous Engineering (MUE 2007), 26-28 April 2007, Seoul, Korea</t>
 <t>Not available online.</t>
 </abstract>
+</front>
+</reference>
+
+<reference anchor="thomas-ditl-tcp"
+	   target="https://indico.dns-oarc.net/event/20/session/2/contribution/15/material/slides/1.pdf">
+<front>
+<title>An Analysis of TCP Traffic in Root Server DITL Data"</title>
+<author fullname="Matt Thomas" surname="Thomas" initials="M."/>
+<author fullname="Duane Wessels" surname="Wessels" initials="D."/>
+<date year="2014"/>
 </front>
 </reference>
 
