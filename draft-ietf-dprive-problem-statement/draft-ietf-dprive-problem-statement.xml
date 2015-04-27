@@ -41,7 +41,7 @@
 <organization>AFNIC</organization>
 <address><postal><street>1, rue Stephenson</street><code>78180</code><city>Montigny-le-Bretonneux</city><country>France</country></postal> <phone>+33 1 39 30 83 46</phone><email>bortzmeyer+ietf@nic.fr</email><uri>http://www.afnic.fr/</uri></address>
 </author>
-<date month="TOTO" year="2015"/>
+<date month="TODO" year="2015"/>
 <workgroup>DNS PRIVate Exchange (dprive) Working Group</workgroup>
 <abstract>
 <t>This document describes the privacy issues associated with the use
@@ -224,7 +224,7 @@ which, in a way "hides" the real user. However, hiding does not always
 work. Sometimes <xref
 target="I-D.ietf-dnsop-edns-client-subnet"/> is used (see its privacy analysis in <xref target="denis-edns-client-subnet"/>). Sometimes the end user has a personal recursive resolver on her
 machine. In both cases, the IP address is as sensitive as it is for
-HTTP.</t>
+HTTP <xref target="sidn-entrada"/>.</t>
 <t>A note about IP addresses: there is currently no IETF document
 which describes in detail all the privacy issues around IP
 addressing. <!-- TODO mention RFC 4941 and/or
@@ -463,7 +463,8 @@ protections in the DNS is actively exploited.</t>
 <t>To our knowledge, there are no specific privacy laws for DNS
 data, in any country. Interpreting general privacy laws like
 <xref target="data-protection-directive"/> (European Union) in the context of DNS traffic data is not
-an easy task and it seems there is no court precedent here.</t>
+an easy task and it seems there is no court precedent here. An
+interesting analysis is <xref target="sidn-entrada"/>.</t>
 </section>
 
 <section title="Security considerations">
@@ -805,6 +806,23 @@ patterns mined from web traffic can be used to re-identify a majority
 of users, i. e. link multiple sessions of them. </t>
     </abstract>
   </front>
+</reference>
+
+<reference anchor="sidn-entrada"
+	   target="https://www.sidnlabs.nl/uploads/tx_sidnpublications/SIDN_Labs_Privacyraamwerk_Position_Paper_V1.4_ENG.pdf">
+<front>
+<title>A privacy framework for 'DNS big data' applications</title>
+<author fullname="Cristian Hesselman" surname="Hesselman" initials="C."/>
+<author fullname="Jelte Jansen" surname="Jansen" initials="J."/>
+<author fullname="Maarten Wullink" surname="Wullink" initials="M."/>
+<author fullname="Karin Vink" surname="Vink" initials="K."/>
+<author fullname="Maarten Simon" surname="Simon" initials="M."/>
+<date year="2014"/>
+  <abstract><t>A good analysis of DNS privacy, with quantitative
+  measurements showing that, "for the great majority of resolvers, therefore,
+the associated IP address is personal data", and a privacy policy for
+big data analysis.</t></abstract>
+</front>
 </reference>
 
 </references>
