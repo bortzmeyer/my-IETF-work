@@ -295,7 +295,7 @@ therefore from the end user system across the local network and across the
 IAP
 network to the IAP's recursive resolvers.</t>
 <t>The recursive resolver can be a public DNS service. Some machines may be configured to
-use public DNS resolvers such as those operated by Google Public DNS or
+use public DNS resolvers such as those operated today by Google Public DNS or
 OpenDNS. The end user may have configured their machine to use
 these DNS recursive resolvers themselves - or their IAP may have chosen to use the public
 DNS resolvers rather than operating their own resolvers.  In this case the
@@ -392,15 +392,34 @@ information.</t>
 </section>
 
 <section title="Rogue servers">
-<t>A rogue DHCP server,
-or a trusted DHCP server that has had its configuration altered by malicious parties,
-can direct you to a rogue recursive resolver. Most of the
-time, it seems to be done to divert traffic, by providing lies for
-some domain names. But it could be used just to
-capture the traffic and gather information about you. Same thing for
-malware like DNSchanger <xref target="dnschanger"/> which changes the
-recursive resolver in the machine's configuration, or with transparent DNS proxies in the network that
-will divert the traffic intended for a legitimate DNS server (for instance <xref target="turkey-googledns"/>).</t>
+<t>The previous paragraphs discussed DNS privacy, assuming that all
+the traffic was directed to the intended servers, and that the
+potential attacker was purely passive. But, in reality, we can have
+active attackers, redirecting the traffic, not for changing it but
+just to observe it.</t>
+<t>For instance, a rogue DHCP server, or a trusted DHCP server that
+has had its configuration altered by malicious parties, can direct you
+to a rogue recursive resolver. Most of the time, it seems to be done
+to divert traffic, by providing lies for some domain names. But it
+could be used just to capture the traffic and gather information about
+you. Other attacks, besides using DHCP, are possible. The traffic from
+a DNS client to a DNS server can be intercepted along its way from
+originator to intended source; for instance by transparent DNS proxies
+in the network that will divert the traffic intended for a legitimate
+DNS server.  This rogue server can masquerade as the intended server
+and respond with data to the client. (Rogue servers that inject
+malicious data are possible, but is a separate problem not relevant to
+privacy.)  A rogue server may respond correctly for a long period of
+time, thereby foregoing detection. This may be done for what could be
+claimed to be good reasons, such as optimization or caching, but it
+leads to a reduction of privacy compared to if there were no attacker
+present. Also, malware like DNSchanger <xref target="dnschanger"/> can
+change the recursive resolver in the machine's configuration, or the
+routing itself can be subverted (for instance <xref
+target="turkey-googledns"/>).</t>
+<t>A practical consequence of this section is that solutions for DNS
+privacy may have to address authentication of the server, not just
+passive sniffing.</t>
 </section>
 
 </section>
@@ -486,7 +505,7 @@ proofreading, to Paul Hoffman, Matthijs Mekking, Marcos Sanz, Tim
 Wicinski, Francis Dupont, Allison Mankin and Warren Kumari for
 proofreading, technical remarks, and many readability
 improvements. Thanks to Dan York, Suzanne Woolf, Tony Finch, Stephen
-Farrell, Peter Koch and Frank Denis for good written contributions.</t>
+Farrell, Peter Koch, Simon Josefsson and Frank Denis for good written contributions.</t>
 </section>
 
 <section title="IANA considerations">
