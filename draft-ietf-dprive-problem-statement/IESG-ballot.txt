@@ -45,10 +45,9 @@ Suresh Krishnan (Gen-ART)
 > Not really sure if it belongs in this document, but I personally think
 > that DNScrypt is probably worth at least a passing mention
 
-No for two reasons: 1) we are careful to analyze a problem, not to
-mention any specific solution. 2) encryption is not the only way to
-address DNS privacy. If we mention it, we would have to mention others
-such as data minimisation.
+We give the priority to drafts adopted by working groups, which is the
+case for the two mentioned in the Security Considerations as possible
+solutions.
 
 > Why is there a separate class of references for URI? Shouldn't this be
 > folded into either Normative or Informative? 
