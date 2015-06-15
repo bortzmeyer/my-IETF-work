@@ -1,0 +1,9 @@
+Remarks in the IESG ballot
+<http://datatracker.ietf.org/doc/draft-ietf-dprive-problem-statement/ballot/>
+which were *not* addressed:
+
+Alissa Cooper:
+> You might want to include a reference to ENUM in Section 2.2.
+
+Enum is dead.
+

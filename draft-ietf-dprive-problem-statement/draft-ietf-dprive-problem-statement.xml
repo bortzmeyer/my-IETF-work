@@ -441,6 +441,10 @@ characteristic patterns may be produced even in machine-to-machine
 communications or without a user taking specific actions, e.g. at
 reboot time if a characteristic set of services are accessed by
 the device.</t>
+<t>For instance, one could imagine, for an intelligence agency to
+identify people going to a site by putting in a very long DNS name and
+looking for queries of a specific length. Such traffic analysis could
+weaken some privacy solutions.</t>
 <t>The IAB privacy and security programme also have a work in progress
 <xref target="I-D.iab-privsec-confidentiality-threat"/> that considers such
 inference based attacks in a more general framework.</t>
@@ -482,7 +486,7 @@ protections in the DNS is actively exploited.</t>
 <t>To our knowledge, there are no specific privacy laws for DNS
 data, in any country. Interpreting general privacy laws like
 <xref target="data-protection-directive"/> (European Union) in the context of DNS traffic data is not
-an easy task and it seems there is no court precedent here. An
+an easy task and we do not know a court precedent here. An
 interesting analysis is <xref target="sidn-entrada"/>.</t>
 </section>
 
