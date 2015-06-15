@@ -33,3 +33,11 @@ of personal Web pages, that I can find and read immediately, rather
 than reference to a scientific symposium hold ten years ago and whose
 speeches are not available publically.)
 
+Joel Jaeggli
+> I would probably consign the actual
+> description of the dns protocol in the introduction ( paragraph 3/4) to a
+> subsection 
+
+The vast majority of the introduction is about the DNS protocol so I
+believe that the rest of the section would be very small.
+
