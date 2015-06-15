@@ -18,12 +18,8 @@
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-edns-client-subnet">
 <!ENTITY I-D.iab-privsec-confidentiality-threat SYSTEM
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.iab-privsec-confidentiality-threat">
-<!ENTITY I-D.hzhwm-start-tls-for-dns SYSTEM
-"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.hzhwm-start-tls-for-dns">
-<!ENTITY I-D.timms-encrypt-naptr SYSTEM
-"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.timms-encrypt-naptr">
-<!ENTITY I-D.hallambaker-dnse SYSTEM
-"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.hallambaker-dnse">
+<!ENTITY I-D.ietf-dprive-start-tls-for-dns SYSTEM
+"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dprive-start-tls-for-dns">
 <!ENTITY I-D.wouters-dane-openpgp SYSTEM
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.wouters-dane-openpgp">
 <!ENTITY I-D.ietf-dnsop-dns-terminology SYSTEM
@@ -497,10 +493,12 @@ interesting analysis is <xref target="sidn-entrada"/>.</t>
 <t>This document is entirely about security, more precisely
 privacy. It just lays out the problem, it does not try to set
 requirements (with the choices and compromises they imply), much less
-to define solutions. A possible document on requirments for DNS privacy is
-<xref target="I-D.hallambaker-dnse"/>.  Possible solutions to the
-issues described here are discussed in other documents (currently too
-many to all be mentioned), see for instance <xref target="I-D.ietf-dnsop-qname-minimisation"/> for the minimisation of data, or <xref target="I-D.hzhwm-start-tls-for-dns"/> about encryption.</t>
+to define solutions. Possible solutions to the issues described here
+are discussed in other documents (currently too many to all be
+mentioned), see for instance <xref
+target="I-D.ietf-dnsop-qname-minimisation"/> for the minimisation of
+data, or <xref target="I-D.ietf-dprive-start-tls-for-dns"/> about
+encryption.</t>
 
 </section>
 
@@ -538,23 +536,10 @@ remarks.</t>
 &rfc6269;
 &I-D.ietf-dnsop-edns-client-subnet;
 &I-D.iab-privsec-confidentiality-threat;
-&I-D.hallambaker-dnse;
 &I-D.wouters-dane-openpgp;
-&I-D.hzhwm-start-tls-for-dns;
+&I-D.ietf-dprive-start-tls-for-dns;
 &I-D.ietf-dnsop-qname-minimisation;
 &I-D.ietf-dnsop-dns-terminology; 
-
-<reference anchor="dprive" target="http://www.ietf.org/mail-archive/web/dns-privacy/">
-<front>
-<title>The DPRIVE working group</title>
-<author fullname="IETF" surname="IETF" initials="DPRIVE"/>
-<date month="March" year="2014"/>
-<abstract>
-<t>This IETF Working Group is for the discussion of the problem statement
-surrounding the addition of privacy to the DNS protocol, and for the possible solutions.</t>
-</abstract>
-</front>
-</reference>
 
 <reference anchor="denis-edns-client-subnet" target="https://00f.net/2013/08/07/edns-client-subnet/">
 <front>
