@@ -32,7 +32,7 @@
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-qname-minimisation">
 ]>
 
-<rfc docName="draft-ietf-dprive-problem-statement-05" category="info" ipr="trust200902">
+<rfc docName="draft-ietf-dprive-problem-statement-06BETA" category="info" ipr="trust200902">
 <?rfc toc="yes"?>
 <?rfc strict="yes"?>
 <front>
@@ -41,7 +41,7 @@
 <organization>AFNIC</organization>
 <address><postal><street>1, rue Stephenson</street><code>78180</code><city>Montigny-le-Bretonneux</city><country>France</country></postal> <phone>+33 1 39 30 83 46</phone><email>bortzmeyer+ietf@nic.fr</email><uri>http://www.afnic.fr/</uri></address>
 </author>
-<date month="May" year="2015"/>
+<date month="June" year="2015"/>
 <workgroup>DNS PRIVate Exchange (dprive) Working Group</workgroup>
 <abstract>
 <t>This document describes the privacy issues associated with the use
@@ -227,17 +227,18 @@ machine. In both cases, the IP address is as sensitive as it is for
 HTTP <xref target="sidn-entrada"/>.</t>
 <t>A note about IP addresses: there is currently no IETF document
 which describes in detail all the privacy issues around IP
-addressing. <!-- TODO mention RFC 4941 and/or
+addressing. <!-- There is RFC 4941 and/or
 http://www.iab.org/wp-content/IAB-uploads/2011/07/IPv6-addresses-privacy-review.txt
-? -->In the
-meantime, the discussion here is intended to include both IPv4 and IPv6 source
-addresses. For a number of reasons their assignment and utilization characteristics
-are different, which may have implications for details of information leakage
-associated with the collection of source addresses. (For example, a specific IPv6
-source address seen on the public Internet is less likely than an IPv4 address to
-originate behind a CGN or other NAT.) However, for both IPv4 and IPv6 addresses,
-it's important to note that source addresses are propagated with queries and
-comprise metadata about the host, user, or application that originated them.</t>
+-->In the meantime, the discussion here is intended to include both
+IPv4 and IPv6 source addresses. For a number of reasons their
+assignment and utilization characteristics are different, which may
+have implications for details of information leakage associated with
+the collection of source addresses. (For example, a specific IPv6
+source address seen on the public Internet is less likely than an IPv4
+address to originate behind a CGN or other NAT.) However, for both
+IPv4 and IPv6 addresses, it's important to note that source addresses
+are propagated with queries and comprise metadata about the host,
+user, or application that originated them.</t>
 </section>
 
 <section title="Cache snooping">
@@ -338,10 +339,9 @@ caching before them. To summarize: your recursive resolver knows a lot about you
 of a large IAP, or a large public resolver can collect data from many
 users. You may get an idea of the data collected by reading <eref
 target="https://developers.google.com/speed/public-dns/privacy">the
-privacy policy of a big public resolver</eref>. <!-- TODO published
+privacy policy of a big public resolver</eref>. <!-- Published
 policies of OpenDNS: nothing found on their Web site, only for the
-Web, not for the DNS service, question sent, indirect reply received
-TODO summarize --></t>
+Web, not for the DNS service. --></t>
 </section>
 
 <section title="In the authoritative name servers">
@@ -524,7 +524,6 @@ Farrell, Peter Koch, Simon Josefsson and Frank Denis for good written contributi
 </references>
 
 <references title='Informative References'>
-<!-- TODO Please alphabetize, at least the drafts -->
 &rfc4033;
 &rfc5155;
 &rfc5936;
@@ -790,8 +789,6 @@ international conference on, IEEE, Piscataway, NJ, USA, 25 August 2010
 </abstract>
 </front>
 </reference>
-
-<!-- TODO Haya Shulman's paper http://www.ietf.org/mail-archive/web/dns-privacy/current/pdfWqAIUmEl47.pdf ? Or in the possible-solutions draft ? -->
 
 <reference anchor="aeris-dns" target="https://blog.imirhil.fr/vie-privee-et-le-dns-alors.html">
 <front>
