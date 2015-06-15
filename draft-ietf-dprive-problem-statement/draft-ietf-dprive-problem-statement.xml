@@ -32,7 +32,7 @@
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-qname-minimisation">
 ]>
 
-<rfc docName="draft-ietf-dprive-problem-statement-06BETA" category="info" ipr="trust200902">
+<rfc docName="draft-ietf-dprive-problem-statement-06" category="info" ipr="trust200902">
 <?rfc toc="yes"?>
 <?rfc strict="yes"?>
 <front>
@@ -70,7 +70,7 @@ to a server, called the recursive resolver
 Let's use the query "What are the AAAA records for
 www.example.com?" as an example. AAAA is the QTYPE (Query Type), and
 www.example.com is the QNAME (Query Name). (The description which
-follows assume a cold cache, for instance because the server just
+follows assumes a cold cache, for instance because the server just
 started.) The recursive resolver will first
 query the root nameservers. In most cases, the root nameservers will
 send a referral. In this example, the referral will be to the .com
@@ -171,7 +171,7 @@ associated with that name (or that name's non-existence).  In other
 words: one needs to know what to ask for, in order to receive a response.  The
 zone transfer QTYPE <xref target="RFC5936"/> is often blocked or restricted to
 authenticated/authorized access to enforce this difference (and maybe
-for other, more dubious reasons).</t>
+for other reasons).</t>
 <t>Another differentiation to be considered is between the DNS data
 itself and a particular transaction (i.e., a DNS name lookup). DNS
 data and the results of a DNS query are public, within the boundaries
