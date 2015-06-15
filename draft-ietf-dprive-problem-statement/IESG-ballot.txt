@@ -7,3 +7,29 @@ Alissa Cooper:
 
 Enum is dead.
 
+Stephen Farrell
+> primary request: "of interest to the eavesdropper" isn't quite right
+> - the eavesdropper is probably more interested in the URL and not
+> just the DNS name from the URL.
+
+Depends. Anyway, "of interest" was relative to the secondary and
+tertiary requests not to other sources of information.
+
+> "glue records" - you didn't say what those are
+
+[I-D.ietf-dnsop-dns-terminology] seems sufficient
+
+> the [denis-edns-client-subnet] reference doesn't point at a great
+> URL for an RFC, be great if there were a better reference.
+
+It's a good text, well written, and right to the point. I have no
+better reference.
+
+> The same issue may come up wrt some of the other references.
+
+See issue #7 <https://github.com/bortzmeyer/my-IETF-work/issues/7> I
+was not able to find better references. (Personal rant: I prefer URLs
+of personal Web pages, that I can find and read immediately, rather
+than reference to a scientific symposium hold ten years ago and whose
+speeches are not available publically.)
+
