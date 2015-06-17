@@ -23,7 +23,7 @@
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.wkumari-dnsop-hammer.xml">
 ]>
 
-<rfc docName="draft-ietf-dnsop-qname-minimisation-03"
+<rfc docName="draft-ietf-dnsop-qname-minimisation-04BETA"
      category="exp" ipr="trust200902">
 <?rfc toc="yes"?>
 <?rfc strict="yes"?>
@@ -33,7 +33,7 @@
 <organization>AFNIC</organization>
 <address><postal><street>1, rue Stephenson</street><code>78180</code><city>Montigny-le-Bretonneux</city><country>France</country></postal> <phone>+33 1 39 30 83 46</phone><email>bortzmeyer+ietf@nic.fr</email><uri>http://www.afnic.fr/</uri></address>
 </author>
-<date month="June" year="2015"/>
+<date month="TODO" year="2015"/>
 <workgroup>Domain Name System Operations (dnsop) Working Group</workgroup>
 <abstract>
 <t>This document describes one of the techniques that could be used to
@@ -96,20 +96,26 @@ foo.bar.baz.example. Let's assume it already knows that
 ns1.nic.example is authoritative for .example and the resolver does
 not know a more specific authoritative name server. It will send the
 query QTYPE=NS,QNAME=baz.example to ns1.nic.example.</t>
-<t>To do such minimisation, the resolver needs to know the zone cut
-<xref target="RFC2181"/>.  Zone cuts do not necessarily exist at every
-label boundary.  If we take the name www.foo.bar.example, it is
-possible that there is a zone cut between "foo" and "bar" but not
-between "bar" and "example"<!-- Real examples today are
-www.economie.gouv.fr or www.janet.ac.uk -->.  So, assuming the
-resolver already knows the name servers of .example, when it receives
-the query "What is the AAAA record of www.foo.bar.example", it does
-not always know whether the request should be sent to the name servers
-of bar.example or to those of example. <xref target="RFC2181"/>
-suggests a method to find the zone cut (section 6), so resolvers may
-try it.</t>
+<t>The minimising resolver works perfectly when it knows the zone cut
+<xref target="RFC2181"/> (section 6).  But zone cuts do not
+necessarily exist at every label boundary.  If we take the name
+www.foo.bar.example, it is possible that there is a zone cut between
+"foo" and "bar" but not between "bar" and "example"<!-- Real examples
+today are www.economie.gouv.fr or www.janet.ac.uk and of course most
+domains under ip6.arpa-->.  So, assuming the resolver already knows
+the name servers of .example, when it receives the query "What is the
+AAAA record of www.foo.bar.example", it does not always know where the
+zone cut will be.  To find it out, it will query the .example name
+servers for the NS records for bar.example. It will get a NODATA
+response, indicating there is no zone cut at that point, so it has to
+to query the .example name servers again with one more label, and so
+on. (<xref target="zonecutalgo"/> describes this algorithm in deeper
+details.)</t>
+<t>Since the information about the zone cuts will be stored in the
+resolver's cache, the performance cost is probably reasonable. <xref
+target="perfs"/> discusses this performance discrepancy further.</t>
 <t>Note that DNSSEC-validating resolvers already have access to this
-information, since they have to find the zone cut (the DNSKEY record
+information, since they have to know the zone cut (the DNSKEY record
 set is just below, the DS record set just above).</t>
 </section>
 
@@ -202,7 +208,7 @@ that they store may have legal consequences, depending on your
 jurisdiction (check with your local lawyer).</t>
 </section>
 
-<section title="Performance considerations">
+<section anchor="perfs" title="Performance considerations">
 <t>The main goal of QNAME minimisation is to improve privacy by
 sending less data. However, it may have other advantages. For
 instance, if a root name server receives a query from some resolver
@@ -224,13 +230,18 @@ delegation owner name.</t>
 instance for a deep domain name (like
 www.host.group.department.example.com where
 host.group.department.example.com is hosted on example.com's name
-servers). For such a name, a cold resolver will, depending how QNAME
-minimisation is implemented, send more queries. Once the cache is
-warm, there will be no difference with a traditional resolver. A
-possible solution is to always use the traditional algorithm when the
-cache is cold and then to move to QNAME minimisation. This will
-decrease the privacy a bit but will guarantee no degradation of
-performance. Actual testing is described in <xref
+servers). Let's assume a resolver which knows only the name servers of
+.example. Without QNAME minimisation, it would send these .example
+nameservers a query for www.host.group.department.example.com and
+immediately get a specific referral or an answer, without the need for
+more queries to probe for the zone cut. For such a name, a cold
+resolver with QNAME minimisation will, depending how QNAME
+minimisation is implemented, send more queries, one per label. Once
+the cache is warm, there will be no difference with a traditional
+resolver. A possible solution is to always use the traditional
+algorithm when the cache is cold and then to move to QNAME
+minimisation. This will decrease the privacy a bit but will guarantee
+no degradation of performance. Actual testing is described in <xref
 target="huque-qnamemin"/>. Such deep domains are specially common
 under ip6.arpa.</t>
 </section>
@@ -296,7 +307,7 @@ Thanks to Mark Andrews and Francis Dupont for the interesting
 discussions. Thanks to Brian Dickson, Warren Kumari, Evan Hunt and
 David Conrad for remarks and suggestions. Thanks to Mohsen Souissi for
 proofreading. Thanks to Tony Finch for the zone cut algorithm in <xref
-target="zonecutalgo"/>. Thanks to Paul Vixie for pointing out that
+target="zonecutalgo"/> and for discussion of the algorithm. Thanks to Paul Vixie for pointing out that
 there are practical advantages (besides privacy) to QNAME
 minimisation.  Thanks to Phillip Hallam-Baker for the fallback on A
 queries, to deal with broken servers. Thanks to Robert Edmonds for an
