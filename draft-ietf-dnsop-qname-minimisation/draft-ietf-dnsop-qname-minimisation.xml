@@ -23,7 +23,7 @@
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.wkumari-dnsop-hammer.xml">
 ]>
 
-<rfc docName="draft-ietf-dnsop-qname-minimisation-04BETA"
+<rfc docName="draft-ietf-dnsop-qname-minimisation-04"
      category="exp" ipr="trust200902">
 <?rfc toc="yes"?>
 <?rfc strict="yes"?>
@@ -33,7 +33,7 @@
 <organization>AFNIC</organization>
 <address><postal><street>1, rue Stephenson</street><code>78180</code><city>Montigny-le-Bretonneux</city><country>France</country></postal> <phone>+33 1 39 30 83 46</phone><email>bortzmeyer+ietf@nic.fr</email><uri>http://www.afnic.fr/</uri></address>
 </author>
-<date month="TODO" year="2015"/>
+<date month="June" year="2015"/>
 <workgroup>Domain Name System Operations (dnsop) Working Group</workgroup>
 <abstract>
 <t>This document describes one of the techniques that could be used to
@@ -182,9 +182,9 @@ minimisation (it will be a problem for DNSSEC, too).
 <section title="Discussion">
 <t>QNAME minimisation is compatible with the current DNS system and
 therefore can easily be deployed; since it is a unilateral change to
-the resolver, it does not change the protocol. (Because of that,
-resolver implementers may do QNAME minimisation in slightly different
-ways, see the appendices for examples.).</t>
+the resolver, it does not change the protocol. (Because it is an
+unilateral change, resolver implementers may do QNAME minimisation in
+slightly different ways, see the appendices for examples.)</t>
 <t>One should note that the behaviour suggested here (minimising the
 amount of data sent in QNAMEs from the resolver) is NOT forbidden by
 the <xref target="RFC1034"/> (section 5.3.3) or <xref
