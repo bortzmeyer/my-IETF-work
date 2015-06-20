@@ -238,10 +238,7 @@ more queries to probe for the zone cut. For such a name, a cold
 resolver with QNAME minimisation will, depending how QNAME
 minimisation is implemented, send more queries, one per label. Once
 the cache is warm, there will be no difference with a traditional
-resolver. A possible solution is to always use the traditional
-algorithm when the cache is cold and then to move to QNAME
-minimisation. This will decrease the privacy a bit but will guarantee
-no degradation of performance. Actual testing is described in <xref
+resolver. Actual testing is described in <xref
 target="huque-qnamemin"/>. Such deep domains are specially common
 under ip6.arpa.</t>
 </section>
@@ -259,6 +256,9 @@ DNS path.)</t>
 <t>QNAME minimisation offers zero protection against the recursive
 resolver, which still sees the full request coming from the stub
 resolver.</t>
+<t>All the alternatives mentioned in <xref target="alts"/> decrease
+privacy in the hope of improving performances. They must not be used
+if you want the maximum privacy.</t>
 </section>
 
 <section title="Implementation status - REMOVE BEFORE PUBLICATION">
@@ -413,7 +413,7 @@ step 3.</t>
 </list>
 </t></section>
 
-<section title="Alternatives">
+<section anchor="alts" title="Alternatives">
 <t>Remember that QNAME minimisation is unilateral so a resolver is not
 forced to implement it exactly as described here.</t>
 <t>There are several ways to perform QNAME minimisation. The one in
@@ -437,6 +437,11 @@ variant of QNAME minimisation would be to keep the original QTYPE.</t>
 idea <xref target="I-D.wkumari-dnsop-hammer"/> to probe in advance for
 the introduction of zone cuts where none previously existed
 (i.e. confirm their continued absence, or discover them.)</t>
+<t>To address the "number of queries" issue, described in <xref
+target="perfs"/>, a possible solution is to always use the traditional
+algorithm when the cache is cold and then to move to QNAME
+minimisation. This will decrease the privacy but will guarantee no
+degradation of performance.</t>
 </section>
 
 <!-- IPR:
