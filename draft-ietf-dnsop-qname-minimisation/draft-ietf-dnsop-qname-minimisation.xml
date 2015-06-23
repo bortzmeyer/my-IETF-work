@@ -137,6 +137,12 @@ minimisation. It breaks negative answers, since the servers don't
 return the correct SOA, and it also breaks anything dependent upon NS
 and SOA records existing at the top of the zone.
 </t>
+<t>Another way to deal with such broken name servers would be to try
+with QTYPE=A requests (A being chosen because it is the most common
+and hence a qtype which will be always accepted, while a qtype NS may
+ruffle the feathers of some middleboxes). Instead of querying name
+servers with a query "NS example.com", we could use "A _.example.com"
+and see if we get a referral.</t>
 <t>A problem can also appear when a name server does not react
 properly to ENT (Empty Non-Terminals). If ent.example.com has no
 resource records but foobar.ent.example.com does, then ent.example.com
@@ -150,12 +156,6 @@ QNAME minimisation, it may query ent.example.com and get a
 NXDOMAIN. See also section 3 of <xref
 target="I-D.vixie-dnsext-resimprove"/> for the other bad consequences
 of this brokenness.</t>
-<t>Another way to deal with such broken name servers would be to try
-with QTYPE=A requests (A being chosen because it is the most common
-and hence a qtype which will be always accepted, while a qtype NS may
-ruffle the feathers of some middleboxes). Instead of querying name
-servers with a query "NS example.com", we could use "A _.example.com"
-and see if we get a referral.</t>
 <t>Other strange and non-conformant practices may pose a problem:
 there is a common DNS anti-pattern used by low-end web hosters that
 also do DNS hosting that exploits the fact that the DNS protocol
