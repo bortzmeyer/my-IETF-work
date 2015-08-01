@@ -23,7 +23,7 @@
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.wkumari-dnsop-hammer.xml">
 ]>
 
-<rfc docName="draft-ietf-dnsop-qname-minimisation-04"
+<rfc docName="draft-ietf-dnsop-qname-minimisation-05"
      category="exp" ipr="trust200902">
 <?rfc toc="yes"?>
 <?rfc strict="yes"?>
@@ -33,7 +33,7 @@
 <organization>AFNIC</organization>
 <address><postal><street>1, rue Stephenson</street><code>78180</code><city>Montigny-le-Bretonneux</city><country>France</country></postal> <phone>+33 1 39 30 83 46</phone><email>bortzmeyer+ietf@nic.fr</email><uri>http://www.afnic.fr/</uri></address>
 </author>
-<date month="June" year="2015"/>
+<date month="August" year="2015"/>
 <workgroup>Domain Name System Operations (dnsop) Working Group</workgroup>
 <abstract>
 <t>This document describes one of the techniques that could be used to
@@ -41,17 +41,13 @@ improve DNS privacy (see <xref
 target="I-D.ietf-dprive-problem-statement"/>), a technique called
 "QNAME minimisation", where the DNS resolver no longer sends the full
 original QNAME to the upstream name server.</t>
-<t>REMOVE BEFORE PUBLICATION Discussions of the document should take place on the
-DNSOP working group mailing list <xref target="dnsop"/>.</t>
 </abstract>
 </front>
 
 <middle>
 <section anchor="intro" title="Introduction and background">
 <t>The problem statement is exposed in <xref
-target="I-D.ietf-dprive-problem-statement"/> TODO: add a reference to
-the specific section when ietf-dprive-problem-statement will be
-published as RFC. The terminology ("QNAME", "resolver", etc) is also
+target="I-D.ietf-dprive-problem-statement"/>. The terminology ("QNAME", "resolver", etc) is also
 defined in this companion document. This specific solution is not
 intended to fully solve the DNS privacy problem; instead, it should be
 viewed as one tool amongst many.</t>
@@ -74,7 +70,7 @@ time, the DNS is quite different now.</t>
 
 <section anchor="qname-main" title="QNAME minimisation">
 <t>The idea is to minimise the amount of data sent from the DNS
-resolver to the authoritative name server<!-- TODO or a forwarder? See
+resolver to the authoritative name server<!-- Or a forwarder? See
 issue #14 -->. In the example in the previous section, sending "What
 are the NS records for .com?" would have been sufficient (since it
 will be the answer from the root anyway). The rest of this section
@@ -127,8 +123,7 @@ analysis in <xref target="huque-qnamemin"/>).</t>
 <t>Some broken name servers do not react properly to qtype=NS
 requests. For instance, some authoritative name servers embedded in
 load balancers reply properly to A queries but send REFUSED to NS
-queries.  REMOVE THIS SENTENCE BEFORE PUBLICATION: As an example of
-today, look at www.ratp.fr (not ratp.fr). This behaviour is a gross
+queries. This behaviour is a gross
 protocol violation, and there is no need to stop improving the DNS
 because of such brokenness. However, QNAME minimisation may still work
 with such domains since they are only leaf domains (no need to send
@@ -148,9 +143,7 @@ properly to ENT (Empty Non-Terminals). If ent.example.com has no
 resource records but foobar.ent.example.com does, then ent.example.com
 is an ENT. A query, whatever the qtype, for ent.example.com must
 return NODATA (NOERROR / ANSWER: 0). However, some broken name servers
-return NXDOMAIN for ENTs. REMOVE THIS SENTENCE BEFORE PUBLICATION: As
-an example of today, look at com.akadns.net or www.upenn.edu with its
-delegations to Akamai. If a resolver queries only
+return NXDOMAIN for ENTs. If a resolver queries only
 foobar.ent.example.com, everything will be OK but, if it implements
 QNAME minimisation, it may query ent.example.com and get a
 NXDOMAIN. See also section 3 of <xref
@@ -179,7 +172,7 @@ minimisation (it will be a problem for DNSSEC, too).
 </t>
 </section>
 
-<section title="Discussion">
+<section title="Protocol and compatibility discussion">
 <t>QNAME minimisation is compatible with the current DNS system and
 therefore can easily be deployed; since it is a unilateral change to
 the resolver, it does not change the protocol. (Because it is an
@@ -261,7 +254,7 @@ privacy in the hope of improving performances. They must not be used
 if you want the maximum privacy.</t>
 </section>
 
-<section title="Implementation status - REMOVE BEFORE PUBLICATION">
+<section title="Implementation status - RFC EDITOR: REMOVE BEFORE PUBLICATION">
 
 <t>This section records the status of known implementations of the
 protocol defined by this specification at the time of posting of this
@@ -299,10 +292,11 @@ described in <xref target="huque-qnamemin"/>.</t>
 </section>
 
 <section title="Acknowledgments">
-<t>Thanks to Olaf Kolkman for the original idea although the concept
+<t>Thanks to Olaf Kolkman for the original idea during a KLM flight from
+Amsterdam to Vancouver, although the concept
 is probably <eref
 target="https://lists.dns-oarc.net/pipermail/dns-operations/2010-February/005003.html">much
-older</eref>. Thanks for Shumon Huque for implementation and testing.
+older</eref>. Thanks for Shumon Huque and Marek Vavrusa for implementation and testing.
 Thanks to Mark Andrews and Francis Dupont for the interesting
 discussions. Thanks to Brian Dickson, Warren Kumari, Evan Hunt and
 David Conrad for remarks and suggestions. Thanks to Mohsen Souissi for
@@ -330,19 +324,6 @@ interesting anti-pattern.</t>
 &rfc6982;
 &I-D.wkumari-dnsop-hammer;
 &I-D.vixie-dnsext-resimprove;
-
-<reference anchor="dnsop" target="https://datatracker.ietf.org/wg/dnsop/charter/">
-<front>
-<title>The DNSOP working group of IETF</title>
-<author fullname="IETF" surname="IETF"/>
-<date month="March" year="2014"/>
-<abstract>
-<t>The DNS Operations Working Group will develop guidelines for the
-operation of DNS software and services and for the administration
-of DNS zones.</t>
-</abstract>
-</front>
-</reference>
 
 <reference anchor="mockapetris-history">
 <front>
