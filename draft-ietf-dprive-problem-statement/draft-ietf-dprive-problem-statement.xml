@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
-<!ENTITY rfc1034 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1034.xml">
-<!ENTITY rfc1035 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1035.xml">
+<!ENTITY rfc1034 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.1034.xml">
+<!ENTITY rfc1035 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.1035.xml">
 <!ENTITY rfc2181 SYSTEM
-"http://xml.resource.org/public/rfc/bibxml/reference.RFC.2181.xml">
+"http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2181.xml">
 <!ENTITY rfc4033 SYSTEM
-"http://xml.resource.org/public/rfc/bibxml/reference.RFC.4033.xml">
-<!ENTITY rfc5155 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5155.xml">
-<!ENTITY rfc5936 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5936.xml">
+"http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.4033.xml">
+<!ENTITY rfc5155 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5155.xml">
+<!ENTITY rfc5936 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5936.xml">
 <!ENTITY rfc6269 SYSTEM
-"http://xml.resource.org/public/rfc/bibxml/reference.RFC.6269.xml">
+"http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.6269.xml">
 <!ENTITY rfc6347 SYSTEM
-"http://xml.resource.org/public/rfc/bibxml/reference.RFC.6347.xml">
-<!ENTITY rfc6973 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6973.xml">
-<!ENTITY rfc7258 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7258.xml">
+"http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.6347.xml">
+<!ENTITY rfc6973 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.6973.xml">
+<!ENTITY rfc7258 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7258.xml">
 <!ENTITY I-D.ietf-dnsop-edns-client-subnet SYSTEM
-"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-edns-client-subnet">
+"http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-edns-client-subnet">
 <!ENTITY I-D.iab-privsec-confidentiality-threat SYSTEM
-"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.iab-privsec-confidentiality-threat">
+"http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.iab-privsec-confidentiality-threat">
 <!ENTITY I-D.ietf-dprive-start-tls-for-dns SYSTEM
-"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dprive-start-tls-for-dns">
+"http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-dprive-start-tls-for-dns">
 <!ENTITY I-D.wouters-dane-openpgp SYSTEM
-"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.wouters-dane-openpgp">
+"http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.wouters-dane-openpgp">
 <!ENTITY I-D.ietf-dnsop-dns-terminology SYSTEM
-"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-dns-terminology">
+"http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-dns-terminology">
 <!ENTITY I-D.ietf-dnsop-qname-minimisation SYSTEM
-"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-qname-minimisation">
+"http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-dnsop-qname-minimisation">
 ]>
 
 <rfc docName="draft-ietf-dprive-problem-statement-06" category="info" ipr="trust200902">
