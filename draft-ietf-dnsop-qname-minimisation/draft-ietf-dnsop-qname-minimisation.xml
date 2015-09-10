@@ -23,7 +23,7 @@
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.wkumari-dnsop-hammer.xml">
 ]>
 
-<rfc docName="draft-ietf-dnsop-qname-minimisation-05"
+<rfc docName="draft-ietf-dnsop-qname-minimisation-06-BETA"
      category="exp" ipr="trust200902">
 <?rfc toc="yes"?>
 <?rfc strict="yes"?>
@@ -33,7 +33,7 @@
 <organization>AFNIC</organization>
 <address><postal><street>1, rue Stephenson</street><code>78180</code><city>Montigny-le-Bretonneux</city><country>France</country></postal> <phone>+33 1 39 30 83 46</phone><email>bortzmeyer+ietf@nic.fr</email><uri>http://www.afnic.fr/</uri></address>
 </author>
-<date month="August" year="2015"/>
+<date month="TODO" year="2015"/>
 <workgroup>Domain Name System Operations (dnsop) Working Group</workgroup>
 <abstract>
 <t>This document describes one of the techniques that could be used to
@@ -119,7 +119,8 @@ set is just below, the DS record set just above).</t>
 <t>QNAME minimisation is legal, since the original DNS RFC do not
 mandate sending the full QNAME. So, in theory, it should work without
 any problems. However, in practice, some problems may occur (see an
-analysis in <xref target="huque-qnamemin"/>).</t>
+analysis in <xref target="huque-qnamemin"/> and an interesting
+discussion in <xref target="huque-qnamestorify"/>).</t>
 <t>Some broken name servers do not react properly to qtype=NS
 requests. For instance, some authoritative name servers embedded in
 load balancers reply properly to A queries but send REFUSED to NS
