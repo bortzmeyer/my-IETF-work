@@ -14,16 +14,16 @@
 <!ENTITY rfc6347 SYSTEM
 "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6347.xml">
 <!ENTITY rfc6973 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6973.xml">
-<!ENTITY rfc6982 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6982.xml">
-<!ENTITY I-D.ietf-dprive-problem-statement SYSTEM
-"http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-dprive-problem-statement.xml">
+<!ENTITY rfc6982 SYSTEM
+"http://xml.resource.org/public/rfc/bibxml/reference.RFC.6982.xml">
+<!ENTITY rfc7626 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7626.xml">
 <!ENTITY I-D.vixie-dnsext-resimprove SYSTEM
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.vixie-dnsext-resimprove.xml">
 <!ENTITY I-D.wkumari-dnsop-hammer SYSTEM
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.wkumari-dnsop-hammer.xml">
 ]>
 
-<rfc docName="draft-ietf-dnsop-qname-minimisation-06-BETA"
+<rfc docName="draft-ietf-dnsop-qname-minimisation-06"
      category="exp" ipr="trust200902">
 <?rfc toc="yes"?>
 <?rfc strict="yes"?>
@@ -33,12 +33,12 @@
 <organization>AFNIC</organization>
 <address><postal><street>1, rue Stephenson</street><code>78180</code><city>Montigny-le-Bretonneux</city><country>France</country></postal> <phone>+33 1 39 30 83 46</phone><email>bortzmeyer+ietf@nic.fr</email><uri>http://www.afnic.fr/</uri></address>
 </author>
-<date month="TODO" year="2015"/>
+<date month="October" year="2015"/>
 <workgroup>Domain Name System Operations (dnsop) Working Group</workgroup>
 <abstract>
 <t>This document describes one of the techniques that could be used to
 improve DNS privacy (see <xref
-target="I-D.ietf-dprive-problem-statement"/>), a technique called
+target="RFC7626"/>), a technique called
 "QNAME minimisation", where the DNS resolver no longer sends the full
 original QNAME to the upstream name server.</t>
 </abstract>
@@ -47,7 +47,7 @@ original QNAME to the upstream name server.</t>
 <middle>
 <section anchor="intro" title="Introduction and background">
 <t>The problem statement is exposed in <xref
-target="I-D.ietf-dprive-problem-statement"/>. The terminology ("QNAME", "resolver", etc) is also
+target="RFC7626"/>. The terminology ("QNAME", "resolver", etc) is also
 defined in this companion document. This specific solution is not
 intended to fully solve the DNS privacy problem; instead, it should be
 viewed as one tool amongst many.</t>
@@ -58,7 +58,7 @@ problems you'll get.</t>
 the AAAA record for www.example.com?", it sends to the root (assuming
 a cold resolver, whose cache is empty) the very same question. Sending
 the full QNAME to the authoritative name server is a tradition, not a
-protocol requirement. This tradition comes<xref
+protocol requirement. This tradition comes <xref
 target="mockapetris-history"/> from a desire to optimize the number of
 requests, when the same name server is authoritative for many zones in
 a given name (something which was more common in the old days, where
@@ -317,7 +317,7 @@ interesting anti-pattern.</t>
 &rfc1034;
 &rfc1035;
 &rfc6973;
-&I-D.ietf-dprive-problem-statement;
+&rfc7626;
 </references>
 
 <references title='Informative References'>
