@@ -237,7 +237,11 @@ target="huque-qnamemin"/>. Such deep domains are specially common
 under ip6.arpa.</t>
 </section>
 
-<section title="Security considerations">
+<section title="IANA Considerations">
+<t>This document has no actions for IANA.</t>
+</section>
+
+<section title="Security Considerations">
 <t>QNAME minimisation's benefits are clear in the case where you want
 to decrease exposure to the authoritative name server. But minimising
 the amount of data sent also, in part, addresses the case of a wire
