@@ -23,7 +23,7 @@
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.wkumari-dnsop-hammer.xml">
 ]>
 
-<rfc docName="draft-ietf-dnsop-qname-minimisation-06"
+<rfc docName="draft-ietf-dnsop-qname-minimisation-07"
      category="exp" ipr="trust200902">
 <?rfc toc="yes"?>
 <?rfc strict="yes"?>
@@ -37,8 +37,7 @@
 <workgroup>Domain Name System Operations (dnsop) Working Group</workgroup>
 <abstract>
 <t>This document describes one of the techniques that could be used to
-improve DNS privacy (see <xref
-target="RFC7626"/>), a technique called
+improve DNS privacy, a technique called
 "QNAME minimisation", where the DNS resolver no longer sends the full
 original QNAME to the upstream name server.</t>
 </abstract>
