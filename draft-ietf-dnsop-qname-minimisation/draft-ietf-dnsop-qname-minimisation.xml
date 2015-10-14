@@ -23,7 +23,7 @@
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.wkumari-dnsop-hammer.xml">
 ]>
 
-<rfc docName="draft-ietf-dnsop-qname-minimisation-07"
+<rfc docName="draft-ietf-dnsop-qname-minimisation-08-BETA"
      category="exp" ipr="trust200902">
 <?rfc toc="yes"?>
 <?rfc strict="yes"?>
@@ -33,7 +33,7 @@
 <organization>AFNIC</organization>
 <address><postal><street>1, rue Stephenson</street><code>78180</code><city>Montigny-le-Bretonneux</city><country>France</country></postal> <phone>+33 1 39 30 83 46</phone><email>bortzmeyer+ietf@nic.fr</email><uri>http://www.afnic.fr/</uri></address>
 </author>
-<date month="October" year="2015"/>
+<date month="TODO" year="2015"/>
 <workgroup>Domain Name System Operations (dnsop) Working Group</workgroup>
 <abstract>
 <t>This document describes one of the techniques that could be used to
@@ -244,11 +244,11 @@ under ip6.arpa.</t>
 <t>QNAME minimisation's benefits are clear in the case where you want
 to decrease exposure to the authoritative name server. But minimising
 the amount of data sent also, in part, addresses the case of a wire
-sniffer as well the case of privacy invasion by the
+sniffer as well as the case of privacy invasion by the
 servers. (Encryption is of course a better defense against wire
 sniffers but, unlike QNAME minimisation, it changes the protocol and
 cannot be deployed unilaterally. Also, the effect of QNAME
-minimisation on wire sniffers depend on whether the sniffer is, on the
+minimisation on wire sniffers depends on whether the sniffer is, on the
 DNS path.)</t>
 <t>QNAME minimisation offers zero protection against the recursive
 resolver, which still sees the full request coming from the stub
@@ -425,7 +425,8 @@ the introduction of zone cuts where none previously existed
 <t>To address the "number of queries" issue, described in <xref
 target="perfs"/>, a possible solution is to always use the traditional
 algorithm when the cache is cold and then to move to QNAME
-minimisation. This will decrease the privacy but will guarantee no
+minimisation (precisely defining what is "hot" or "cold" is left to
+the implementer). This will decrease the privacy but will guarantee no
 degradation of performance.</t>
 </section>
 
