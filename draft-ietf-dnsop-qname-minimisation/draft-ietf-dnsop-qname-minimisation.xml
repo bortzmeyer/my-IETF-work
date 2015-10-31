@@ -149,6 +149,9 @@ QNAME minimisation, it may query ent.example.com and get a
 NXDOMAIN. See also section 3 of <xref
 target="I-D.vixie-dnsext-resimprove"/> for the other bad consequences
 of this brokenness.</t>
+<t>A possible solution, currently implemented in Knot, is to retry
+with the full query when you receive a NXDOMAIN. It works but it is
+not ideal for privacy.</t>
 <t>Other strange and non-conformant practices may pose a problem:
 there is a common DNS anti-pattern used by low-end web hosters that
 also do DNS hosting that exploits the fact that the DNS protocol
@@ -281,7 +284,9 @@ information as they see fit".</t>
 <t>As of today, no production resolver implements QNAME minimisation
 but it has been publically announced for the <eref
 target="https://ripe70.ripe.net/presentations/121-knot-resolver-ripe70.pdf">future
-Knot DNS resolver</eref>. For Unbound, see <eref
+Knot DNS resolver</eref> which is <eref
+target="https://storify.com/KnotDNS/knot-dns-recursive-beta">now in
+beta mode</eref> (with QNAME minimisation actually working). For Unbound, see <eref
 target="https://www.nlnetlabs.nl/bugs-script/show_bug.cgi?id=648">ticket
 648</eref> and for PowerDNS <eref
 target="https://github.com/PowerDNS/pdns/issues/2311"/>.</t>
