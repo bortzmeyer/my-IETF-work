@@ -1,0 +1,36 @@
+\documentclass[ignorenonframetext]{beamer}
+\usetheme{Madrid}
+\usepackage[]{inputenc}
+\usepackage{bortzmeyer-utils}
+
+\title{DNAME in the root}
+\author{Stéphane Bortzmeyer - AFNIC}
+\date{IETF 94 - Yokohama}
+
+\begin{document}
+
+\begin{frame}
+\maketitle  
+\end{frame}
+
+\begin{frame}
+  \frametitle{Background}
+  \begin{itemize}
+  \item<2->RFC 7535 ``AS112 Redirection using DNAME'' and RFC 6761 ``Special-Use Domain Names''.
+  \item<3->\path{.local} number 2 or 3 in traffic to the root.
+  \item<4->Changing anything in the root is very touchy.  
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{IETF role}
+  \begin{itemize}
+  \item<2->IETF could say ``TLD in the special-use registry should get
+    a DNAME in the root, going to AS 112''.
+  \item<3->Do note it leaves \path{.home} or \path{.belkin} out.
+  \item<4->Good idea or bad?
+  \item<5->Work item?
+  \end{itemize}
+\end{frame}
+
+\end{document}
