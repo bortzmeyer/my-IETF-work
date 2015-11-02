@@ -1,0 +1,49 @@
+\documentclass[ignorenonframetext]{beamer}
+\usetheme{Madrid}
+\usepackage[]{inputenc}
+\usepackage{bortzmeyer-utils}
+
+\title{NXDOMAIN means NXDOMAIN}
+\author{Stéphane Bortzmeyer - AFNIC}
+\date{IETF 94 - Yokohama}
+
+\begin{document}
+
+\begin{frame}
+\maketitle  
+\end{frame}
+
+\begin{frame}
+  \frametitle{Dead draft}
+  \begin{itemize}
+  \item<2->\path{draft-vixie-dnsext-resimprove} expired in 2010.
+  \item<3->Proposed \emph{several} ``improvments'' to resolver. No
+    consensus on all of them.
+  \item<4->Suggestion: revive its section 3 ``Stopping Downward Cache
+    Search on NXDOMAIN'' in a draft.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{What does it say?}
+  \begin{enumerate}
+  \item<2->Domains are a tree.
+  \item<3->If \path{bar.example} does not exist, certainly
+    \path{foo.bar.example} does not exist.
+  \item<4->So, treat a NXDOMAIN for a node as a NXDOMAIN for all nodes
+    under it.
+   \item<5->Good with QNAME minimisation (and in some cases for random
+     qnames attacks).
+    \item<6->Clearly says that NXDOMAIN on an ENT is wrong.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Advice}
+  \begin{enumerate}
+  \item<2->Good or stupid idea?
+  \item<3->A separate draft-then-RFC or an update to another document?  
+  \end{enumerate}
+\end{frame}
+
+\end{document}
