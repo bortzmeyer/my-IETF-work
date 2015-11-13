@@ -36,8 +36,7 @@
 <date month="TODO" year="2015"/>
 <workgroup>Domain Name System Operations (dnsop) Working Group</workgroup>
 <abstract>
-<t>This document describes one of the techniques that could be used to
-improve DNS privacy, a technique called
+<t>This document describes a technique to improve DNS privacy, a technique called
 "QNAME minimisation", where the DNS resolver no longer sends the full
 original QNAME to the upstream name server.</t>
 </abstract>
@@ -52,8 +51,8 @@ intended to fully solve the DNS privacy problem; instead, it should be
 viewed as one tool amongst many.</t>
 <t>It follows the principle explained in section 6.1 of <xref
 target="RFC6973"/>: the less data you send out, the fewer privacy
-problems you'll get.</t>
-<t>Under current practice, when a resolver receives the query "What is
+problems you have.</t>
+<t>Currently, when a resolver receives the query "What is
 the AAAA record for www.example.com?", it sends to the root (assuming
 a cold resolver, whose cache is empty) the very same question. Sending
 the full QNAME to the authoritative name server is a tradition, not a
