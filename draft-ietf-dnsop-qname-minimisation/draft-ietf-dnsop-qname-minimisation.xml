@@ -91,7 +91,8 @@ ns1.nic.example is authoritative for .example and the resolver does
 not know a more specific authoritative name server. It will send the
 query QTYPE=NS,QNAME=baz.example to ns1.nic.example.</t>
 <t>The minimising resolver works perfectly when it knows the zone cut
-<xref target="RFC2181"/> (section 6).  But zone cuts do not
+(zone cuts are described in section 6 of 
+<xref target="RFC2181"/>).  But zone cuts do not
 necessarily exist at every label boundary.  If we take the name
 www.foo.bar.example, it is possible that there is a zone cut between
 "foo" and "bar" but not between "bar" and "example"<!-- Real examples
