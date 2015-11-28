@@ -170,7 +170,7 @@ configure thousands of individual zones on their nameservers.  They just
 tell the prospective customer to point their NS records at the hoster's
 nameservers, and the Web hoster doesn't have to provision anything in
 order to make the customer's domain resolve. NS queries to the hoster
-will therefore do not give the right result, which may endanger QNAME
+will therefore not give the right result, which may endanger QNAME
 minimisation (it will be a problem for DNSSEC, too).
 </t>
 </section>
@@ -257,7 +257,7 @@ DNS path.)</t>
 resolver, which still sees the full request coming from the stub
 resolver.</t>
 <t>All the alternatives mentioned in <xref target="alts"/> decrease
-privacy in the hope of improving performances. They must not be used
+privacy in the hope of improving performance. They must not be used
 if you want the maximum privacy.</t>
 </section>
 
