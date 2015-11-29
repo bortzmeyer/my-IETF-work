@@ -78,7 +78,7 @@ appendixes).</t>
 <t>A resolver which implements QNAME minimisation, and which does not
 have already the answer in its cache, instead of sending the full
 QNAME and the original QTYPE upstream, sends a request to the name
-server authoritative for the closest known parent of the original
+server authoritative for the closest known ancestor of the original
 QNAME. The request is done with:
 <list>
 <t>the QTYPE NS,</t>
@@ -369,7 +369,7 @@ interesting anti-pattern.</t>
 
 </references>
 
-<section anchor="zonecutalgo" title="An algorithm to find the zone cut">
+<section anchor="zonecutalgo" title="An algorithm to perform QNAME minimisation in presence of zone cuts">
 
   <!-- source
        http://www.ietf.org/mail-archive/web/dns-privacy/current/msg00035.html -->
@@ -381,14 +381,14 @@ follow in order to locate this cut:
 as follows:</t>
 <t>(1) Find closest enclosing NS RRset in your cache. The owner of this NS
 RRset will be a suffix of the QNAME - the longest suffix of any NS RRset
-in the cache. Call this PARENT.</t>
-<t>(2) Initialize CHILD to the same as PARENT.</t>
+in the cache. Call this ANCESTOR.</t>
+<t>(2) Initialize CHILD to the same as ANCESTOR.</t>
 <t>(3) If CHILD is the same as the QNAME, resolve the original query using
-PARENT's name servers, and finish.</t>
+ANCESTOR's name servers, and finish.</t>
 <t>(4) Otherwise, add a label from the QNAME to the start of CHILD.</t>
 <t>(5) If you have a negative cache entry for the NS RRset at CHILD, go back
 to step 3.</t>
-<t>(6) Query for CHILD IN NS using PARENT's name servers. The response can
+<t>(6) Query for CHILD IN NS using ANCESTOR's name servers. The response can
 be:
 <list style="empty">
 <t>(6a) A referral. Cache the NS RRset from the authority section and go back
