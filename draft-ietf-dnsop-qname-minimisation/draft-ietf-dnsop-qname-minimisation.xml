@@ -288,7 +288,9 @@ Knot DNS resolver</eref> which is <eref
 target="https://storify.com/KnotDNS/knot-dns-recursive-beta">now in
 beta mode</eref> (with QNAME minimisation actually working). For Unbound, see <eref
 target="https://www.nlnetlabs.nl/bugs-script/show_bug.cgi?id=648">ticket
-648</eref> and for PowerDNS <eref
+648</eref>. It is implemented starting with version 1.5.7 (currently
+in release candidate).
+For PowerDNS, see <eref
 target="https://github.com/PowerDNS/pdns/issues/2311"/>.</t>
 <t>The algorithm to find the zone cuts described in <xref
 target="zonecutalgo"/> is implemented with QNAME minimisation in <eref
