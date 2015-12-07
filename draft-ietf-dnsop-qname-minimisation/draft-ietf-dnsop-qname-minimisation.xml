@@ -23,7 +23,7 @@
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.wkumari-dnsop-hammer.xml">
 ]>
 
-<rfc docName="draft-ietf-dnsop-qname-minimisation-08"
+<rfc docName="draft-ietf-dnsop-qname-minimisation-09-BETA"
      category="exp" ipr="trust200902">
 <?rfc toc="yes"?>
 <?rfc strict="yes"?>
@@ -33,7 +33,7 @@
 <organization>AFNIC</organization>
 <address><postal><street>1, rue Stephenson</street><code>78180</code><city>Montigny-le-Bretonneux</city><country>France</country></postal> <phone>+33 1 39 30 83 46</phone><email>bortzmeyer+ietf@nic.fr</email><uri>http://www.afnic.fr/</uri></address>
 </author>
-<date month="November" year="2015"/>
+<date month="TODO" year="TODO"/>
 <workgroup>Domain Name System Operations (dnsop) Working Group</workgroup>
 <abstract>
 <t>This document describes a technique to improve DNS privacy, a technique called
@@ -371,13 +371,16 @@ interesting anti-pattern.</t>
 
 </references>
 
-<section anchor="zonecutalgo" title="An algorithm to perform QNAME minimisation in presence of zone cuts">
+<section anchor="zonecutalgo" title="An algorithm to perform QNAME minimisation">
 
   <!-- source
        http://www.ietf.org/mail-archive/web/dns-privacy/current/msg00035.html -->
+<t>This algorithm performs name resolution with QNAME minimisation in presence of
+not-yet-known zone cuts.</t>
 <t>Although a validating resolver already has the logic to find the
 zone cut, other resolvers may be interested by this algorithm to
-follow in order to locate this cut:
+follow in order to locate the cuts. This is just a possible help for
+implementors, it is not intended to be normative:
 <list style="empty">
 <t>(0) If the query can be answered from the cache, do so, otherwise iterate
 as follows:</t>
