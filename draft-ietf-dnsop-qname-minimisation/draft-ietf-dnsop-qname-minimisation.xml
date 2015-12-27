@@ -237,6 +237,16 @@ target="huque-qnamemin"/>. Such deep domains are specially common
 under ip6.arpa.</t>
 </section>
 
+<section title="On the experimentation">
+<t>This document has status "Experimental". Since the beginning of
+time (or DNS), the fully qualified host name was always sent to the
+authoritative name servers. There was a concern that changing this
+behavior may engage the Law of Unintended Consequences. Hence this
+status.</t>
+<t>The idea about the experiment is to observe QNAME minimisation in action with multiple
+resolvers, various authoritative name servers, etc.</t>
+</section>
+  
 <section title="IANA Considerations">
 <t>This document has no actions for IANA.</t>
 </section>
