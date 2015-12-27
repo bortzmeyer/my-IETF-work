@@ -121,16 +121,17 @@ discussion in <xref target="huque-qnamestorify"/>).</t>
 <t>Some broken name servers do not react properly to qtype=NS
 requests. For instance, some authoritative name servers embedded in
 load balancers reply properly to A queries but send REFUSED to NS
-queries. This behaviour is a gross
+queries. This behaviour is a
 protocol violation, and there is no need to stop improving the DNS
-because of such brokenness. However, QNAME minimisation may still work
+because of such behaviour. However, QNAME minimisation may still work
 with such domains since they are only leaf domains (no need to send
 them NS requests). Such setup breaks more than just QNAME
 minimisation. It breaks negative answers, since the servers don't
 return the correct SOA, and it also breaks anything dependent upon NS
 and SOA records existing at the top of the zone.
 </t>
-<t>Another way to deal with such broken name servers would be to try
+<t>Another way to deal with such incorrect name servers would be to
+try 
 with QTYPE=A requests (A being chosen because it is the most common
 and hence a qtype which will be always accepted, while a qtype NS may
 ruffle the feathers of some middleboxes). Instead of querying name
@@ -140,18 +141,18 @@ and see if we get a referral.</t>
 properly to ENT (Empty Non-Terminals). If ent.example.com has no
 resource records but foobar.ent.example.com does, then ent.example.com
 is an ENT. A query, whatever the qtype, for ent.example.com must
-return NODATA (NOERROR / ANSWER: 0). However, some broken name servers
+return NODATA (NOERROR / ANSWER: 0). However, some name servers incorrectly
 return NXDOMAIN for ENTs. If a resolver queries only
 foobar.ent.example.com, everything will be OK but, if it implements
 QNAME minimisation, it may query ent.example.com and get a
 NXDOMAIN. See also section 3 of <xref
 target="I-D.vixie-dnsext-resimprove"/> for the other bad consequences
-of this brokenness.</t>
+of this bad behaviour.</t>
 <t>A possible solution, currently implemented in Knot, is to retry
 with the full query when you receive a NXDOMAIN. It works but it is
 not ideal for privacy.</t>
-<t>Other strange and non-conformant practices may pose a problem:
-there is a common DNS anti-pattern used by low-end web hosters that
+<t>Other practices that do not conform to the DNS protocol standards may pose a problem:
+there is a common DNS trick used by some Web hosters that
 also do DNS hosting that exploits the fact that the DNS protocol
 (pre-DNSSEC) allows certain serious misconfigurations, such as parent
 and child zones disagreeing on the location of a zone cut.  Basically,
@@ -161,9 +162,9 @@ they have a single zone with wildcards for each TLD like:
 *.example.          60  IN  A   192.0.2.6
 </artwork>
 </figure>
-(It is not known why they don't just wildcard all of "*." and be done with
-it.)</t>
-<t>This lets them turn up many web hosting customers without having to
+(They could just wildcard all of "*.", which would be sufficient. We
+don't know why they don't do it.)</t>
+<t>This lets them have many Web hosting customers without having to
 configure thousands of individual zones on their nameservers.  They just
 tell the prospective customer to point their NS records at the hoster's
 nameservers, and the Web hoster doesn't have to provision anything in
