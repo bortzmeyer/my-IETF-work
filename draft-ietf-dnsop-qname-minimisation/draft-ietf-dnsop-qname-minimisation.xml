@@ -14,8 +14,6 @@
 <!ENTITY rfc6347 SYSTEM
 "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6347.xml">
 <!ENTITY rfc6973 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6973.xml">
-<!ENTITY rfc6982 SYSTEM
-"http://xml.resource.org/public/rfc/bibxml/reference.RFC.6982.xml">
 <!ENTITY rfc7626 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7626.xml">
 <!ENTITY I-D.vixie-dnsext-resimprove SYSTEM
 "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.vixie-dnsext-resimprove.xml">
@@ -261,47 +259,6 @@ privacy in the hope of improving performance. They must not be used
 if you want the maximum privacy.</t>
 </section>
 
-<section title="Implementation status - RFC EDITOR: REMOVE BEFORE PUBLICATION">
-
-<t>This section records the status of known implementations of the
-protocol defined by this specification at the time of posting of this
-Internet-Draft, and is based on a proposal described in <xref
-target="RFC6982"/>. The description of implementations in this section
-is intended to assist the IETF in its decision processes in
-progressing drafts to RFCs.  Please note that the listing of any
-individual implementation here does not imply endorsement by the IETF.
-Furthermore, no effort has been spent to verify the information
-presented here that was supplied by IETF contributors.  This is not
-intended as, and must not be construed to be, a catalog of available
-implementations or their features.  Readers are advised to note that
-other implementations may exist.</t>
-<t>According to <xref target="RFC6982"/>, "this will allow reviewers
-and working groups to assign due consideration to documents that have
-the benefit of running code, which may serve as evidence of valuable
-experimentation and feedback that have made the implemented protocols
-more mature.  It is up to the individual working groups to use this
-information as they see fit".</t>
-<t>As of today, no production resolver implements QNAME minimisation
-but it has been publically announced for the <eref
-target="https://ripe70.ripe.net/presentations/121-knot-resolver-ripe70.pdf">future
-Knot DNS resolver</eref> which is <eref
-target="https://storify.com/KnotDNS/knot-dns-recursive-beta">now in
-beta mode</eref> (with QNAME minimisation actually working). For Unbound, see <eref
-target="https://www.nlnetlabs.nl/bugs-script/show_bug.cgi?id=648">ticket
-648</eref>. It is implemented starting with version 1.5.7 (currently
-in release candidate).
-For PowerDNS, see <eref
-target="https://github.com/PowerDNS/pdns/issues/2311"/>.</t>
-<t>The algorithm to find the zone cuts described in <xref
-target="zonecutalgo"/> is implemented with QNAME minimisation in <eref
-target="https://github.com/bortzmeyer/my-IETF-work/blob/master/draft-ietf-dnsop-QNAME-minimisation/zonecut.go">the
-sample code zonecut.go</eref>. It is also implemented, for a much
-longer time, in an option of dig, "dig +trace", but without QNAME
-minimisation.</t>
-<t>Another implementation was done by Shumon Huque for testing, and is
-described in <xref target="huque-qnamemin"/>.</t>
-</section>
-
 <section title="Acknowledgments">
 <t>Thanks to Olaf Kolkman for the original idea during a KLM flight from
 Amsterdam to Vancouver, although the concept
@@ -332,7 +289,6 @@ interesting anti-pattern.</t>
 
 <references title='Informative References'>
 &rfc2181;
-&rfc6982;
 &I-D.wkumari-dnsop-hammer;
 &I-D.vixie-dnsext-resimprove;
 
