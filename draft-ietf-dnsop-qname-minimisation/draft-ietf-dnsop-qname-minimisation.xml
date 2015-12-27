@@ -42,12 +42,12 @@ original QNAME to the upstream name server.</t>
 
 <middle>
 <section anchor="intro" title="Introduction and background">
-<t>The problem statement is exposed in <xref
+<t>The problem statement is described in <xref
 target="RFC7626"/>. The terminology ("QNAME", "resolver", etc) is also
 defined in this companion document. This specific solution is not
 intended to fully solve the DNS privacy problem; instead, it should be
 viewed as one tool amongst many.</t>
-<t>It follows the principle explained in section 6.1 of <xref
+<t>QNAME minimisation follows the principle explained in section 6.1 of <xref
 target="RFC6973"/>: the less data you send out, the fewer privacy
 problems you have.</t>
 <t>Currently, when a resolver receives the query "What is
