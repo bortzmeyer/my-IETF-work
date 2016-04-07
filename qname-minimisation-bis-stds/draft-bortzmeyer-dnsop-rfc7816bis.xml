@@ -123,7 +123,8 @@ zone&nbsp;cut, it will query the .example name&nbsp;servers for the
 NS records for bar.example. It will get a NODATA response, indicating
 that there is no zone cut at that point, so it has to query the
 .example name&nbsp;servers again with one more label, and so on.
-(<xref target="zonecutalgo"/> describes this algorithm in deeper detail.)</t>
+(<xref target="zonecutalgo"/> describes this algorithm in deeper
+detail.) TODO issue #8</t>
 
 <t>Since the information about the zone cuts will be stored in the
 resolver's cache, the performance cost is probably reasonable. <xref
@@ -225,7 +226,8 @@ documents may confuse  readers that use them for privacy analysis.
 
 <section title="Operational Considerations">
 <t>TODO what to do if the resolver forwards? Unbound disables QNAME
-minimisation in that case, since the forwarder will see everything, anyway.</t>
+minimisation in that case, since the forwarder will see everything,
+anyway. Issue #14</t>
   <t>The administrators of the forwarders, and of the authoritative
 name&nbsp;servers, will get less data, which will reduce the utility of the
 statistics they can produce (such as the percentage of the various
