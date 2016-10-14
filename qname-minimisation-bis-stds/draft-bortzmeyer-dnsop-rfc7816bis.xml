@@ -315,6 +315,7 @@ the benefit of running code, which may serve as evidence of valuable
 experimentation and feedback that have made the implemented protocols
 more mature.  It is up to the individual working groups to use this
 information as they see fit".</t>
+<t>TODO Bug 1127 - Stricter qname minimisation  https://www.nlnetlabs.nl/bugs-script/show_bug.cgi?id=1127</t>
 <t>TODO</t>
 </section>
 
